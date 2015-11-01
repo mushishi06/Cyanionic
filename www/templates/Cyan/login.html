@@ -1,0 +1,71 @@
+<ion-view view-title="SignIn">
+
+	<ion-content>
+		<div id="main-logo-block">
+		 <button style="float:left;font-size:35px; padding-left:5px; color:grey;" class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+		   	<div class="hexagon">
+		       <span>
+		           <img src="img/logo-60x54.png"/>
+		       </span>
+		    </div>
+		    <div class="login">
+		       <span>
+		             <h1>Identification</h1>
+		       </span>
+		    </div>
+		</div>
+		<section>
+		<div id="social-login" class="col-xs-12 col-sm-12 social-login"></div>
+	</section>
+	<section class="row">
+
+		<div class="alert alert-danger" role="alert" id="error_block" style="text-align:center;display:none;">
+			<h2 style="height:0%">Erreur:</h2>
+			<p id="error_message" style="height:0%"></p>
+		</div>
+
+		<div class="img-responsive"  id="wait" style="display:none;width:69px;height:89px;text-align:center;margin: 0 auto">
+			<img src='images/demo_wait.gif' width="64" height="64" />
+			<br>Chargement en cours...
+		</div>
+	</section>
+	<section >
+	<form ng-submit="userIdentification()">
+		<div class="list list-inset">
+			<label class="item item-input">
+		  		<i class="icon ion-search placeholder-icon"></i>
+		    	<input name="username" type="text" placeholder="Nom d'utilisateur" ng-model="loginData.username">
+			</label>
+			<label class="item item-input">
+		  		<i class="icon ion-search placeholder-icon"></i>
+		    	<input name="password" type="password" placeholder="Mot de passe" ng-model="loginData.password">
+		 	</label>
+		</div>
+		<ion-toggle ng-model="loginData.saveIdLogin" toggle-class="toggle-calm">save id</ion-toggle>
+		<div class="padding">
+			<button type="button" class="button button-block button-positive" type="submit">S'identifier</button>
+
+			<!-- onclick="cyan.userIdentification(document.getElementsByName('username')[0].value, document.getElementsByName('password')[0].value)">S'identifier</button> -->
+		</div>
+		</form>
+	</section>
+	<ul class="list">
+	    <li >
+	        <a class="button button-block button-positive" href="#/cyan/credentials-retrieval-panel" data-transition="slide">
+	            <p>J'ai oublie mes identifiants!</p>
+	        </a>
+	    </li>
+	    <li >
+	        <a class="button button-block button-positive" href="#/cyan/editor-panel" data-transition="slide">
+	            <p>Voir l'editeur</p>
+	        </a>
+	    </li>
+	</ul>
+	</ion-content>
+	<ion-footer-bar align-title="center" class="bar-dark">
+ 		<!-- <div id="bar bar-header bar-dark"> -->
+	        <a  class="title" href="#/cyan/signup-panel"><p> Pas encore membre ? Enregistrez-vous ici !</p></a>
+	    <!-- </div> -->
+	</ion-footer-bar>
+</ion-view>

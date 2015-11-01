@@ -1,0 +1,99 @@
+<div>
+
+	<div class="row">
+		<div id="main-logo-block">
+		   <div class="hexagon">
+		       <span>
+		           <img src="images/logo-60x54.png"/>
+		       </span>
+		    </div>
+		    <div class="login">
+		       <span>
+		             <h1>Inscription</h1>
+		       </span>
+		    </div>
+		</div>
+	</div>
+
+	<section class="row">
+		<div id="social-login" class="col-xs-12 col-sm-12 social-login">
+		<!-- <div id="social-login" class="col-xs-12 col-sm-12 social-login"> -->
+
+		</div>
+	</section>
+
+
+	<section class="row">
+
+		<div class="alert alert-danger" role="alert" id="error_block" style="text-align:center;display:none;">
+			<h2 style="height:0%">Erreur:</h2>
+			<p id="error_message" style="height:0%"></p>
+		</div>
+
+		<div class="img-responsive"  id="wait" style="display:none;width:69px;height:89px;text-align:center;margin: 0 auto">
+			<img src='images/demo_wait.gif' width="64" height="64" />
+			<br>Chargement...
+		</div>
+
+	</section>
+
+	<div class="row" style="height:20px"></div>
+	<section >
+		<form class="form-horizontal">
+			<div class="form-group">
+				<!--<label for="inputEmail3" class="col-sm-2 control-label">Email</label>-->
+				<div class="input-group">
+					<span class="input-group-addon" id="signUpBasic-addon">
+						<span id="ico-username" class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+					</span>
+					<input  name="username" type="email" class="form-control" id="signUpUserName" placeholder="Nom d'utilisateur" aria-describedby="signUpBasic-addon">
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon" id="signUpBasic-addon2">
+						<span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+					</span>
+					<input name="password" type="password" class="form-control" id="signUpPassword" placeholder="Mot de passe" aria-describedby="signUpBasic-addon2">
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon" id="signUpBasic-addon3">
+						<span id="ico-pass" class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+					</span>
+					<input name="repassword" type="password" class="form-control" id="signUpRepassword" placeholder="Retapez le mot de passe" aria-describedby="signUpBasic-addon3">
+				</div>
+			</div>
+			<div class="form-group">
+				<button type="button" class="btn btn-lg  btn-block disabled" disabled="disabled" onclick="cyan.userIdentification(document.getElementsByName('username')[0].value, document.getElementsByName('password')[0].value)">S'inscrire</button>
+			</div>
+		</form>
+
+	</section>
+	<div class="row" >
+    	<div id="main-footer">
+        	<span>
+        		<a href="javascript:$.ui.goBack();" data-transition="slide"><h2>Annuler</h2></a>
+	        </span>
+    	</div>
+	</div>
+
+</div>
+
+<script>
+
+    $("#signUpRepassword").keyup(function(){
+
+    	var username = $("#signUpUserName").val();
+        var second = $(this).val();
+        var first = $("#signUpPassword").val();
+
+	    if( (first == second) && !(username == '')) {
+            $("button").removeAttr("disabled");
+            $("button").attr("class", "btn btn-lg  btn-block");
+            $("#ico-pass").attr("class", "glyphicon glyphicon-lock");
+
+        } else {
+            $("button").attr("disabled", "disabled");
+            $("#ico-pass").attr("class", "glyphicon glyphicon-lock pass-error");
+        }
+    })
+
+</script>
