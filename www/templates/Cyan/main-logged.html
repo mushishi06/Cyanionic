@@ -1,42 +1,49 @@
-<div id="main-logged-panel-content">
-
-    <div class="row">
+<ion-view view-title="main-logged-panel-content">
+    <ion-content>
         <div id="main-logo-block">
-            <a href="javascript:$.ui.toggleLeftSideMenu()">
-                <span style="float:left;font-size:35px; padding-left:5px; color:grey;" class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-            </a>
-           <div class="hexagon2">
+         <button style="float:left;font-size:35px; padding-left:5px; color:grey;" class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+            <div class="hexagon">
                <span>
-                   <img src="images/logo-60x54.png"/>
+                   <img src="img/logo-60x54.png"/>
                </span>
             </div>
             <div class="login">
                <span>
-                      <p style="text-align:center;font-size:15px;">Bienvenue&nbsp;<span name="displayedUsername"></span></p>
+                     <p style="text-align:center;font-size:15px;">Bienvenue&nbsp;<span name="displayedUsername"></span></p>
                </span>
             </div>
         </div>
-    </div>
-    <ul class="list" id="main-menu-list">
-        <li class="resizable-button">
-            <a class="button" href="#applications-panel">
-                <img src="images/icon-create-new-app.png" style="float:left;height:35px;"/>
+        <section>
+            <div id="social-login" class="col-xs-12 col-sm-12 social-login"></div>
+        </section>
+    <section class="row">
+
+        <div class="alert alert-danger" role="alert" id="error_block" style="text-align:center;display:none;">
+            <h2 style="height:0%">Erreur:</h2>
+            <p id="error_message" style="height:0%"></p>
+        </div>
+
+        <div class="img-responsive"  id="wait_app" style="display:none;width:100px;height:69px;text-align:center;margin: 0 auto">
+            <ion-spinner icon="android" class="spinner-energized"></ion-spinner>
+            <br>Listing ...
+        </div>
+    </section>
+    <ul class="list list-inset">
+        <li >
+            <a class="button button-block button-positive" href="#/cyan/create-app-panel" data-transition="slide">
                 <p>Creer une nouvelle application</p>
             </a>
         </li>
-        <li class="resizable-button">
-            <a class="button" href="#applications-panel">
-                <span class="glyphicon glyphicon-list" aria-hidden="true" style="float:left;font-size:27px;"></span>
+        <li >
+            <a class="button button-block button-positive" href="javascript:cyan.appsListing()" data-transition="slide">
                 <p>Voir mes applications existantes</p>
             </a>
         </li>
     </ul>
-    <div class="row" >
-        <div id="main-footer">
-            <div id="main-footer-help">
-                <a href="#help_main-logged-panel" data-transition="pop"><img src="images/icon-help.png" style="height:20px;"/></a>
-            </div>
-        </div>
-    </div>
-</div>
-<div style="clear:both;"></div>
+    </ion-content>
+    <ion-footer-bar align-title="center" class="bar-dark">
+        <!-- <div id="bar bar-header bar-dark"> -->
+        <!-- </div> -->
+    </ion-footer-bar>
+</ion-view>

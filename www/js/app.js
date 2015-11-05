@@ -42,6 +42,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
+  .state('cyan.main-logged-panel', {
+    url: '/main-logged-panel',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/Cyan/main-logged.html',
+        controller: 'CyanCtrl'
+      }
+    }
+  })
+
   .state('cyan.browse', {
       url: '/browse',
       views: {

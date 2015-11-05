@@ -25,30 +25,28 @@
 			<p id="error_message" style="height:0%"></p>
 		</div>
 
-		<div class="img-responsive"  id="wait" style="display:none;width:69px;height:89px;text-align:center;margin: 0 auto">
-			<img src='images/demo_wait.gif' width="64" height="64" />
+		<div class="img-responsive"  id="wait" style="display:none;width:100px;height:69px;text-align:center;margin: 0 auto">
+			<ion-spinner icon="android" class="spinner-energized"></ion-spinner>
 			<br>Chargement en cours...
 		</div>
 	</section>
 	<section >
-	<form ng-submit="userIdentification()">
 		<div class="list list-inset">
 			<label class="item item-input">
-		  		<i class="icon ion-search placeholder-icon"></i>
+		  		<i class="icon ion-email placeholder-icon"></i>
 		    	<input name="username" type="text" placeholder="Nom d'utilisateur" ng-model="loginData.username">
 			</label>
 			<label class="item item-input">
-		  		<i class="icon ion-search placeholder-icon"></i>
+		  		<i class="icon ion-locked placeholder-icon"></i>
 		    	<input name="password" type="password" placeholder="Mot de passe" ng-model="loginData.password">
 		 	</label>
+		 	<ion-toggle ng-model="loginData.saveIdLogin" toggle-class="toggle-calm">save id</ion-toggle>
 		</div>
-		<ion-toggle ng-model="loginData.saveIdLogin" toggle-class="toggle-calm">save id</ion-toggle>
 		<div class="padding">
-			<button type="button" class="button button-block button-positive" type="submit">S'identifier</button>
+			<button type="button" class="button button-block button-positive" ng-click="userIdentification()">S'identifier</button>
 
 			<!-- onclick="cyan.userIdentification(document.getElementsByName('username')[0].value, document.getElementsByName('password')[0].value)">S'identifier</button> -->
 		</div>
-		</form>
 	</section>
 	<ul class="list">
 	    <li >
