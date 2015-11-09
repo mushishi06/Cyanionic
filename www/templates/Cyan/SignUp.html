@@ -1,10 +1,10 @@
-<div>
+<ion-view view-title="SignUp">
 
-	<div class="row">
+	<ion-content>
 		<div id="main-logo-block">
-		   <div class="hexagon">
+		   	<div class="hexagon">
 		       <span>
-		           <img src="images/logo-60x54.png"/>
+		           <img src="img/logo-60x54.png"/>
 		       </span>
 		    </div>
 		    <div class="login">
@@ -13,16 +13,9 @@
 		       </span>
 		    </div>
 		</div>
-	</div>
-
-	<section class="row">
-		<div id="social-login" class="col-xs-12 col-sm-12 social-login">
-		<!-- <div id="social-login" class="col-xs-12 col-sm-12 social-login"> -->
-
-		</div>
+		<section>
+		<div id="social-login" class="col-xs-12 col-sm-12 social-login"></div>
 	</section>
-
-
 	<section class="row">
 
 		<div class="alert alert-danger" role="alert" id="error_block" style="text-align:center;display:none;">
@@ -30,53 +23,43 @@
 			<p id="error_message" style="height:0%"></p>
 		</div>
 
-		<div class="img-responsive"  id="wait" style="display:none;width:69px;height:89px;text-align:center;margin: 0 auto">
-			<img src='images/demo_wait.gif' width="64" height="64" />
-			<br>Chargement...
+		<div class="img-responsive"  id="wait" style="display:none;width:100px;height:69px;text-align:center;margin: 0 auto">
+			<ion-spinner icon="android" class="spinner-energized"></ion-spinner>
+			<br>Chargement en cours...
 		</div>
-
 	</section>
-
-	<div class="row" style="height:20px"></div>
 	<section >
-		<form class="form-horizontal">
-			<div class="form-group">
-				<!--<label for="inputEmail3" class="col-sm-2 control-label">Email</label>-->
-				<div class="input-group">
-					<span class="input-group-addon" id="signUpBasic-addon">
-						<span id="ico-username" class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-					</span>
-					<input  name="username" type="email" class="form-control" id="signUpUserName" placeholder="Nom d'utilisateur" aria-describedby="signUpBasic-addon">
-				</div>
-				<div class="input-group">
-					<span class="input-group-addon" id="signUpBasic-addon2">
-						<span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
-					</span>
-					<input name="password" type="password" class="form-control" id="signUpPassword" placeholder="Mot de passe" aria-describedby="signUpBasic-addon2">
-				</div>
-				<div class="input-group">
-					<span class="input-group-addon" id="signUpBasic-addon3">
-						<span id="ico-pass" class="glyphicon glyphicon-lock" aria-hidden="true"></span>
-					</span>
-					<input name="repassword" type="password" class="form-control" id="signUpRepassword" placeholder="Retapez le mot de passe" aria-describedby="signUpBasic-addon3">
-				</div>
-			</div>
-			<div class="form-group">
+		<div class="list list-inset">
+			<label class="item item-input">
+		  		<i class="icon ion-email placeholder-icon"></i>
+		    	<input name="signUpUserName" type="text" placeholder="Nom d'utilisateur" ng-model="loginData.signUpUserName">
+			</label>
+			<label class="item item-input">
+		  		<i class="icon ion-locked placeholder-icon"></i>
+		    	<input name="signUpPassword" type="password" placeholder="Mot de passe" ng-model="loginData.signUpPassword">
+		 	</label>
+		 	<label class="item item-input">
+		  		<i class="icon ion-locked placeholder-icon"></i>
+		    	<input name="signUpRepassword" type="password" placeholder="Retapez le mot de passe" ng-model="loginData.signUpRepassword">
+		 	</label>
+		 	<ion-toggle ng-model="loginData.saveIdLogin" toggle-class="toggle-calm">Se souvenir des indentifiants</ion-toggle>
+		</div>
+		<div class="padding">
+			<button type="button" class="button button-block button-positive" ng-click="#">S'inscrire</button>
+		</div>
+		<!-- <div class="form-group">
 				<button type="button" class="btn btn-lg  btn-block disabled" disabled="disabled" onclick="cyan.userIdentification(document.getElementsByName('username')[0].value, document.getElementsByName('password')[0].value)">S'inscrire</button>
-			</div>
-		</form>
-
+			</div> -->
 	</section>
-	<div class="row" >
-    	<div id="main-footer">
-        	<span>
-        		<a href="javascript:$ionicGoBack();" data-transition="slide"><h2>Annuler</h2></a>
-	        </span>
-    	</div>
-	</div>
+	</ion-content>
+	<ion-footer-bar align-title="center" class="bar-dark">
+ 		<!-- <div id="bar bar-header bar-dark"> -->
+	        <a style="text-decoration:none" class="title" href="#/cyan/signin"><p> Annuler</p></a>
+	    <!-- </div> -->
+	</ion-footer-bar>
+</ion-view>
 
-</div>
-
+<!-- 
 <script>
 
     $("#signUpRepassword").keyup(function(){
@@ -96,4 +79,4 @@
         }
     })
 
-</script>
+</script> -->

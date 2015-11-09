@@ -1,37 +1,44 @@
-<div id="list-apps-panel-content">
-<!-- list-App -->
-    <div class="row">
+<ion-view view-title="list-apps-panel-content">
+    <ion-content>
         <div id="main-logo-block">
-            <a href="javascript:$.ui.toggleLeftSideMenu()">
-                <span style="float:left;font-size:35px; padding-left:5px; color:grey;" class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-            </a>
-           <div class="hexagon2">
+         <button style="float:left;font-size:35px; padding-left:5px; color:grey;" class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+            <div class="hexagon">
                <span>
-                   <img src="images/logo-60x54.png"/>
+                   <img src="img/logo-60x54.png"/>
                </span>
             </div>
             <div class="login">
                <span>
-                      <p style="text-align:center;font-size:15px;">My&nbsp;Apps</span></p>
+                     <p style="text-align:center;font-size:15px;">My&nbsp;Apps</span></p>
                </span>
             </div>
         </div>
-    </div>
-  <div class="row" style="height:20px"></div>
     <section class="row">
-        <ul class="list list-App-test" id="list-apps-content">
+
+        <div class="alert alert-danger" role="alert" id="error_block_logged" style="text-align:center;display:none;">
+            <h2 style="height:0%">Erreur:</h2>
+            <p id="error_message_logged" style="height:0%"></p>
+        </div>
+
+        <div class="img-responsive"  id="wait_app" style="display:none;width:100px;height:69px;text-align:center;margin: 0 auto">
+            <ion-spinner icon="android" class="spinner-energized"></ion-spinner>
+            <br>Listing ...
+        </div>
+    </section>
+    <div class="row" style="height:20px"></div>
+    <section class="row">
+      <ul class="list list-App-test" id="list-apps-content">
 
 <!-- <div style="display:flex;justify-content:center;align-items:center;">
  <div></div>
 </div> -->
-        </ul>
+      </ul>
     </section>
-
-    <div class="row" >
-        <div id="main-footer">
-            <div id="main-footer-help">
-            </div>
-        </div>
-    </div>
-</div>
-<div style="clear:both;"></div>
+    </ion-content>
+    <ion-footer-bar align-title="center" class="bar-dark">
+        <!-- <div id="bar bar-header bar-dark"> -->
+        <a style="text-decoration:none" class="title" href="#/cyan/main-logged"><p>Retour</p></a>
+        <!-- </div> -->
+    </ion-footer-bar>
+</ion-view>

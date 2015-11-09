@@ -40,7 +40,7 @@
 		  		<i class="icon ion-locked placeholder-icon"></i>
 		    	<input name="password" type="password" placeholder="Mot de passe" ng-model="loginData.password">
 		 	</label>
-		 	<ion-toggle ng-model="loginData.saveIdLogin" toggle-class="toggle-calm">save id</ion-toggle>
+		 	<ion-toggle ng-model="loginData.saveIdLogin" toggle-class="toggle-calm">Se souvenir des indentifiants</ion-toggle>
 		</div>
 		<div class="padding">
 			<button type="button" class="button button-block button-positive" ng-click="userIdentification()">S'identifier</button>
@@ -63,7 +63,7 @@
 	</ion-content>
 	<ion-footer-bar align-title="center" class="bar-dark">
  		<!-- <div id="bar bar-header bar-dark"> -->
-	        <a  class="title" href="#/cyan/signup-panel"><p> Pas encore membre ? Enregistrez-vous ici !</p></a>
+	        <a style="text-decoration:none" class="title" href="#/cyan/signup-panel"><p> Pas encore membre ? Enregistrez-vous ici !</p></a>
 	    <!-- </div> -->
 	</ion-footer-bar>
 </ion-view>
