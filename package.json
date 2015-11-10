@@ -1,6 +1,6 @@
 {
-  "name": "test",
-  "version": "1.0.0",
+  "name": "Cyan",
+  "version": "1.0.3",
   "description": "test: An Ionic project",
   "dependencies": {
     "gulp": "^3.5.6",

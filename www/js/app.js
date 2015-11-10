@@ -52,6 +52,26 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
+  .state('cyan.editor-panel', {
+      url: '/editor-panel',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/Cyan/editor.html',
+          controller: 'CyanCtrl'
+        }
+      }
+    })
+
+    .state('cyan.create-app', {
+      url: '/create-app',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/Cyan/create-App.html',
+          controller: 'CyanCtrl'
+        }
+      }
+    })
+
   .state('cyan.browse', {
       url: '/browse',
       views: {
@@ -60,6 +80,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         }
       }
     })
+
     .state('cyan.credentials-retrieval-panel', {
       url: '/credentials-retrieval-panel',
       views: {
