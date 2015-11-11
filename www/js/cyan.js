@@ -224,7 +224,6 @@ Cyan.prototype = {
     //Call by button login
     userIdentification: function(username, password)
     {
-        alert("bob");
         console.log(username);
         console.log(password);
         this.use(username, password);
