@@ -224,7 +224,7 @@ Cyan.prototype = {
     //Call by button login
     userIdentification: function(username, password)
     {
-        alert("bob");
+       // alert("bob");
         console.log(username);
         console.log(password);
         this.use(username, password);
@@ -245,6 +245,8 @@ Cyan.prototype = {
         else
         {
             v_div_parent = document.getElementById("list-apps-content");
+            console.log("v_div_parent = ");
+            console.log(v_div_parent);
             for(var key in data.names)
             {
                // $(key).exists(function() {
@@ -282,7 +284,7 @@ Cyan.prototype = {
             console.log(data.names);
             console.log(data.names[0]);
             console.log(data.status);
-            loadPage('#list-apps-panel', 'false', 'false', 'fade');
+            loadPage('#cyan/list-apps-panel', 'false', 'false', 'fade');
         }
     },
 

@@ -72,6 +72,15 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     })
 
+ .state('cyan.list-apps-panel', {
+      url: '/list-apps-panel',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/Cyan/list-App.html',
+          controller: 'CyanCtrl'
+        }
+      }
+    })
   .state('cyan.browse', {
       url: '/browse',
       views: {
