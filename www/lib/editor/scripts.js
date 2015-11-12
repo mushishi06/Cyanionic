@@ -332,6 +332,9 @@ function initContainer(){
 	});
 	configurationElm();
 }
+
+
+
 cyan.test = function() {
 	CKEDITOR.disableAutoInline = true;
 	restoreData();
@@ -342,6 +345,19 @@ cyan.test = function() {
 			allowedContent: true
 		}
 	);
+
+  function openEditor(event) {
+    console.log(event);
+    currenteditor = $(event.currentTarget);
+    var eText = currenteditor.html();
+    contenthandle.setData(eText);
+    $("#editorModal").modal({backdrop: false}).on("shown", function() {
+      //$('.modal-backdrop').remove();
+    });
+  }
+
+  interact('.editor-element').on('hold', openEditor);
+
 	$("body").css("min-height", $(window).height() - 50);
 	$(".demo").css("min-height", $(window).height() - 130);
 	$(".sidebar-nav .lyrow").draggable({
@@ -381,6 +397,7 @@ cyan.test = function() {
 			startdrag = 0;
 		}
 	});
+
 	$(".sidebar-nav .box").draggable({
 		connectToSortable: ".column",
 		helper: "clone",
@@ -399,14 +416,7 @@ cyan.test = function() {
 				stopsave--;
 			}
 
-			interact('.editor-element').on('hold', function(event) {
-				console.log(event);
-				currenteditor = $(event.currentTarget);
-				var eText = currenteditor.html();
-				contenthandle.setData(eText);
-				$("#editorModal").modal();
-			});
-
+			interact('.editor-element').on('hold', openEditor);
 			startdrag = 0;
 		}
 	});

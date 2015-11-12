@@ -1,6 +1,14 @@
 angular.module('starter.controllers', [])
 
 .controller('CyanCtrl', function($scope, $ionicModal, $timeout, $state) {
+    $scope.$on('$ionicView.afterEnter', function () {
+      var link = angular.element(document.getElementById("docs-css"));
+      link.remove();
+
+      var head = angular.element(document.getElementsByTagName("head")[0]);
+
+      head.append(angular.element('<link href="lib/ionic/css/ionic.css" id="ionic-css" rel="stylesheet" />'));
+    });
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -51,6 +59,13 @@ angular.module('starter.controllers', [])
 
 .controller('EditorCtrl', function($scope, $ionicModal, $timeout, $state) {
     $scope.$on('$ionicView.afterEnter', function () {
+      var link = angular.element(document.getElementById("ionic-css"));
+      link.remove();
+
+      var head = angular.element(document.getElementsByTagName("head")[0]);
+
+      head.append(angular.element('<link href="css/editor-css/docs.min.css" id="docs-css" rel="stylesheet" />'));
+
       cyan.test();
     });
 })
