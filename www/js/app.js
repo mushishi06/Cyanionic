@@ -22,14 +22,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $ionicConfigProvider, $urlRouterProvider) {
+
+    $ionicConfigProvider.views.maxCache(0);
   $stateProvider
 
   .state('cyan', {
     url: '/cyan',
     abstract: true,
     templateUrl: 'templates/Cyan/menu.html',
-    //controller: 'CyanCtrl'
+    controller: 'VoidCtrl'
   })
 
   .state('cyan.signein', {
@@ -52,14 +54,10 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
-  .state('cyan.editor-panel', {
+  .state('editor-panel', {
       url: '/editor-panel',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/Cyan/editor.html',
-          controller: 'EditorCtrl'
-        }
-      }
+      templateUrl: 'templates/Cyan/editor.html',
+      controller: 'EditorCtrl'
     })
 
     .state('cyan.create-app', {
