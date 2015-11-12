@@ -2,12 +2,19 @@ angular.module('starter.controllers', [])
 
 .controller('CyanCtrl', function($scope, $ionicModal, $timeout, $state) {
     $scope.$on('$ionicView.afterEnter', function () {
-      var link = angular.element(document.getElementById("docs-css"));
-      link.remove();
+      console.log("CyanCtrl::afterEnter");
+      var links = document.getElementsByClassName("docs-css");
+      console.log(links);
+      for (var i = 0 ; i < links.length ; ++i) {
+        angular.element(links[i]).remove();
+      }
 
       var head = angular.element(document.getElementsByTagName("head")[0]);
 
-      head.append(angular.element('<link href="lib/ionic/css/ionic.css" id="ionic-css" rel="stylesheet" />'));
+      links = document.getElementsByClassName("ionic-css");
+      if (links.length == 0) {
+        head.append(angular.element('<link href="lib/ionic/css/ionic.css" class="ionic-css" rel="stylesheet" />'));
+      }
     });
 
   // With the new view caching in Ionic, Controllers are only called
@@ -59,12 +66,19 @@ angular.module('starter.controllers', [])
 
 .controller('EditorCtrl', function($scope, $ionicModal, $timeout, $state) {
     $scope.$on('$ionicView.afterEnter', function () {
-      var link = angular.element(document.getElementById("ionic-css"));
-      link.remove();
+      console.log("EditorCtrl::afterEnter");
+      var links = document.getElementsByClassName("ionic-css");
+      console.log(links);
+      for (var i = 0 ; i < links.length ; ++i) {
+        angular.element(links[i]).remove();
+      }
 
       var head = angular.element(document.getElementsByTagName("head")[0]);
 
-      head.append(angular.element('<link href="css/editor-css/docs.min.css" id="docs-css" rel="stylesheet" />'));
+      links = document.getElementsByClassName("docs-css");
+      if (links.length == 0) {
+        head.append(angular.element('<link href="css/editor-css/docs.min.css" class="docs-css" rel="stylesheet" />'));
+      }
 
       cyan.test();
     });

@@ -29,7 +29,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     url: '/cyan',
     abstract: true,
     templateUrl: 'templates/Cyan/menu.html',
-    controller: 'CyanCtrl'
+    //controller: 'CyanCtrl'
   })
 
   .state('cyan.signein', {
