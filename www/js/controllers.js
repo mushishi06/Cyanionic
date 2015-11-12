@@ -49,6 +49,12 @@ angular.module('starter.controllers', [])
 
 })
 
+.controller('EditorCtrl', function($scope, $ionicModal, $timeout, $state) {
+    $scope.$on('$ionicView.afterEnter', function () {
+      cyan.test();
+    });
+})
+
 .controller('PlaylistsCtrl', function($scope) {
   $scope.playlists = [
     { title: 'Reggae', id: 1 },

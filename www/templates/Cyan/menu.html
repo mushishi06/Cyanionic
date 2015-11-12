@@ -12,25 +12,28 @@
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>
 
+
   <ion-side-menu side="left" style="color:grey;">
+    <ion-pane ion-side-menu-content drag-content="false">
     <!-- <ion-header-bar class="bar-stable">
       <h1 class="title">Menu</h1>
     </ion-header-bar> -->
-    <ion-content>
-      <ion-list>
-        <ion-item menu-close ng-click="resetProfile()" href="#/cyan/user-profile-panel">
-          Mon profil
-        </ion-item>
-        <ion-item menu-close href="#/cyan/main-logged-panel">
-          Accueil
-        </ion-item>
-        <ion-item menu-close href="#/cyan/browse">
-          Browse
-        </ion-item>
-        <ion-item menu-close href="#/cyan/signein">
-          Se deconnecter
-        </ion-item>
-      </ion-list>
-    </ion-content>
+      <ion-content>
+        <ion-list>
+          <ion-item menu-close ng-click="resetProfile()" href="#/cyan/user-profile-panel">
+            Mon profil
+          </ion-item>
+          <ion-item menu-close href="#/cyan/main-logged-panel">
+            Accueil
+          </ion-item>
+          <ion-item menu-close href="#/cyan/browse">
+            Browse
+          </ion-item>
+          <ion-item menu-close href="#/cyan/signein">
+            Se deconnecter
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ion-pane>
   </ion-side-menu>
 </ion-side-menus>

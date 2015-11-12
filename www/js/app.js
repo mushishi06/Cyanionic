@@ -57,7 +57,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       views: {
         'menuContent': {
           templateUrl: 'templates/Cyan/editor.html',
-          controller: 'CyanCtrl'
+          controller: 'EditorCtrl'
         }
       }
     })

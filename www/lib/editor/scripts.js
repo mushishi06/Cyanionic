@@ -332,7 +332,7 @@ function initContainer(){
 	});
 	configurationElm();
 }
-$(document).ready(function() {
+cyan.test = function() {
 	CKEDITOR.disableAutoInline = true;
 	restoreData();
 	var contenthandle = CKEDITOR.replace(
@@ -495,7 +495,7 @@ $(document).ready(function() {
 	setInterval(function() {
 		handleSaveLayout()
 	}, timerSave)
-})
+}
 
 function saveHtml() {
 	webpage
