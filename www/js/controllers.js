@@ -82,6 +82,10 @@ angular.module('starter.controllers', [])
 
       cyan.test();
     });
+
+    //ngCordova.plugins.file.writeFile(path, fileName, text, replaceBool);
+    //ngCordova.plugins.file.readAsText(path, fileName);
+    //ngCordova.plugins.file.createDir(path, dirName, replaceBool)
 })
 .controller('VoidCtrl', function($scope, $ionicModal, $timeout, $state) {
     // With the new view caching in Ionic, Controllers are only called
