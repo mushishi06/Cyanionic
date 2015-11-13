@@ -573,8 +573,6 @@ cyan.test = function($cordovaFile, storageDir) {
     saveHtml($cordovaFile, storageDir, "index");
   });
 
-}
-
 function getPageName() {
 	if (pageName != "")
 		return pageName;
@@ -591,7 +589,7 @@ function getPageName() {
 
 function addPage() {
 	pageName = getPageName();
-	saveHtml(pageName);
+	saveHtml($cordovaFile, storageDir, pageName);
 	pageName = "";
 	clearDemo();
 }
@@ -599,3 +597,4 @@ function addPage() {
 function delPage() {
 }
 
+}
