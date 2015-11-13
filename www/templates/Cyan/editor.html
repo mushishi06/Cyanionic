@@ -2,302 +2,302 @@
   <ion-content>
 
     <!--<body style="min-height: 660px; cursor: auto;" class="edit">-->
-      <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="navbar-inner">
-          <div class="container-fluid">
-            <div class="nav-collapse collapse">
-              <ul class="nav" id="menu-layoutit">
-                <li>
-                  <div class="btn-group">
-                    <a class="btn btn-warning" href="/" target="_blank"><i class="icon-step-backward icon-white"></i>
-                      Revenir a l'accueil</a>
-                  </div>
-                  <div class="btn-group" data-toggle="buttons-radio">
-                    <button type="button" id="edit" class="btn btn-success active"><i class="icon-edit icon-white"></i>
-                      Editer
-                    </button>
-                    <button type="button" class="btn btn-info" id="devpreview"><i class="icon-eye-close icon-white"></i>
-                      Developpeur
-                    </button>
-                    <button type="button" class="btn btn-info" id="sourcepreview">
-                      <i class="icon-eye-open icon-white"></i> Previsualiser
-                    </button>
-                  </div>
-                  <div class="btn-group">
-                    <button type="button"
-                            class="btn btn-info"
-                            data-target="#downloadModal"
-                            rel="/build/downloadModal"
-                            role="button"
-                            data-toggle="modal"><i class="icon-chevron-down icon-white"></i> Sauvegarder
-                    </button>
-                  </div>
-                  <div class="btn-group">
-                    <button class="btn btn-danger" href="#clear" id="clear"><i class="icon-trash icon-white"></i> Tout
-                      effacer
-                    </button>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <!--/.nav-collapse -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <div class="nav-collapse collapse">
+            <ul class="nav" id="menu-layoutit">
+              <li>
+                <div class="btn-group">
+                  <a class="btn btn-warning" href="/" target="_blank"><i class="icon-step-backward icon-white"></i>
+                    Revenir a l'accueil</a>
+                </div>
+                <div class="btn-group" data-toggle="buttons-radio">
+                  <button type="button" id="edit" class="btn btn-success active"><i class="icon-edit icon-white"></i>
+                    Editer
+                  </button>
+                  <button type="button" class="btn btn-info" id="devpreview"><i class="icon-eye-close icon-white"></i>
+                    Developpeur
+                  </button>
+                  <button type="button" class="btn btn-info" id="sourcepreview">
+                    <i class="icon-eye-open icon-white"></i> Previsualiser
+                  </button>
+                </div>
+                <div class="btn-group">
+                  <button type="button"
+                          class="btn btn-info"
+                          data-target="#downloadModal"
+                          rel="/build/downloadModal"
+                          role="button"
+                          data-toggle="modal"><i class="icon-chevron-down icon-white"></i> Sauvegarder
+                  </button>
+                </div>
+                <div class="btn-group">
+                  <button class="btn btn-danger" href="#clear" id="clear"><i class="icon-trash icon-white"></i> Tout
+                    effacer
+                  </button>
+                </div>
+              </li>
+            </ul>
           </div>
+          <!--/.nav-collapse -->
         </div>
       </div>
-      <div id="container-body" class="container-fluid">
-        <div class="changeDimension">
-          <div class="row-fluid">
-            <div>
-              <div class="sidebar-nav">
-                <!--<button type="button" class="btn btn-success" style="margin-left: 10px;">-->
-                <!--<i class="icon-plus icon-white"></i>Add row-->
-                <!--</button>-->
-                <ul class="nav nav-list accordion-group">
-                  <li class="nav-header">
-                    GRILLE
-                  </li>
-                  <li style="display: none;" class="rows" id="estRows">
-                    <!-- 12 -->
-                    <div class="lyrow ui-draggable">
-                      <a href="#close" class="remove label label-danger">
-                        <i class="icon-remove icon-white"></i>
-                      </a> <span class="drag label"><i class="icon-move"></i></span>
+    </div>
+    <div id="container-body" class="container-fluid">
+      <div class="changeDimension">
+        <div class="row-fluid">
+          <div>
+            <div class="sidebar-nav">
+              <!--<button type="button" class="btn btn-success" style="margin-left: 10px;">-->
+              <!--<i class="icon-plus icon-white"></i>Add row-->
+              <!--</button>-->
+              <ul class="nav nav-list accordion-group">
+                <li class="nav-header">
+                  GRILLE
+                </li>
+                <li style="display: none;" class="rows" id="estRows">
+                  <!-- 12 -->
+                  <div class="lyrow ui-draggable">
+                    <a href="#close" class="remove label label-danger">
+                      <i class="icon-remove icon-white"></i>
+                    </a> <span class="drag label"><i class="icon-move"></i></span>
 
-                      <div class="preview">
-                        <input value="12" type="text">
-                      </div>
-                      <div class="view">
-                        <div class="row-fluid clearfix">
-                          <div class="span12 column"></div>
-                        </div>
+                    <div class="preview">
+                      <input value="12" type="text">
+                    </div>
+                    <div class="view">
+                      <div class="row-fluid clearfix">
+                        <div class="span12 column"></div>
                       </div>
                     </div>
+                  </div>
 
-                    <!-- 6 6 -->
-                    <div class="lyrow ui-draggable">
-                      <a href="#close" class="remove label label-danger">
-                        <i class="icon-remove icon-white"></i>
-                      </a> <span class="drag label"><i class="icon-move"></i></span>
+                  <!-- 6 6 -->
+                  <div class="lyrow ui-draggable">
+                    <a href="#close" class="remove label label-danger">
+                      <i class="icon-remove icon-white"></i>
+                    </a> <span class="drag label"><i class="icon-move"></i></span>
 
-                      <div class="preview">
-                        <input value="6 6" type="text">
-                      </div>
-                      <div class="view">
-                        <div class="row-fluid clearfix">
-                          <div class="span6 column"></div>
-                          <div class="span6 column"></div>
-                        </div>
+                    <div class="preview">
+                      <input value="6 6" type="text">
+                    </div>
+                    <div class="view">
+                      <div class="row-fluid clearfix">
+                        <div class="span6 column"></div>
+                        <div class="span6 column"></div>
                       </div>
                     </div>
+                  </div>
 
-                    <!-- 8 4 -->
-                    <div class="lyrow ui-draggable">
-                      <a href="#close" class="remove label label-danger">
-                        <i class="icon-remove icon-white"></i>
-                      </a> <span class="drag label"><i class="icon-move"></i></span>
+                  <!-- 8 4 -->
+                  <div class="lyrow ui-draggable">
+                    <a href="#close" class="remove label label-danger">
+                      <i class="icon-remove icon-white"></i>
+                    </a> <span class="drag label"><i class="icon-move"></i></span>
 
-                      <div class="preview">
-                        <input value="8 4" type="text">
-                      </div>
-                      <div class="view">
-                        <div class="row-fluid clearfix">
-                          <div class="span8 column"></div>
-                          <div class="span4 column"></div>
-                        </div>
+                    <div class="preview">
+                      <input value="8 4" type="text">
+                    </div>
+                    <div class="view">
+                      <div class="row-fluid clearfix">
+                        <div class="span8 column"></div>
+                        <div class="span4 column"></div>
                       </div>
                     </div>
+                  </div>
 
-                    <!-- 4 4 4 -->
-                    <div class="lyrow ui-draggable">
-                      <a href="#close" class="remove label label-danger">
-                        <i class="icon-remove icon-white"></i>
-                      </a> <span class="drag label"><i class="icon-move"></i></span>
+                  <!-- 4 4 4 -->
+                  <div class="lyrow ui-draggable">
+                    <a href="#close" class="remove label label-danger">
+                      <i class="icon-remove icon-white"></i>
+                    </a> <span class="drag label"><i class="icon-move"></i></span>
 
-                      <div class="preview">
-                        <input value="4 4 4" type="text">
-                      </div>
-                      <div class="view">
-                        <div class="row-fluid clearfix">
-                          <div class="span4 column"></div>
-                          <div class="span4 column"></div>
-                          <div class="span4 column"></div>
-                        </div>
+                    <div class="preview">
+                      <input value="4 4 4" type="text">
+                    </div>
+                    <div class="view">
+                      <div class="row-fluid clearfix">
+                        <div class="span4 column"></div>
+                        <div class="span4 column"></div>
+                        <div class="span4 column"></div>
                       </div>
                     </div>
+                  </div>
 
-                    <!-- 2 6 4 -->
-                    <div class="lyrow ui-draggable">
-                      <a href="#close" class="remove label label-danger">
-                        <i class="icon-remove icon-white"></i>
-                      </a> <span class="drag label"><i class="icon-move"></i></span>
+                  <!-- 2 6 4 -->
+                  <div class="lyrow ui-draggable">
+                    <a href="#close" class="remove label label-danger">
+                      <i class="icon-remove icon-white"></i>
+                    </a> <span class="drag label"><i class="icon-move"></i></span>
 
-                      <div class="preview">
-                        <input value="2 6 4" type="text">
-                      </div>
-                      <div class="view">
-                        <div class="row-fluid clearfix">
-                          <div class="span2 column"></div>
-                          <div class="span6 column"></div>
-                          <div class="span4 column"></div>
-                        </div>
+                    <div class="preview">
+                      <input value="2 6 4" type="text">
+                    </div>
+                    <div class="view">
+                      <div class="row-fluid clearfix">
+                        <div class="span2 column"></div>
+                        <div class="span6 column"></div>
+                        <div class="span4 column"></div>
                       </div>
                     </div>
+                  </div>
 
-                    <!-- 6 4 4 -->
-                    <div class="lyrow ui-draggable">
-                      <a href="#close" class="remove label label-danger">
-                        <i class="icon-remove icon-white"></i>
-                      </a> <span class="drag label"><i class="icon-move"></i></span>
+                  <!-- 6 4 4 -->
+                  <div class="lyrow ui-draggable">
+                    <a href="#close" class="remove label label-danger">
+                      <i class="icon-remove icon-white"></i>
+                    </a> <span class="drag label"><i class="icon-move"></i></span>
 
-                      <div class="preview">
-                        <input value="6 4 4" type="text">
-                      </div>
-                      <div class="view">
-                        <div class="row-fluid clearfix">
-                          <div class="col-xs-6 span4 column"></div>
-                          <div class="col-xs-6 span4 column"></div>
-                          <div class="col-xs-6 span4 column"></div>
-                        </div>
+                    <div class="preview">
+                      <input value="6 4 4" type="text">
+                    </div>
+                    <div class="view">
+                      <div class="row-fluid clearfix">
+                        <div class="col-xs-6 span4 column"></div>
+                        <div class="col-xs-6 span4 column"></div>
+                        <div class="col-xs-6 span4 column"></div>
                       </div>
                     </div>
+                  </div>
 
-                    <!-- 9 3 -->
-                    <div class="lyrow ui-draggable">
-                      <a href="#close" class="remove label label-danger">
-                        <i class="icon-remove icon-white"></i>
-                      </a> <span class="drag label"><i class="icon-move"></i></span>
+                  <!-- 9 3 -->
+                  <div class="lyrow ui-draggable">
+                    <a href="#close" class="remove label label-danger">
+                      <i class="icon-remove icon-white"></i>
+                    </a> <span class="drag label"><i class="icon-move"></i></span>
 
-                      <div class="preview">
-                        <input value="9 3" type="text">
-                      </div>
-                      <div class="view">
-                        <div class="row-fluid clearfix">
-                          <div class="col-xs-6 span9 column"></div>
-                          <div class="col-xs-6 span3 column "></div>
-                        </div>
+                    <div class="preview">
+                      <input value="9 3" type="text">
+                    </div>
+                    <div class="view">
+                      <div class="row-fluid clearfix">
+                        <div class="col-xs-6 span9 column"></div>
+                        <div class="col-xs-6 span3 column "></div>
                       </div>
                     </div>
+                  </div>
 
-                    <!-- 3 3 3 3 -->
-                    <div class="lyrow ui-draggable">
-                      <a href="#close" class="remove label label-danger">
-                        <i class="icon-remove icon-white"></i>
-                      </a> <span class="drag label"><i class="icon-move"></i></span>
+                  <!-- 3 3 3 3 -->
+                  <div class="lyrow ui-draggable">
+                    <a href="#close" class="remove label label-danger">
+                      <i class="icon-remove icon-white"></i>
+                    </a> <span class="drag label"><i class="icon-move"></i></span>
 
-                      <div class="preview">
-                        <input value="3 3 3 3" type="text">
-                      </div>
-                      <div class="view">
-                        <div class="row-fluid clearfix">
-                          <div class="col-xs-3 span3 column"></div>
-                          <div class="col-xs-3 span3 column "></div>
-                          <div class="col-xs-3 span3 column"></div>
-                          <div class="col-xs-3 span3 column"></div>
-                        </div>
+                    <div class="preview">
+                      <input value="3 3 3 3" type="text">
+                    </div>
+                    <div class="view">
+                      <div class="row-fluid clearfix">
+                        <div class="col-xs-3 span3 column"></div>
+                        <div class="col-xs-3 span3 column "></div>
+                        <div class="col-xs-3 span3 column"></div>
+                        <div class="col-xs-3 span3 column"></div>
                       </div>
                     </div>
+                  </div>
 
-                    <!-- Input columns -->
-                    <div class="lyrow ui-draggable">
-                      <a href="#close" class="remove label label-danger">
-                        <i class="icon-remove icon-white"></i>
-                      </a> <span class="drag label"><i class="icon-move"></i></span>
+                  <!-- Input columns -->
+                  <div class="lyrow ui-draggable">
+                    <a href="#close" class="remove label label-danger">
+                      <i class="icon-remove icon-white"></i>
+                    </a> <span class="drag label"><i class="icon-move"></i></span>
 
-                      <div class="preview">
-                        <input value="Nested Columns" type="text" />
-                      </div>
-                      <div class="view">
-                        <div class="row-fluid clearfix">
-                          <div class="span12 column">
-                            <div class="row-fluid clearfix">
-                              <div class="span6 column">
-                              </div>
-                              <div class="span6 column">
-                              </div>
+                    <div class="preview">
+                      <input value="Nested Columns" type="text" />
+                    </div>
+                    <div class="view">
+                      <div class="row-fluid clearfix">
+                        <div class="span12 column">
+                          <div class="row-fluid clearfix">
+                            <div class="span6 column">
+                            </div>
+                            <div class="span6 column">
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </li>
-                </ul>
-                <hr>
-                <ul class="nav nav-list accordion-group">
-                  <li class="nav-header">PLUGINS DE BASE</li>
-                  <li style="display: list-item;" class="boxes"
-                      id="elmBase">
-                    <!-- Title -->
-                    <div class="box box-element ui-draggable">
-                      <a href="#close" class="remove label label-danger">
-                        <i class="icon-remove icon-white"></i>
-                      </a>
-                                        <span class="configuration">
-                                            <span class="btn-group">
-                                                <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
-                                                  Align
-                                                  <span class="caret"></span>
-                                                </a>
-                                                <ul class="dropdown-menu">
-                                                  <li class="active">
-                                                    <a href="#" rel="">Default</a>
-                                                  </li>
-                                                  <li class="">
-                                                    <a href="#"
-                                                       rel="text-left">Left</a>
-                                                  </li>
-                                                  <li class="">
-                                                    <a href="#" rel="text-center">Center</a>
-                                                  </li>
-                                                  <li class="">
-                                                    <a href="#" rel="text-right">Right</a>
-                                                  </li>
-                                                </ul>
-                                            </span>
-                                            <span class="btn-group">
-                                                <a class="btn btn-mini dropdown-toggle"
-                                                   data-toggle="dropdown" href="#">Emphasis
-                                                  <span class="caret"></span>
-                                                </a>
-                                                <ul class="dropdown-menu">
-                                                  <li class="active">
-                                                    <a href="#" rel="">Default</a>
-                                                  </li>
-                                                  <li class="">
-                                                    <a href="#"
-                                                       rel="muted">Muted</a>
-                                                  </li>
-                                                  <li class="">
-                                                    <a href="#" rel="text-warning">Warning</a>
-                                                  </li>
-                                                  <li class="">
-                                                    <a href="#" rel="text-error">Error</a>
-                                                  </li>
-                                                  <li class="">
-                                                    <a href="#"
-                                                       rel="text-info">Info</a>
-                                                  </li>
-                                                  <li class="">
-                                                    <a href="#" rel="text-success">Success</a>
-                                                  </li>
-                                                </ul>
-                                            </span>
-                                        </span>
-                      <i class="icon-plus icon-white"></i>
+                  </div>
+                </li>
+              </ul>
+              <hr>
+              <ul class="nav nav-list accordion-group">
+                <li class="nav-header">PLUGINS DE BASE</li>
+                <li style="display: list-item;" class="boxes"
+                    id="elmBase">
+                  <!-- Title -->
+                  <div class="box box-element ui-draggable">
+                    <a href="#close" class="remove label label-danger">
+                      <i class="icon-remove icon-white"></i>
+                    </a>
+                    <span class="configuration">
+                        <span class="btn-group">
+                            <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
+                              Align
+                              <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                              <li class="active">
+                                <a href="#" rel="">Default</a>
+                              </li>
+                              <li class="">
+                                <a href="#"
+                                   rel="text-left">Left</a>
+                              </li>
+                              <li class="">
+                                <a href="#" rel="text-center">Center</a>
+                              </li>
+                              <li class="">
+                                <a href="#" rel="text-right">Right</a>
+                              </li>
+                            </ul>
+                        </span>
+                        <span class="btn-group">
+                            <a class="btn btn-mini dropdown-toggle"
+                               data-toggle="dropdown" href="#">Emphasis
+                              <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                              <li class="active">
+                                <a href="#" rel="">Default</a>
+                              </li>
+                              <li class="">
+                                <a href="#"
+                                   rel="muted">Muted</a>
+                              </li>
+                              <li class="">
+                                <a href="#" rel="text-warning">Warning</a>
+                              </li>
+                              <li class="">
+                                <a href="#" rel="text-error">Error</a>
+                              </li>
+                              <li class="">
+                                <a href="#"
+                                   rel="text-info">Info</a>
+                              </li>
+                              <li class="">
+                                <a href="#" rel="text-success">Success</a>
+                              </li>
+                            </ul>
+                        </span>
+                    </span>
+                    <i class="icon-plus icon-white"></i>
 
-                      <div class="preview">Titre</div>
-                      <div class="view">
-                        <h3 class="editor-element">
-                          h3. Lorem ipsum dolor sit
-                          amet.
-                        </h3>
-                      </div>
+                    <div class="preview">Titre</div>
+                    <div class="view">
+                      <h3 class="editor-element">
+                        h3. Lorem ipsum dolor sit
+                        amet.
+                      </h3>
                     </div>
+                  </div>
 
-                    <!-- Paragraph -->
-                    <div class="box box-element ui-draggable">
-                      <a href="#close" class="remove label label-danger">
-                        <i class="icon-remove icon-white"></i>
-                      </a>
+                  <!-- Paragraph -->
+                  <div class="box box-element ui-draggable">
+                    <a href="#close" class="remove label label-danger">
+                      <i class="icon-remove icon-white"></i>
+                    </a>
                                         <span class="configuration">
                                             <button type="button" class="btn btn-mini"
                                                     data-target="#editorModal"
@@ -359,30 +359,30 @@
                                               Lead
                                             </a>
                                         </span>
-                      <i class="icon-plus icon-white"></i>
+                    <i class="icon-plus icon-white"></i>
 
-                      <div class="preview">Paragraphe</div>
-                      <div class="view" class="editor-element">
-                        <p>
-                          Lorem ipsum dolor sit amet, <strong>consectetur adipiscing
-                          elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In
-                          hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum
-                          velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed
-                          iaculis posuere diam ut cursus. Morbi commodo sodales nisi id sodales.
-                          Proin consectetur, nisi id commodo imperdiet, metus nunc consequat
-                          lectus, id bibendum diam velit et dui. Proin massa magna, vulputate nec
-                          bibendum nec, posuere nec lacus. Aliquam mi erat, aliquam vel luctus eu,
-                          pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum
-                          consequat eu.
-                        </p>
-                      </div>
+                    <div class="preview">Paragraphe</div>
+                    <div class="view" class="editor-element">
+                      <p>
+                        Lorem ipsum dolor sit amet, <strong>consectetur adipiscing
+                        elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In
+                        hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum
+                        velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed
+                        iaculis posuere diam ut cursus. Morbi commodo sodales nisi id sodales.
+                        Proin consectetur, nisi id commodo imperdiet, metus nunc consequat
+                        lectus, id bibendum diam velit et dui. Proin massa magna, vulputate nec
+                        bibendum nec, posuere nec lacus. Aliquam mi erat, aliquam vel luctus eu,
+                        pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum
+                        consequat eu.
+                      </p>
                     </div>
+                  </div>
 
-                    <!-- Text -->
-                    <div class="box box-element ui-draggable">
-                      <a href="#close" class="remove label label-danger">
-                        <i class="icon-remove icon-white"></i>
-                      </a>
+                  <!-- Text -->
+                  <div class="box box-element ui-draggable">
+                    <a href="#close" class="remove label label-danger">
+                      <i class="icon-remove icon-white"></i>
+                    </a>
 
 										<span class="configuration">
 											<button type="button" class="btn btn-mini"
@@ -390,36 +390,36 @@
                               data-toggle="modal">Editor
                       </button>
 										</span>
-                      <i class="icon-plus icon-white"></i>
+                    <i class="icon-plus icon-white"></i>
 
-                      <div class="preview">Texte</div>
-                      <div class="view">
-                        <h2>
-                          Header
-                        </h2>
+                    <div class="preview">Texte</div>
+                    <div class="view">
+                      <h2>
+                        Header
+                      </h2>
 
-                        <p>
-                          Bacon ipsum dolor sit amet doner ham leberkas short loin hamburger,
-                          flank drumstick corned beef. Doner meatball venison bresaola biltong
-                          chicken. Turkey bacon shoulder strip steak spare ribs tri-tip. Rump
-                          ground round strip steak kielbasa short loin t-bone. Biltong capicola
-                          corned beef, ribeye chuck andouille sausage ham hock turkey spare ribs
-                          beef tail sirloin shank.
-                        </p>
+                      <p>
+                        Bacon ipsum dolor sit amet doner ham leberkas short loin hamburger,
+                        flank drumstick corned beef. Doner meatball venison bresaola biltong
+                        chicken. Turkey bacon shoulder strip steak spare ribs tri-tip. Rump
+                        ground round strip steak kielbasa short loin t-bone. Biltong capicola
+                        corned beef, ribeye chuck andouille sausage ham hock turkey spare ribs
+                        beef tail sirloin shank.
+                      </p>
 
-                        <p>
-                          <a class="btn" href="#">
-                            View Details*
-                          </a>
-                        </p>
-                      </div>
+                      <p>
+                        <a class="btn" href="#">
+                          View Details*
+                        </a>
+                      </p>
                     </div>
+                  </div>
 
-                    <!-- Address -->
-                    <div class="box box-element ui-draggable">
-                      <a href="#close" class="remove label label-danger">
-                        <i class="icon-remove icon-white"></i>
-                      </a>
+                  <!-- Address -->
+                  <div class="box box-element ui-draggable">
+                    <a href="#close" class="remove label label-danger">
+                      <i class="icon-remove icon-white"></i>
+                    </a>
                                         <span class="configuration">
                                             <button type="button" class="btn btn-mini"
                                                     data-target="#editorModal"
@@ -427,62 +427,62 @@
                                                     data-toggle="modal">Editor
                                             </button>
                                         </span>
-                      <i class="icon-plus icon-white"></i>
+                    <i class="icon-plus icon-white"></i>
 
-                      <div class="preview">Addresse</div>
-                      <div class="view">
-                        <address class="editor-element">
-                          <strong>
-                            Twitter, Inc.
-                          </strong>
-                          <br>
-                          795 Folsom Ave, Suite 600
-                          <br>
-                          San Francisco, CA 94107<br>
-                          <abbr title="Phone">P:</abbr>
-                          (123)
-                          456-7890
-                        </address>
-                      </div>
+                    <div class="preview">Addresse</div>
+                    <div class="view">
+                      <address class="editor-element">
+                        <strong>
+                          Twitter, Inc.
+                        </strong>
+                        <br>
+                        795 Folsom Ave, Suite 600
+                        <br>
+                        San Francisco, CA 94107<br>
+                        <abbr title="Phone">P:</abbr>
+                        (123)
+                        456-7890
+                      </address>
                     </div>
+                  </div>
 
-                    <!-- Blockquote -->
-                    <div class="box box-element ui-draggable">
-                      <a href="#close" class="remove label label-danger">
-                        <i class="icon-remove icon-white"></i>
-                      </a>
+                  <!-- Blockquote -->
+                  <div class="box box-element ui-draggable">
+                    <a href="#close" class="remove label label-danger">
+                      <i class="icon-remove icon-white"></i>
+                    </a>
                                         <span class="configuration">
                                             <a class="btn btn-mini" href="#" rel="pull-right">
                                               Pull Right
                                             </a>
                                         </span>
-                      <i class="icon-plus icon-white"></i>
+                    <i class="icon-plus icon-white"></i>
 
-                      <div class="preview">Citation</div>
-                      <div class="view clearfix">
-                        <blockquote>
-                          <p class="editor-element">
-                            Lorem ipsum dolor sit amet,
-                            consectetur adipiscing elit.
-                            Integer
-                            posuere erat a ante.
-                          </p>
-                          <small class="editor-element">Someone
-                            <cite title="Source Title">
-                              famous
-                              Source Title
-                            </cite>
-                          </small>
-                        </blockquote>
-                      </div>
+                    <div class="preview">Citation</div>
+                    <div class="view clearfix">
+                      <blockquote>
+                        <p class="editor-element">
+                          Lorem ipsum dolor sit amet,
+                          consectetur adipiscing elit.
+                          Integer
+                          posuere erat a ante.
+                        </p>
+                        <small class="editor-element">Someone
+                          <cite title="Source Title">
+                            famous
+                            Source Title
+                          </cite>
+                        </small>
+                      </blockquote>
                     </div>
+                  </div>
 
-                    <!-- Unordered list -->
-                    <div class="box box-element ui-draggable">
-                      <a href="#close"
-                         class="remove label label-danger">
-                        <i class="icon-remove icon-white"></i>
-                      </a>
+                  <!-- Unordered list -->
+                  <div class="box box-element ui-draggable">
+                    <a href="#close"
+                       class="remove label label-danger">
+                      <i class="icon-remove icon-white"></i>
+                    </a>
                                         <span class="configuration">
                                             <button type="button" class="btn btn-mini"
                                                     data-target="#editorModal"
@@ -496,43 +496,43 @@
                                                rel="inline">Inline
                                             </a>
                                         </span>
-                      <i class="icon-plus icon-white"></i>
+                    <i class="icon-plus icon-white"></i>
 
-                      <div class="preview">
-                        Liste
-                      </div>
-                      <div class="view editor-element">
-                        <ul>
-                          <li>Lorem ipsum dolor sit amet
-                          </li>
-                          <li>Consectetur adipiscing
-                            elit
-                          </li>
-                          <li>Integer molestie lorem at
-                            massa
-                          </li>
-                          <li>Facilisis in pretium nisl
-                            aliquet
-                          </li>
-                          <li>Nulla volutpat aliquam
-                            velit
-                          </li>
-                          <li>Faucibus porta lacus
-                            fringilla vel
-                          </li>
-                          <li>Aenean sit amet erat nunc
-                          </li>
-                          <li>Eget porttitor lorem</li>
-                        </ul>
-                      </div>
+                    <div class="preview">
+                      Liste
                     </div>
+                    <div class="view editor-element">
+                      <ul>
+                        <li>Lorem ipsum dolor sit amet
+                        </li>
+                        <li>Consectetur adipiscing
+                          elit
+                        </li>
+                        <li>Integer molestie lorem at
+                          massa
+                        </li>
+                        <li>Facilisis in pretium nisl
+                          aliquet
+                        </li>
+                        <li>Nulla volutpat aliquam
+                          velit
+                        </li>
+                        <li>Faucibus porta lacus
+                          fringilla vel
+                        </li>
+                        <li>Aenean sit amet erat nunc
+                        </li>
+                        <li>Eget porttitor lorem</li>
+                      </ul>
+                    </div>
+                  </div>
 
-                    <!-- Ordered list -->
-                    <div class="box box-element ui-draggable">
-                      <a href="#close"
-                         class="remove label label-danger">
-                        <i class="icon-remove icon-white"></i>
-                      </a>
+                  <!-- Ordered list -->
+                  <div class="box box-element ui-draggable">
+                    <a href="#close"
+                       class="remove label label-danger">
+                      <i class="icon-remove icon-white"></i>
+                    </a>
                                         <span class="configuration">
                                             <button type="button" class="btn btn-mini"
                                                     data-target="#editorModal"
@@ -548,43 +548,43 @@
                                               Inline
                                             </a>
                                         </span>
-                      <i class="icon-plus icon-white"></i>
+                    <i class="icon-plus icon-white"></i>
 
-                      <div class="preview">Liste indexee</div>
-                      <div class="view editor-element">
-                        <ol>
-                          <li>Lorem ipsum dolor sit amet
-                          </li>
-                          <li>Consectetur adipiscing
-                            elit
-                          </li>
-                          <li>Integer molestie lorem at
-                            massa
-                          </li>
-                          <li>
-                            Facilisis in pretium nisl
-                            aliquet
-                          </li>
-                          <li>Nulla volutpat aliquam
-                            velit
-                          </li>
-                          <li>
-                            Faucibus porta lacus
-                            fringilla vel
-                          </li>
-                          <li>Aenean sit amet erat nunc
-                          </li>
-                          <li>Eget porttitor lorem</li>
-                        </ol>
-                      </div>
+                    <div class="preview">Liste indexee</div>
+                    <div class="view editor-element">
+                      <ol>
+                        <li>Lorem ipsum dolor sit amet
+                        </li>
+                        <li>Consectetur adipiscing
+                          elit
+                        </li>
+                        <li>Integer molestie lorem at
+                          massa
+                        </li>
+                        <li>
+                          Facilisis in pretium nisl
+                          aliquet
+                        </li>
+                        <li>Nulla volutpat aliquam
+                          velit
+                        </li>
+                        <li>
+                          Faucibus porta lacus
+                          fringilla vel
+                        </li>
+                        <li>Aenean sit amet erat nunc
+                        </li>
+                        <li>Eget porttitor lorem</li>
+                      </ol>
                     </div>
+                  </div>
 
-                    <!-- Table -->
-                    <div class="box box-element ui-draggable">
-                      <a href="#close"
-                         class="remove label label-danger">
-                        <i class="icon-remove icon-white"></i>
-                      </a>
+                  <!-- Table -->
+                  <div class="box box-element ui-draggable">
+                    <a href="#close"
+                       class="remove label label-danger">
+                      <i class="icon-remove icon-white"></i>
+                    </a>
                                         <span class="configuration">
                                             <button type="button"
                                                     class="btn btn-mini"
@@ -621,63 +621,63 @@
                                               Condensed
                                             </a>
                                         </span>
-                      <i class="icon-plus icon-white"></i>
+                    <i class="icon-plus icon-white"></i>
 
-                      <div class="preview">Tableau</div>
-                      <div class="view editor-element">
-                        <table class="table">
-                          <thead>
-                            <tr>
-                              <th>#</th>
-                              <th>Product</th>
-                              <th>Payment Taken</th>
-                              <th>Status</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>1</td>
-                              <td>TB - Monthly</td>
-                              <td>01/04/2012</td>
-                              <td>Default</td>
-                            </tr>
-                            <tr class="success">
-                              <td>1</td>
-                              <td>TB - Monthly</td>
-                              <td>01/04/2012</td>
-                              <td>Approved</td>
-                            </tr>
-                            <tr class="error">
-                              <td>2</td>
-                              <td>TB - Monthly</td>
-                              <td>02/04/2012</td>
-                              <td>Declined</td>
-                            </tr>
-                            <tr class="warning">
-                              <td>3</td>
-                              <td>TB - Monthly</td>
-                              <td>03/04/2012</td>
-                              <td>Pending</td>
-                            </tr>
-                            <tr class="info">
-                              <td>4</td>
-                              <td>TB - Monthly</td>
-                              <td>04/04/2012</td>
-                              <td>
-                                Call in to confirm
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
+                    <div class="preview">Tableau</div>
+                    <div class="view editor-element">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>Product</th>
+                            <th>Payment Taken</th>
+                            <th>Status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>1</td>
+                            <td>TB - Monthly</td>
+                            <td>01/04/2012</td>
+                            <td>Default</td>
+                          </tr>
+                          <tr class="success">
+                            <td>1</td>
+                            <td>TB - Monthly</td>
+                            <td>01/04/2012</td>
+                            <td>Approved</td>
+                          </tr>
+                          <tr class="error">
+                            <td>2</td>
+                            <td>TB - Monthly</td>
+                            <td>02/04/2012</td>
+                            <td>Declined</td>
+                          </tr>
+                          <tr class="warning">
+                            <td>3</td>
+                            <td>TB - Monthly</td>
+                            <td>03/04/2012</td>
+                            <td>Pending</td>
+                          </tr>
+                          <tr class="info">
+                            <td>4</td>
+                            <td>TB - Monthly</td>
+                            <td>04/04/2012</td>
+                            <td>
+                              Call in to confirm
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
                     </div>
+                  </div>
 
-                    <!-- Form -->
-                    <div class="box box-element ui-draggable">
-                      <a href="#close"
-                         class="remove label label-danger">
-                        <i class="icon-remove icon-white"></i>
-                      </a>
+                  <!-- Form -->
+                  <div class="box box-element ui-draggable">
+                    <a href="#close"
+                       class="remove label label-danger">
+                      <i class="icon-remove icon-white"></i>
+                    </a>
                                         <span class="configuration">
                                             <button type="button"
                                                     class="btn btn-mini"
@@ -689,42 +689,42 @@
                                                rel="form-inline">Inline
                                             </a>
                                         </span>
-                      <i class="icon-plus icon-white"></i>
+                    <i class="icon-plus icon-white"></i>
 
-                      <div class="preview">Formulaire</div>
-                      <div class="view editor-element">
-                        <form>
-                          <fieldset>
-                            <legend>
-                              Legend
-                            </legend>
-                            <label>
-                              Label name
-                            </label>
-                            <input type="text"
-                                   placeholder="Type something…">
+                    <div class="preview">Formulaire</div>
+                    <div class="view editor-element">
+                      <form>
+                        <fieldset>
+                          <legend>
+                            Legend
+                          </legend>
+                          <label>
+                            Label name
+                          </label>
+                          <input type="text"
+                                 placeholder="Type something…">
                                                         <span class="help-block">
                                                             Example block-level help text here..
                                                         </span>
-                            <label class="checkbox">
-                              <input type="checkbox">
-                              Check me
-                              out
-                            </label>
-                            <button type="submit" class="btn">
-                              Submit
-                            </button>
-                          </fieldset>
-                        </form>
-                      </div>
+                          <label class="checkbox">
+                            <input type="checkbox">
+                            Check me
+                            out
+                          </label>
+                          <button type="submit" class="btn">
+                            Submit
+                          </button>
+                        </fieldset>
+                      </form>
                     </div>
+                  </div>
 
-                    <!-- Button -->
-                    <div class="box box-element ui-draggable">
-                      <a href="#close"
-                         class="remove label label-danger">
-                        <i class="icon-remove icon-white"></i>
-                      </a>
+                  <!-- Button -->
+                  <div class="box box-element ui-draggable">
+                    <a href="#close"
+                       class="remove label label-danger">
+                      <i class="icon-remove icon-white"></i>
+                    </a>
                                         <span class="configuration">
                                             <span class="btn-group">
                                                 <a class="btn btn-mini dropdown-toggle"
@@ -797,22 +797,22 @@
                                             Disabled
                                           </a>
                                         </span>
-                      <i class="icon-plus icon-white"></i>
+                    <i class="icon-plus icon-white"></i>
 
-                      <div class="preview">Boutons</div>
-                      <div class="view editor-element">
-                        <button class="btn" type="button">
-                          Button
-                        </button>
-                      </div>
+                    <div class="preview">Boutons</div>
+                    <div class="view editor-element">
+                      <button class="btn" type="button">
+                        Button
+                      </button>
                     </div>
+                  </div>
 
-                    <!-- Image -->
-                    <div class="box box-element ui-draggable">
-                      <a href="#close"
-                         class="remove label label-danger">
-                        <i class="icon-remove icon-white"></i>
-                      </a>
+                  <!-- Image -->
+                  <div class="box box-element ui-draggable">
+                    <a href="#close"
+                       class="remove label label-danger">
+                      <i class="icon-remove icon-white"></i>
+                    </a>
 										<span class="configuration">
 											<span class="btn-group">
 												<a class="btn btn-mini dropdown-toggle"
@@ -827,27 +827,27 @@
                         </ul>
 											</span>
 										</span>
-                      <i class="icon-plus icon-white"></i>
+                    <i class="icon-plus icon-white"></i>
 
-                      <div class="preview">Image</div>
-                      <div class="view editor-element">
-                        <img alt="140x140" src="img/a.jpg" />
-                      </div>
+                    <div class="preview">Image</div>
+                    <div class="view editor-element">
+                      <img alt="140x140" src="img/a.jpg" />
                     </div>
-                  </li>
-                </ul>
-                <hr>
-                <ul class="nav nav-list accordion-group">
-                  <li class="nav-header">
-                    COMPOSANTS DE PAGE
-                  </li>
-                  <li style="display: list-item;" class="boxes" id="elmComponents">
-                    <!-- Button group -->
-                    <div class="box box-element ui-draggable">
-                      <a href="#close"
-                         class="remove label label-danger">
-                        <i class="icon-remove icon-white"></i>
-                      </a>
+                  </div>
+                </li>
+              </ul>
+              <hr>
+              <ul class="nav nav-list accordion-group">
+                <li class="nav-header">
+                  COMPOSANTS DE PAGE
+                </li>
+                <li style="display: list-item;" class="boxes" id="elmComponents">
+                  <!-- Button group -->
+                  <div class="box box-element ui-draggable">
+                    <a href="#close"
+                       class="remove label label-danger">
+                      <i class="icon-remove icon-white"></i>
+                    </a>
 										<span class="configuration">
 											<span class="btn-group">
 												<a class="btn btn-mini dropdown-toggle"
@@ -862,95 +862,95 @@
                         </ul>
 											</span>
 										</span>
-                      <i class="icon-plus icon-white"></i>
+                    <i class="icon-plus icon-white"></i>
 
-                      <div class="preview">Button Group</div>
-                      <div class="view">
-                        <div class="btn-group">
-                          <button class="btn" type="button">
-                            <i class="icon-align-left"></i>
-                          </button>
-                          <button class="btn" type="button">
-                            <i class="icon-align-center"></i>
-                          </button>
-                          <button class="btn" type="button">
-                            <i class="icon-align-right"></i>
-                          </button>
-                          <button class="btn" type="button">
-                            <i class="icon-align-justify"></i>
-                          </button>
-                        </div>
+                    <div class="preview">Button Group</div>
+                    <div class="view">
+                      <div class="btn-group">
+                        <button class="btn" type="button">
+                          <i class="icon-align-left"></i>
+                        </button>
+                        <button class="btn" type="button">
+                          <i class="icon-align-center"></i>
+                        </button>
+                        <button class="btn" type="button">
+                          <i class="icon-align-right"></i>
+                        </button>
+                        <button class="btn" type="button">
+                          <i class="icon-align-justify"></i>
+                        </button>
                       </div>
                     </div>
+                  </div>
 
-                    <!-- Button dropdown -->
-                    <div class="box box-element ui-draggable">
-                      <a href="#close" class="remove label label-danger">
-                        <i class="icon-remove icon-white"></i>
-                      </a>
+                  <!-- Button dropdown -->
+                  <div class="box box-element ui-draggable">
+                    <a href="#close" class="remove label label-danger">
+                      <i class="icon-remove icon-white"></i>
+                    </a>
 										<span class="configuration">
 											<button type="button" class="btn btn-mini" data-target="#editorModal"
                               role="button" data-toggle="modal">Editor
                       </button>
 											<a class="btn btn-mini" href="#" rel="dropup">Dropup</a>
 										</span>
-                      <i class="icon-plus icon-white"></i>
+                    <i class="icon-plus icon-white"></i>
 
-                      <div class="preview">
-                        Button Dropdowns
-                      </div>
-                      <div class="view editor-element">
-                        <div class="btn-group">
-                          <button class="btn">
-                            Action
-                          </button>
-                          <button data-toggle="dropdown" class="btn dropdown-toggle">
-                            <span class="caret"></span>
-                          </button>
-                          <ul class="dropdown-menu">
-                            <li>
-                              <a href="#">Action</a>
-                            </li>
-                            <li>
-                              <a href="#">
-                                Another Action
-                              </a>
-                            </li>
-                            <li>
-                              <a href="#">
-                                Something Else here
-                              </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li class="dropdown-submenu">
-                              <a tabindex="-1" href="#">
-                                More Option
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li>
-                                  <a href="#">Action</a>
-                                </li>
-                                <li>
-                                  <a href="#">
-                                    Another Action
-                                  </a>
-                                </li>
-                                <li>
-                                  <a href="#">Something Else here</a>
-                                </li>
-                              </ul>
-                            </li>
-                          </ul>
-                        </div>
+                    <div class="preview">
+                      Button Dropdowns
+                    </div>
+                    <div class="view editor-element">
+                      <div class="btn-group">
+                        <button class="btn">
+                          Action
+                        </button>
+                        <button data-toggle="dropdown" class="btn dropdown-toggle">
+                          <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li>
+                            <a href="#">Action</a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              Another Action
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              Something Else here
+                            </a>
+                          </li>
+                          <li class="divider"></li>
+                          <li class="dropdown-submenu">
+                            <a tabindex="-1" href="#">
+                              More Option
+                            </a>
+                            <ul class="dropdown-menu">
+                              <li>
+                                <a href="#">Action</a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Another Action
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">Something Else here</a>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
                       </div>
                     </div>
+                  </div>
 
-                    <!-- Navs -->
-                    <div class="box box-element ui-draggable">
-                      <a href="#close"
-                         class="remove label label-important">
-                        <i class="icon-remove icon-white"></i>Remove
-                      </a>
+                  <!-- Navs -->
+                  <div class="box box-element ui-draggable">
+                    <a href="#close"
+                       class="remove label label-important">
+                      <i class="icon-remove icon-white"></i>Remove
+                    </a>
 										<span class="configuration">
 											<button type="button" class="btn btn-mini"
                               data-target="#editorModal"
@@ -969,55 +969,55 @@
 											</span>
 											<a class="btn btn-mini" href="#" rel="nav-stacked">Stacked</a>
 										</span>
-                      <i class="icon-plus icon-white"></i>
+                    <i class="icon-plus icon-white"></i>
 
-                      <div class="preview">Navs</div>
-                      <div class="view element-editor">
-                        <ul class="nav nav-tabs">
-                          <li class="active"><a href="#">Home</a>
-                          </li>
-                          <li><a href="#">Profile</a></li>
-                          <li class="disabled"><a
-                            href="#">Messages</a>
-                          </li>
-                          <li class="dropdown pull-right">
-                            <a href="#"
-                               data-toggle="dropdown"
-                               class="dropdown-toggle">Dropdown
-                              <b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li>
-                                <a href="#">Action</a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Another Action
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Something else here
-                                </a>
-                              </li>
-                              <li class="divider"></li>
-                              <li>
-                                <a href="#">
-                                  Separated Link
-                                </a>
-                              </li>
-                            </ul>
-                          </li>
-                        </ul>
-                      </div>
+                    <div class="preview">Navs</div>
+                    <div class="view element-editor">
+                      <ul class="nav nav-tabs">
+                        <li class="active"><a href="#">Home</a>
+                        </li>
+                        <li><a href="#">Profile</a></li>
+                        <li class="disabled"><a
+                          href="#">Messages</a>
+                        </li>
+                        <li class="dropdown pull-right">
+                          <a href="#"
+                             data-toggle="dropdown"
+                             class="dropdown-toggle">Dropdown
+                            <b class="caret"></b>
+                          </a>
+                          <ul class="dropdown-menu">
+                            <li>
+                              <a href="#">Action</a>
+                            </li>
+                            <li>
+                              <a href="#">
+                                Another Action
+                              </a>
+                            </li>
+                            <li>
+                              <a href="#">
+                                Something else here
+                              </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                              <a href="#">
+                                Separated Link
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
                     </div>
+                  </div>
 
-                    <!-- Navigation list -->
-                    <div class="box box-element ui-draggable">
-                      <a href="#close"
-                         class="remove label label-danger">
-                        <i class="icon-remove icon-white"></i>
-                      </a>
+                  <!-- Navigation list -->
+                  <div class="box box-element ui-draggable">
+                    <a href="#close"
+                       class="remove label label-danger">
+                      <i class="icon-remove icon-white"></i>
+                    </a>
 										<span class="configuration">
 											<button type="button" class="btn btn-mini"
                               data-target="#editorModal"
@@ -1029,37 +1029,37 @@
                         Well
                       </a>
 										</span>
-                      <i class="icon-plus icon-white"></i>
+                    <i class="icon-plus icon-white"></i>
 
-                      <div class="preview">Navigation List
-                      </div>
-                      <div class="view">
-                        <ul class="nav nav-list">
-                          <li class="nav-header">Headers
-                          </li>
-                          <li class="active"><a href="#">Home</a>
-                          </li>
-                          <li><a href="#">Library</a></li>
-                          <li><a href="#">Application</a>
-                          </li>
-                          <li class="nav-header">Another
-                            List
-                            Header
-                          </li>
-                          <li><a href="#">Profile</a></li>
-                          <li><a href="#">Settings</a>
-                          </li>
-                          <li class="divider"></li>
-                          <li><a href="#">Help</a></li>
-                        </ul>
-                      </div>
+                    <div class="preview">Navigation List
                     </div>
+                    <div class="view">
+                      <ul class="nav nav-list">
+                        <li class="nav-header">Headers
+                        </li>
+                        <li class="active"><a href="#">Home</a>
+                        </li>
+                        <li><a href="#">Library</a></li>
+                        <li><a href="#">Application</a>
+                        </li>
+                        <li class="nav-header">Another
+                          List
+                          Header
+                        </li>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="#">Help</a></li>
+                      </ul>
+                    </div>
+                  </div>
 
-                    <!-- Breadcrumb -->
-                    <div class="box box-element ui-draggable">
-                      <a href="#close" class="remove label label-danger">
-                        <i class="icon-remove icon-white"></i>
-                      </a>
+                  <!-- Breadcrumb -->
+                  <div class="box box-element ui-draggable">
+                    <a href="#close" class="remove label label-danger">
+                      <i class="icon-remove icon-white"></i>
+                    </a>
 
 		                                <span class="configuration">
 			                                <button type="button"
@@ -1069,54 +1069,54 @@
                                               data-toggle="modal">Editor
                                       </button>
 		                                </span>
-                      <i class="icon-plus icon-white"></i>
+                    <i class="icon-plus icon-white"></i>
 
-                      <div class="preview">Breadcrumb</div>
-                      <div class="view">
-                        <ul class="breadcrumb">
-                          <li>
-                            <a href="#">Home</a>
-                            <span class="divider">/</span>
-                          </li>
-                          <li>
-                            <a href="#">Library</a>
-                            <span class="divider">/</span>
-                          </li>
-                          <li class="active">Application
-                          </li>
-                        </ul>
-                      </div>
+                    <div class="preview">Breadcrumb</div>
+                    <div class="view">
+                      <ul class="breadcrumb">
+                        <li>
+                          <a href="#">Home</a>
+                          <span class="divider">/</span>
+                        </li>
+                        <li>
+                          <a href="#">Library</a>
+                          <span class="divider">/</span>
+                        </li>
+                        <li class="active">Application
+                        </li>
+                      </ul>
                     </div>
+                  </div>
 
-                    <!-- Page header -->
-                    <div class="box box-element ui-draggable">
-                      <a href="#close" class="remove label label-danger">
-                        <i class="icon-remove icon-white"></i>
-                      </a>
+                  <!-- Page header -->
+                  <div class="box box-element ui-draggable">
+                    <a href="#close" class="remove label label-danger">
+                      <i class="icon-remove icon-white"></i>
+                    </a>
 		                                <span class="configuration">
 			                                <button type="button" class="btn btn-mini"
                                               data-target="#editorModal" role="button"
                                               data-toggle="modal">Editor
                                       </button>
 		                                </span>
-                      <i class="icon-plus icon-white"></i>
+                    <i class="icon-plus icon-white"></i>
 
-                      <div class="preview">Page Header</div>
-                      <div class="view">
-                        <div class="page-header">
-                          <h1>Example Page Header
-                            <small>Subtext for header
-                            </small>
-                          </h1>
-                        </div>
+                    <div class="preview">Page Header</div>
+                    <div class="view">
+                      <div class="page-header">
+                        <h1>Example Page Header
+                          <small>Subtext for header
+                          </small>
+                        </h1>
                       </div>
                     </div>
+                  </div>
 
-                    <!-- Thumbnails -->
-                    <div class="box box-element ui-draggable">
-                      <a href="#close" class="remove label label-danger">
-                        <i class="icon-remove icon-white"></i>
-                      </a>
+                  <!-- Thumbnails -->
+                  <div class="box box-element ui-draggable">
+                    <a href="#close" class="remove label label-danger">
+                      <i class="icon-remove icon-white"></i>
+                    </a>
 
 		                                <span class="configuration">
 			                                <button type="button" class="btn btn-mini"
@@ -1125,92 +1125,92 @@
                                         Editor
                                       </button>
 		                                </span>
-                      <i class="icon-plus icon-white"></i>
+                    <i class="icon-plus icon-white"></i>
 
-                      <div class="preview">Thumbnails</div>
-                      <div class="view">
-                        <ul class="thumbnails">
-                          <li class="span4">
-                            <div class="thumbnail">
-                              <img alt="300x200" src="img/people.jpg" />
+                    <div class="preview">Thumbnails</div>
+                    <div class="view">
+                      <ul class="thumbnails">
+                        <li class="span4">
+                          <div class="thumbnail">
+                            <img alt="300x200" src="img/people.jpg" />
 
-                              <div class="caption">
-                                <h3>Thumbnail label</h3>
+                            <div class="caption">
+                              <h3>Thumbnail label</h3>
 
-                                <p>
-                                  Bacon ipsum dolor sit amet doner ham leberkas short loin
-                                  hamburger, flank drumstick corned beef. Doner meatball
-                                  venison bresaola biltong chicken. Turkey bacon shoulder
-                                  strip steak spare ribs tri-tip. Rump ground round strip
-                                  steak kielbasa short loin t-bone. Biltong capicola
-                                  corned beef, ribeye chuck andouille sausage ham hock
-                                  turkey spare ribs beef tail sirloin shank.
-                                </p>
+                              <p>
+                                Bacon ipsum dolor sit amet doner ham leberkas short loin
+                                hamburger, flank drumstick corned beef. Doner meatball
+                                venison bresaola biltong chicken. Turkey bacon shoulder
+                                strip steak spare ribs tri-tip. Rump ground round strip
+                                steak kielbasa short loin t-bone. Biltong capicola
+                                corned beef, ribeye chuck andouille sausage ham hock
+                                turkey spare ribs beef tail sirloin shank.
+                              </p>
 
-                                <p>
-                                  <a class="btn btn-primary" href="#">Action</a>
-                                  <a class="btn" href="#">Action</a>
-                                </p>
-                              </div>
+                              <p>
+                                <a class="btn btn-primary" href="#">Action</a>
+                                <a class="btn" href="#">Action</a>
+                              </p>
                             </div>
-                          </li>
-                          <li class="span4">
-                            <div class="thumbnail">
-                              <img alt="300x200" src="img/city.jpg">
+                          </div>
+                        </li>
+                        <li class="span4">
+                          <div class="thumbnail">
+                            <img alt="300x200" src="img/city.jpg">
 
-                              <div class="caption">
-                                <h3>Thumbnail label</h3>
+                            <div class="caption">
+                              <h3>Thumbnail label</h3>
 
-                                <p>
-                                  Bacon ipsum dolor sit amet doner ham leberkas short loin
-                                  hamburger, flank drumstick corned beef. Doner meatball
-                                  venison bresaola biltong chicken. Turkey bacon shoulder
-                                  strip steak spare ribs tri-tip. Rump ground round strip
-                                  steak kielbasa short loin t-bone. Biltong capicola
-                                  corned beef, ribeye chuck andouille sausage ham hock
-                                  turkey spare ribs beef tail sirloin shank.
-                                </p>
+                              <p>
+                                Bacon ipsum dolor sit amet doner ham leberkas short loin
+                                hamburger, flank drumstick corned beef. Doner meatball
+                                venison bresaola biltong chicken. Turkey bacon shoulder
+                                strip steak spare ribs tri-tip. Rump ground round strip
+                                steak kielbasa short loin t-bone. Biltong capicola
+                                corned beef, ribeye chuck andouille sausage ham hock
+                                turkey spare ribs beef tail sirloin shank.
+                              </p>
 
-                                <p>
-                                  <a class="btn btn-primary" href="#">Action</a>
-                                  <a class="btn" href="#">Action</a>
-                                </p>
-                              </div>
+                              <p>
+                                <a class="btn btn-primary" href="#">Action</a>
+                                <a class="btn" href="#">Action</a>
+                              </p>
                             </div>
-                          </li>
-                          <li class="span4">
-                            <div class="thumbnail">
-                              <img alt="300x200" src="img/sports.jpg">
+                          </div>
+                        </li>
+                        <li class="span4">
+                          <div class="thumbnail">
+                            <img alt="300x200" src="img/sports.jpg">
 
-                              <div class="caption">
-                                <h3>Thumbnail label</h3>
+                            <div class="caption">
+                              <h3>Thumbnail label</h3>
 
-                                <p>
-                                  Bacon ipsum dolor sit amet doner ham leberkas short loin
-                                  hamburger, flank drumstick corned beef. Doner meatball
-                                  venison bresaola biltong chicken. Turkey bacon shoulder
-                                  strip steak spare ribs tri-tip. Rump ground round strip
-                                  steak kielbasa short loin t-bone. Biltong capicola
-                                  corned beef, ribeye chuck andouille sausage ham hock
-                                  turkey spare ribs beef tail sirloin shank.
-                                </p>
+                              <p>
+                                Bacon ipsum dolor sit amet doner ham leberkas short loin
+                                hamburger, flank drumstick corned beef. Doner meatball
+                                venison bresaola biltong chicken. Turkey bacon shoulder
+                                strip steak spare ribs tri-tip. Rump ground round strip
+                                steak kielbasa short loin t-bone. Biltong capicola
+                                corned beef, ribeye chuck andouille sausage ham hock
+                                turkey spare ribs beef tail sirloin shank.
+                              </p>
 
-                                <p>
-                                  <a class="btn btn-primary" href="#">Action</a>
-                                  <a class="btn" href="#">Action</a>
-                                </p>
-                              </div>
+                              <p>
+                                <a class="btn btn-primary" href="#">Action</a>
+                                <a class="btn" href="#">Action</a>
+                              </p>
                             </div>
-                          </li>
-                        </ul>
-                      </div>
+                          </div>
+                        </li>
+                      </ul>
                     </div>
+                  </div>
 
-                    <!-- Progress bar -->
-                    <div class="box box-element ui-draggable">
-                      <a href="#close" class="remove label label-danger">
-                        <i class="icon-remove icon-white"></i>
-                      </a>
+                  <!-- Progress bar -->
+                  <div class="box box-element ui-draggable">
+                    <a href="#close" class="remove label label-danger">
+                      <i class="icon-remove icon-white"></i>
+                    </a>
 										<span class="configuration">
 											<span class="btn-group">
 												<a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
@@ -1238,22 +1238,22 @@
 											<a class="btn btn-mini" href="#" rel="progress-striped">Striped</a>
 											<a class="btn btn-mini" href="#" rel="active">Active</a>
 										</span>
-                      <i class="icon-plus icon-white"></i>
+                    <i class="icon-plus icon-white"></i>
 
-                      <div class="preview">Progress Bar</div>
-                      <div class="view">
-                        <div class="progress">
-                          <div class="bar"
-                               style="width: 60%;"></div>
-                        </div>
+                    <div class="preview">Progress Bar</div>
+                    <div class="view">
+                      <div class="progress">
+                        <div class="bar"
+                             style="width: 60%;"></div>
                       </div>
                     </div>
+                  </div>
 
-                    <!-- Media -->
-                    <div class="box box-element ui-draggable">
-                      <a href="#close" class="remove label label-danger">
-                        <i class="icon-remove icon-white"></i>
-                      </a>
+                  <!-- Media -->
+                  <div class="box box-element ui-draggable">
+                    <a href="#close" class="remove label label-danger">
+                      <i class="icon-remove icon-white"></i>
+                    </a>
 										<span class="configuration">
 											<button type="button"
                               class="btn btn-mini"
@@ -1263,35 +1263,35 @@
                       </button>
 											<a class="btn btn-mini" href="#" rel="well">Well</a>
 										</span>
-                      <i class="icon-plus icon-white"></i>
+                    <i class="icon-plus icon-white"></i>
 
-                      <div class="preview">Media Object</div>
-                      <div class="view">
-                        <div class="media">
-                          <a href="#" class="pull-left">
-                            <img src="img/a_002.jpg" class="media-object" />
-                          </a>
+                    <div class="preview">Media Object</div>
+                    <div class="view">
+                      <div class="media">
+                        <a href="#" class="pull-left">
+                          <img src="img/a_002.jpg" class="media-object" />
+                        </a>
 
-                          <div class="media-body">
-                            <h4 class="media-heading">
-                              Nested Media Header
-                            </h4>
-                            Bacon ipsum dolor sit amet doner ham leberkas short loin hamburger,
-                            flank drumstick corned beef. Doner meatball venison bresaola biltong
-                            chicken. Turkey bacon shoulder strip steak spare ribs tri-tip. Rump
-                            ground round strip steak kielbasa short loin t-bone. Biltong
-                            capicola corned beef, ribeye chuck andouille sausage ham hock turkey
-                            spare ribs beef tail sirloin shank.
-                          </div>
+                        <div class="media-body">
+                          <h4 class="media-heading">
+                            Nested Media Header
+                          </h4>
+                          Bacon ipsum dolor sit amet doner ham leberkas short loin hamburger,
+                          flank drumstick corned beef. Doner meatball venison bresaola biltong
+                          chicken. Turkey bacon shoulder strip steak spare ribs tri-tip. Rump
+                          ground round strip steak kielbasa short loin t-bone. Biltong
+                          capicola corned beef, ribeye chuck andouille sausage ham hock turkey
+                          spare ribs beef tail sirloin shank.
                         </div>
                       </div>
                     </div>
+                  </div>
 
-                    <!-- List group -->
-                    <div class="box box-element ui-draggable">
-                      <a href="#close" class="remove label label-danger">
-                        <i class="icon-remove icon-white"></i>
-                      </a>
+                  <!-- List group -->
+                  <div class="box box-element ui-draggable">
+                    <a href="#close" class="remove label label-danger">
+                      <i class="icon-remove icon-white"></i>
+                    </a>
 		                                <span class="configuration">
 			                                <button type="button"
                                               class="btn btn-mini"
@@ -1300,42 +1300,42 @@
                                               data-toggle="modal">Editor
                                       </button>
 		                                </span>
-                      <i class="icon-plus icon-white"></i>
+                    <i class="icon-plus icon-white"></i>
 
-                      <div class="preview">List group</div>
-                      <div class="view">
-                        <div class="list-group">
-                          <a href="#" class="list-group-item active">Home</a>
+                    <div class="preview">List group</div>
+                    <div class="view">
+                      <div class="list-group">
+                        <a href="#" class="list-group-item active">Home</a>
 
-                          <div class="list-group-item">
-                            List
-                            header
-                          </div>
-                          <div class="list-group-item">
-                            <h4 class="list-group-item-heading">
-                              List group item
-                              heading
-                            </h4>
-
-                            <p class="list-group-item-text">
-                              ...
-                            </p>
-                          </div>
-                          <div class="list-group-item">
-                            <span class="badge">14</span>Help
-                          </div>
-                          <a class="list-group-item active">
-                            <span class="badge">14</span>Help
-                          </a>
+                        <div class="list-group-item">
+                          List
+                          header
                         </div>
+                        <div class="list-group-item">
+                          <h4 class="list-group-item-heading">
+                            List group item
+                            heading
+                          </h4>
+
+                          <p class="list-group-item-text">
+                            ...
+                          </p>
+                        </div>
+                        <div class="list-group-item">
+                          <span class="badge">14</span>Help
+                        </div>
+                        <a class="list-group-item active">
+                          <span class="badge">14</span>Help
+                        </a>
                       </div>
                     </div>
+                  </div>
 
-                    <!-- Panels -->
-                    <div class="box box-element ui-draggable">
-                      <a href="#close" class="remove label label-danger">
-                        <i class="icon-remove icon-white"></i>
-                      </a>
+                  <!-- Panels -->
+                  <div class="box box-element ui-draggable">
+                    <a href="#close" class="remove label label-danger">
+                      <i class="icon-remove icon-white"></i>
+                    </a>
 										<span class="configuration">
 											<button type="button"
                               class="btn btn-mini"
@@ -1361,96 +1361,96 @@
                         </ul>
                                             </span>
 										</span>
-                      <i class="icon-plus icon-white"></i>
+                    <i class="icon-plus icon-white"></i>
 
-                      <div class="preview">Panels</div>
-                      <div class="view">
-                        <div class="panel panel-default">
-                          <div class="panel-heading">
-                            <h3 class="panel-title">
-                              Panel title
-                            </h3>
-                          </div>
-                          <div class="panel-body">
-                            Panel content
-                          </div>
-                          <div class="panel-footer">
-                            Panel footer
-                          </div>
+                    <div class="preview">Panels</div>
+                    <div class="view">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h3 class="panel-title">
+                            Panel title
+                          </h3>
+                        </div>
+                        <div class="panel-body">
+                          Panel content
+                        </div>
+                        <div class="panel-footer">
+                          Panel footer
                         </div>
                       </div>
                     </div>
-                  </li>
-                </ul>
-                <hr>
-                <ul class="nav nav-list accordion-group">
-                  <li class="nav-header">
-                    PLUGINS INTERACTIFS
-                  </li>
-                  <li style="display: list-item;" class="boxes mute" id="elmJS">
-                    <!-- Modal -->
-                    <div class="box box-element ui-draggable">
-                      <a href="#close" class="remove label label-danger">
-                        <i class="icon-remove icon-white"></i>
+                  </div>
+                </li>
+              </ul>
+              <hr>
+              <ul class="nav nav-list accordion-group">
+                <li class="nav-header">
+                  PLUGINS INTERACTIFS
+                </li>
+                <li style="display: list-item;" class="boxes mute" id="elmJS">
+                  <!-- Modal -->
+                  <div class="box box-element ui-draggable">
+                    <a href="#close" class="remove label label-danger">
+                      <i class="icon-remove icon-white"></i>
+                    </a>
+                    <i class="icon-plus icon-white"></i>
+
+                    <div class="preview">Modal</div>
+                    <div class="view">
+                      <!-- Button to trigger modal -->
+                      <a id="myModalLink"
+                         href="#myModalContainer"
+                         role="button" class="btn"
+                         data-toggle="modal">
+                        Launch Demo Modal
                       </a>
-                      <i class="icon-plus icon-white"></i>
 
-                      <div class="preview">Modal</div>
-                      <div class="view">
-                        <!-- Button to trigger modal -->
-                        <a id="myModalLink"
-                           href="#myModalContainer"
-                           role="button" class="btn"
-                           data-toggle="modal">
-                          Launch Demo Modal
-                        </a>
-
-                        <!-- Modal -->
-                        <div id="myModalContainer"
-                             class="modal hide fade"
-                             tabindex="-1"
-                             role="dialog"
-                             aria-labelledby="myModalLabel"
-                             aria-hidden="true">
-                          <div class="modal-header">
-                            <button type="button"
-                                    class="close"
-                                    data-dismiss="modal"
-                                    aria-hidden="true">×
-                            </button>
-                            <h3 id="myModalLabel">
-                              Title</h3>
-                          </div>
-                          <div class="modal-body">
-                            <p>
-                              Bacon ipsum dolor sit amet doner ham leberkas short loin
-                              hamburger, flank drumstick corned beef. Doner meatball venison
-                              bresaola biltong chicken. Turkey bacon shoulder strip steak
-                              spare ribs tri-tip. Rump ground round strip steak kielbasa short
-                              loin t-bone. Biltong capicola corned beef, ribeye chuck
-                              andouille sausage ham hock turkey spare ribs beef tail sirloin
-                              shank.
-                            </p>
-                          </div>
-                          <div class="modal-footer">
-                            <button class="btn"
-                                    data-dismiss="modal"
-                                    aria-hidden="true">
-                              Cancel
-                            </button>
-                            <button class="btn btn-primary">
-                              Save Changes
-                            </button>
-                          </div>
+                      <!-- Modal -->
+                      <div id="myModalContainer"
+                           class="modal hide fade"
+                           tabindex="-1"
+                           role="dialog"
+                           aria-labelledby="myModalLabel"
+                           aria-hidden="true">
+                        <div class="modal-header">
+                          <button type="button"
+                                  class="close"
+                                  data-dismiss="modal"
+                                  aria-hidden="true">×
+                          </button>
+                          <h3 id="myModalLabel">
+                            Title</h3>
+                        </div>
+                        <div class="modal-body">
+                          <p>
+                            Bacon ipsum dolor sit amet doner ham leberkas short loin
+                            hamburger, flank drumstick corned beef. Doner meatball venison
+                            bresaola biltong chicken. Turkey bacon shoulder strip steak
+                            spare ribs tri-tip. Rump ground round strip steak kielbasa short
+                            loin t-bone. Biltong capicola corned beef, ribeye chuck
+                            andouille sausage ham hock turkey spare ribs beef tail sirloin
+                            shank.
+                          </p>
+                        </div>
+                        <div class="modal-footer">
+                          <button class="btn"
+                                  data-dismiss="modal"
+                                  aria-hidden="true">
+                            Cancel
+                          </button>
+                          <button class="btn btn-primary">
+                            Save Changes
+                          </button>
                         </div>
                       </div>
                     </div>
+                  </div>
 
-                    <!-- Navbar -->
-                    <div class="box box-element ui-draggable">
-                      <a href="#close" class="remove label label-danger">
-                        <i class="icon-remove icon-white"></i>
-                      </a>
+                  <!-- Navbar -->
+                  <div class="box box-element ui-draggable">
+                    <a href="#close" class="remove label label-danger">
+                      <i class="icon-remove icon-white"></i>
+                    </a>
 										<span class="configuration">
 											<button type="button" class="btn btn-mini"
                               data-target="#editorModal"
@@ -1480,115 +1480,115 @@
                         </ul>
 											</span>
 										</span>
-                      <i class="icon-plus icon-white"></i>
+                    <i class="icon-plus icon-white"></i>
 
-                      <div class="preview">Navbar</div>
-                      <div class="view">
-                        <div class="navbar">
-                          <div class="navbar-inner">
-                            <div class="container-fluid">
-                              <a data-target=".navbar-responsive-collapse"
-                                 data-toggle="collapse"
-                                 class="btn btn-navbar">
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                              </a>
-                              <a href="#" class="brand">Title</a>
+                    <div class="preview">Navbar</div>
+                    <div class="view">
+                      <div class="navbar">
+                        <div class="navbar-inner">
+                          <div class="container-fluid">
+                            <a data-target=".navbar-responsive-collapse"
+                               data-toggle="collapse"
+                               class="btn btn-navbar">
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                            </a>
+                            <a href="#" class="brand">Title</a>
 
-                              <div class="nav-collapse collapse navbar-responsive-collapse">
-                                <ul class="nav">
-                                  <li class="active">
-                                    <a href="#">Home</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Link</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Link</a>
-                                  </li>
-                                  <li class="dropdown">
-                                    <a data-toggle="dropdown"
-                                       class="dropdown-toggle"
-                                       href="#">
-                                      Dropdown
-                                      <b class="caret"></b>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                      <li>
-                                        <a href="#">Action</a>
-                                      </li>
-                                      <li>
-                                        <a href="#">Another Action</a>
-                                      </li>
-                                      <li>
-                                        <a href="#">Action 3</a>
-                                      </li>
-                                      <li class="divider"></li>
-                                      <li class="nav-header">
-                                        NAV HEADER
-                                      </li>
-                                      <li>
-                                        <a href="#">Separated Link</a>
-                                      </li>
-                                      <li>
-                                        <a href="#">
-                                          One More Separated Link
-                                        </a>
-                                      </li>
-                                    </ul>
-                                  </li>
-                                </ul>
-                                <ul class="nav pull-right">
-                                  <li>
-                                    <a href="#">Link</a>
-                                  </li>
-                                  <li class="divider-vertical"></li>
-                                  <li class="dropdown">
-                                    <a data-toggle="dropdown"
-                                       class="dropdown-toggle"
-                                       href="#">
-                                      Dropdown
-                                      <b class="caret"></b>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                      <li>
-                                        <a href="#">Action</a>
-                                      </li>
-                                      <li>
-                                        <a href="#">
-                                          Another Action
-                                        </a>
-                                      </li>
-                                      <li>
-                                        <a href="#">
-                                          Something Else Here
-                                        </a>
-                                      </li>
-                                      <li class="divider"></li>
-                                      <li>
-                                        <a href="#">
-                                          Separated Link
-                                        </a>
-                                      </li>
-                                    </ul>
-                                  </li>
-                                </ul>
-                              </div>
-                              <!-- /.nav-collapse -->
+                            <div class="nav-collapse collapse navbar-responsive-collapse">
+                              <ul class="nav">
+                                <li class="active">
+                                  <a href="#">Home</a>
+                                </li>
+                                <li>
+                                  <a href="#">Link</a>
+                                </li>
+                                <li>
+                                  <a href="#">Link</a>
+                                </li>
+                                <li class="dropdown">
+                                  <a data-toggle="dropdown"
+                                     class="dropdown-toggle"
+                                     href="#">
+                                    Dropdown
+                                    <b class="caret"></b>
+                                  </a>
+                                  <ul class="dropdown-menu">
+                                    <li>
+                                      <a href="#">Action</a>
+                                    </li>
+                                    <li>
+                                      <a href="#">Another Action</a>
+                                    </li>
+                                    <li>
+                                      <a href="#">Action 3</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li class="nav-header">
+                                      NAV HEADER
+                                    </li>
+                                    <li>
+                                      <a href="#">Separated Link</a>
+                                    </li>
+                                    <li>
+                                      <a href="#">
+                                        One More Separated Link
+                                      </a>
+                                    </li>
+                                  </ul>
+                                </li>
+                              </ul>
+                              <ul class="nav pull-right">
+                                <li>
+                                  <a href="#">Link</a>
+                                </li>
+                                <li class="divider-vertical"></li>
+                                <li class="dropdown">
+                                  <a data-toggle="dropdown"
+                                     class="dropdown-toggle"
+                                     href="#">
+                                    Dropdown
+                                    <b class="caret"></b>
+                                  </a>
+                                  <ul class="dropdown-menu">
+                                    <li>
+                                      <a href="#">Action</a>
+                                    </li>
+                                    <li>
+                                      <a href="#">
+                                        Another Action
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a href="#">
+                                        Something Else Here
+                                      </a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                      <a href="#">
+                                        Separated Link
+                                      </a>
+                                    </li>
+                                  </ul>
+                                </li>
+                              </ul>
                             </div>
+                            <!-- /.nav-collapse -->
                           </div>
-                          <!-- /navbar-inner -->
                         </div>
+                        <!-- /navbar-inner -->
                       </div>
                     </div>
+                  </div>
 
-                    <!-- Tabs -->
-                    <div class="box box-element ui-draggable">
-                      <a href="#close"
-                         class="remove label label-danger">
-                        <i class="icon-remove icon-white"></i>
-                      </a>
+                  <!-- Tabs -->
+                  <div class="box box-element ui-draggable">
+                    <a href="#close"
+                       class="remove label label-danger">
+                      <i class="icon-remove icon-white"></i>
+                    </a>
 										<span class="configuration">
 											<button type="button" class="btn btn-mini"
                               data-target="#editorModal"
@@ -1610,57 +1610,57 @@
                         </ul>
 												</span>
 										</span>
-                      <i class="icon-plus icon-white"></i>
+                    <i class="icon-plus icon-white"></i>
 
-                      <div class="preview">Tabs</div>
-                      <div class="view">
-                        <div class="tabbable" id="myTabs">
-                          <!-- Only required for left/right tabs -->
-                          <ul class="nav nav-tabs">
-                            <li class="active">
-                              <a href="#tab1" data-toggle="tab">
-                                Section 1
-                              </a>
-                            </li>
-                            <li>
-                              <a href="#tab2" data-toggle="tab">
-                                Section 2
-                              </a>
-                            </li>
-                          </ul>
-                          <div class="tab-content">
-                            <div class="tab-pane active" id="tab1">
-                              <p>
-                                Bacon ipsum dolor sit amet doner ham leberkas short loin
-                                hamburger, flank drumstick corned beef. Doner meatball
-                                venison bresaola biltong chicken. Turkey bacon shoulder
-                                strip steak spare ribs tri-tip. Rump ground round strip
-                                steak kielbasa short loin t-bone. Biltong capicola corned
-                                beef, ribeye chuck andouille sausage ham hock turkey spare
-                                ribs beef tail sirloin shank.
-                              </p>
-                            </div>
-                            <div class="tab-pane" id="tab2">
-                              <p>
-                                Bacon ipsum dolor sit amet doner ham leberkas short loin
-                                hamburger, flank drumstick corned beef. Doner meatball
-                                venison bresaola biltong chicken. Turkey bacon shoulder
-                                strip steak spare ribs tri-tip. Rump ground round strip
-                                steak kielbasa short loin t-bone. Biltong capicola corned
-                                beef, ribeye chuck andouille sausage ham hock turkey spare
-                                ribs beef tail sirloin shank.
-                              </p>
-                            </div>
+                    <div class="preview">Tabs</div>
+                    <div class="view">
+                      <div class="tabbable" id="myTabs">
+                        <!-- Only required for left/right tabs -->
+                        <ul class="nav nav-tabs">
+                          <li class="active">
+                            <a href="#tab1" data-toggle="tab">
+                              Section 1
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#tab2" data-toggle="tab">
+                              Section 2
+                            </a>
+                          </li>
+                        </ul>
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="tab1">
+                            <p>
+                              Bacon ipsum dolor sit amet doner ham leberkas short loin
+                              hamburger, flank drumstick corned beef. Doner meatball
+                              venison bresaola biltong chicken. Turkey bacon shoulder
+                              strip steak spare ribs tri-tip. Rump ground round strip
+                              steak kielbasa short loin t-bone. Biltong capicola corned
+                              beef, ribeye chuck andouille sausage ham hock turkey spare
+                              ribs beef tail sirloin shank.
+                            </p>
+                          </div>
+                          <div class="tab-pane" id="tab2">
+                            <p>
+                              Bacon ipsum dolor sit amet doner ham leberkas short loin
+                              hamburger, flank drumstick corned beef. Doner meatball
+                              venison bresaola biltong chicken. Turkey bacon shoulder
+                              strip steak spare ribs tri-tip. Rump ground round strip
+                              steak kielbasa short loin t-bone. Biltong capicola corned
+                              beef, ribeye chuck andouille sausage ham hock turkey spare
+                              ribs beef tail sirloin shank.
+                            </p>
                           </div>
                         </div>
                       </div>
                     </div>
+                  </div>
 
-                    <!-- Alert -->
-                    <div class="box box-element ui-draggable">
-                      <a href="#close" class="remove label label-danger">
-                        <i class="icon-remove icon-white"></i>
-                      </a>
+                  <!-- Alert -->
+                  <div class="box box-element ui-draggable">
+                    <a href="#close" class="remove label label-danger">
+                      <i class="icon-remove icon-white"></i>
+                    </a>
 										<span class="configuration">
 											<span class="btn-group">
 												<a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
@@ -1675,24 +1675,24 @@
                         </ul>
 											</span>
 										</span>
-                      <i class="icon-plus icon-white"></i>
+                    <i class="icon-plus icon-white"></i>
 
-                      <div class="preview">Alerts</div>
-                      <div class="view">
-                        <div class="alert">
-                          <button type="button" class="close" data-dismiss="alert">×</button>
-                          <h4>Alert!</h4>
-                          <strong>Warning!</strong> Bacon ipsum dolor sit amet ground round culpa
-                          elit, irure incididunt short ribs tongue sed.
-                        </div>
+                    <div class="preview">Alerts</div>
+                    <div class="view">
+                      <div class="alert">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <h4>Alert!</h4>
+                        <strong>Warning!</strong> Bacon ipsum dolor sit amet ground round culpa
+                        elit, irure incididunt short ribs tongue sed.
                       </div>
                     </div>
+                  </div>
 
-                    <!-- Collapse -->
-                    <div class="box box-element ui-draggable">
-                      <a href="#close" class="remove label label-danger">
-                        <i class="icon-remove icon-white"></i>
-                      </a>
+                  <!-- Collapse -->
+                  <div class="box box-element ui-draggable">
+                    <a href="#close" class="remove label label-danger">
+                      <i class="icon-remove icon-white"></i>
+                    </a>
 		                                <span class="configuration">
 			                                <button type="button"
                                               class="btn btn-mini"
@@ -1702,63 +1702,63 @@
                                         Editor
                                       </button>
 		                                </span>
-                      <i class="icon-plus icon-white"></i>
+                    <i class="icon-plus icon-white"></i>
 
-                      <div class="preview">Collapse</div>
-                      <div class="view">
-                        <div class="accordion" id="myAccordion">
-                          <div class="accordion-group">
-                            <div class="accordion-heading">
-                              <a class="accordion-toggle"
-                                 data-toggle="collapse"
-                                 data-parent="#myAccordion"
-                                 href="#collapseOne">
-                                Group Item #1
-                              </a>
-                            </div>
-                            <div id="collapseOne" class="accordion-body collapse in">
-                              <div class="accordion-inner">
-                                Bacon ipsum dolor sit amet doner ham leberkas short loin
-                                hamburger, flank drumstick corned beef. Doner meatball
-                                venison bresaola biltong chicken. Turkey bacon shoulder
-                                strip steak spare ribs tri-tip. Rump ground round strip
-                                steak kielbasa short loin t-bone. Biltong capicola corned
-                                beef, ribeye chuck andouille sausage ham hock turkey spare
-                                ribs beef tail sirloin shank.
-                              </div>
+                    <div class="preview">Collapse</div>
+                    <div class="view">
+                      <div class="accordion" id="myAccordion">
+                        <div class="accordion-group">
+                          <div class="accordion-heading">
+                            <a class="accordion-toggle"
+                               data-toggle="collapse"
+                               data-parent="#myAccordion"
+                               href="#collapseOne">
+                              Group Item #1
+                            </a>
+                          </div>
+                          <div id="collapseOne" class="accordion-body collapse in">
+                            <div class="accordion-inner">
+                              Bacon ipsum dolor sit amet doner ham leberkas short loin
+                              hamburger, flank drumstick corned beef. Doner meatball
+                              venison bresaola biltong chicken. Turkey bacon shoulder
+                              strip steak spare ribs tri-tip. Rump ground round strip
+                              steak kielbasa short loin t-bone. Biltong capicola corned
+                              beef, ribeye chuck andouille sausage ham hock turkey spare
+                              ribs beef tail sirloin shank.
                             </div>
                           </div>
-                          <div class="accordion-group">
-                            <div class="accordion-heading">
-                              <a class="accordion-toggle"
-                                 data-toggle="collapse"
-                                 data-parent="#myAccordion"
-                                 href="#collapseTwo">
-                                Group Item #2
-                              </a>
-                            </div>
-                            <div id="collapseTwo"
-                                 class="accordion-body collapse">
-                              <div class="accordion-inner">
-                                Bacon ipsum dolor sit amet doner ham leberkas short loin
-                                hamburger, flank drumstick corned beef. Doner meatball
-                                venison bresaola biltong chicken. Turkey bacon shoulder
-                                strip steak spare ribs tri-tip. Rump ground round strip
-                                steak kielbasa short loin t-bone. Biltong capicola corned
-                                beef, ribeye chuck andouille sausage ham hock turkey spare
-                                ribs beef tail sirloin shank.
-                              </div>
+                        </div>
+                        <div class="accordion-group">
+                          <div class="accordion-heading">
+                            <a class="accordion-toggle"
+                               data-toggle="collapse"
+                               data-parent="#myAccordion"
+                               href="#collapseTwo">
+                              Group Item #2
+                            </a>
+                          </div>
+                          <div id="collapseTwo"
+                               class="accordion-body collapse">
+                            <div class="accordion-inner">
+                              Bacon ipsum dolor sit amet doner ham leberkas short loin
+                              hamburger, flank drumstick corned beef. Doner meatball
+                              venison bresaola biltong chicken. Turkey bacon shoulder
+                              strip steak spare ribs tri-tip. Rump ground round strip
+                              steak kielbasa short loin t-bone. Biltong capicola corned
+                              beef, ribeye chuck andouille sausage ham hock turkey spare
+                              ribs beef tail sirloin shank.
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
+                  </div>
 
-                    <!-- Carousel -->
-                    <div class="box box-element ui-draggable">
-                      <a href="#close" class="remove label label-danger">
-                        <i class="icon-remove icon-white"></i>
-                      </a>
+                  <!-- Carousel -->
+                  <div class="box box-element ui-draggable">
+                    <a href="#close" class="remove label label-danger">
+                      <i class="icon-remove icon-white"></i>
+                    </a>
 		                                <span class="configuration">
 			                                <button type="button"
                                               class="btn btn-mini"
@@ -1768,170 +1768,170 @@
                                         Editor
                                       </button>
 		                                </span>
-                      <i class="icon-plus icon-white"></i>
+                    <i class="icon-plus icon-white"></i>
 
-                      <div class="preview">Carousel</div>
-                      <div class="view">
-                        <div class="carousel slide" id="myCarousel">
-                          <ol class="carousel-indicators">
-                            <li class="active" data-slide-to="0" data-target="#myCarousel"></li>
-                            <li data-slide-to="1" data-target="#myCarousel" class=""></li>
-                            <li data-slide-to="2" data-target="#myCarousel" class=""></li>
-                          </ol>
-                          <div class="carousel-inner">
-                            <div class="item active">
-                              <img alt="" src="img/1.jpg" />
+                    <div class="preview">Carousel</div>
+                    <div class="view">
+                      <div class="carousel slide" id="myCarousel">
+                        <ol class="carousel-indicators">
+                          <li class="active" data-slide-to="0" data-target="#myCarousel"></li>
+                          <li data-slide-to="1" data-target="#myCarousel" class=""></li>
+                          <li data-slide-to="2" data-target="#myCarousel" class=""></li>
+                        </ol>
+                        <div class="carousel-inner">
+                          <div class="item active">
+                            <img alt="" src="img/1.jpg" />
 
-                              <div class="carousel-caption">
-                                <h4>First Thumbnail Label</h4>
+                            <div class="carousel-caption">
+                              <h4>First Thumbnail Label</h4>
 
-                                <p>
-                                  Bacon ipsum dolor sit amet doner ham leberkas short loin
-                                  hamburger, flank drumstick corned beef. Doner meatball
-                                  venison
-                                  bresaola biltong chicken. Turkey bacon shoulder strip
-                                  steak
-                                  spare ribs tri-tip. Rump ground round strip steak
-                                  kielbasa short
-                                  loin t-bone. Biltong capicola corned beef, ribeye chuck
-                                  andouille sausage ham hock turkey spare ribs beef tail
-                                  sirloin
-                                  shank.
-                                </p>
-                              </div>
-                            </div>
-                            <div class="item">
-                              <img alt="" src="img/2.jpg" />
-
-                              <div class="carousel-caption">
-                                <h4>Second Thumbnail Label</h4>
-
-                                <p>
-                                  Bacon ipsum dolor sit amet doner ham leberkas short loin
-                                  hamburger, flank drumstick corned beef. Doner meatball
-                                  venison
-                                  bresaola biltong chicken. Turkey bacon shoulder strip
-                                  steak
-                                  spare ribs tri-tip. Rump ground round strip steak
-                                  kielbasa short
-                                  loin t-bone. Biltong capicola corned beef, ribeye chuck
-                                  andouille sausage ham hock turkey spare ribs beef tail
-                                  sirloin
-                                  shank.
-                                </p>
-                              </div>
-                            </div>
-                            <div class="item">
-                              <img alt="" src="img/3.jpg" />
-
-                              <div class="carousel-caption">
-                                <h4>Third Thumbnail Label</h4>
-
-                                <p>
-                                  Bacon ipsum dolor sit amet doner ham leberkas short loin
-                                  hamburger, flank drumstick corned beef. Doner meatball
-                                  venison
-                                  bresaola biltong chicken. Turkey bacon shoulder strip
-                                  steak
-                                  spare ribs tri-tip. Rump ground round strip steak
-                                  kielbasa short
-                                  loin t-bone. Biltong capicola corned beef, ribeye chuck
-                                  andouille sausage ham hock turkey spare ribs beef tail
-                                  sirloin
-                                  shank.
-                                </p>
-                              </div>
+                              <p>
+                                Bacon ipsum dolor sit amet doner ham leberkas short loin
+                                hamburger, flank drumstick corned beef. Doner meatball
+                                venison
+                                bresaola biltong chicken. Turkey bacon shoulder strip
+                                steak
+                                spare ribs tri-tip. Rump ground round strip steak
+                                kielbasa short
+                                loin t-bone. Biltong capicola corned beef, ribeye chuck
+                                andouille sausage ham hock turkey spare ribs beef tail
+                                sirloin
+                                shank.
+                              </p>
                             </div>
                           </div>
-                          <a data-slide="prev"
-                             href="#myCarousel"
-                             class="left carousel-control">‹</a>
-                          <a data-slide="next"
-                             href="#myCarousel"
-                             class="right carousel-control">›</a>
+                          <div class="item">
+                            <img alt="" src="img/2.jpg" />
+
+                            <div class="carousel-caption">
+                              <h4>Second Thumbnail Label</h4>
+
+                              <p>
+                                Bacon ipsum dolor sit amet doner ham leberkas short loin
+                                hamburger, flank drumstick corned beef. Doner meatball
+                                venison
+                                bresaola biltong chicken. Turkey bacon shoulder strip
+                                steak
+                                spare ribs tri-tip. Rump ground round strip steak
+                                kielbasa short
+                                loin t-bone. Biltong capicola corned beef, ribeye chuck
+                                andouille sausage ham hock turkey spare ribs beef tail
+                                sirloin
+                                shank.
+                              </p>
+                            </div>
+                          </div>
+                          <div class="item">
+                            <img alt="" src="img/3.jpg" />
+
+                            <div class="carousel-caption">
+                              <h4>Third Thumbnail Label</h4>
+
+                              <p>
+                                Bacon ipsum dolor sit amet doner ham leberkas short loin
+                                hamburger, flank drumstick corned beef. Doner meatball
+                                venison
+                                bresaola biltong chicken. Turkey bacon shoulder strip
+                                steak
+                                spare ribs tri-tip. Rump ground round strip steak
+                                kielbasa short
+                                loin t-bone. Biltong capicola corned beef, ribeye chuck
+                                andouille sausage ham hock turkey spare ribs beef tail
+                                sirloin
+                                shank.
+                              </p>
+                            </div>
+                          </div>
                         </div>
+                        <a data-slide="prev"
+                           href="#myCarousel"
+                           class="left carousel-control">‹</a>
+                        <a data-slide="next"
+                           href="#myCarousel"
+                           class="right carousel-control">›</a>
                       </div>
                     </div>
-                  </li>
-                </ul>
-                <hr>
-              </div>
-            </div>
-            <!--/span-->
-            <div class="demo ui-sortable column" style="min-height: 304px; ">
-            </div>
-            <!-- end demo -->
-            <!--/span-->
-
-            <div id="download-layout">
-              <div class="container-fluid"></div>
+                  </div>
+                </li>
+              </ul>
+              <hr>
             </div>
           </div>
-          <!--/row-->
+          <!--/span-->
+          <div class="demo ui-sortable column" style="min-height: 304px; ">
+          </div>
+          <!-- end demo -->
+          <!--/span-->
+
+          <div id="download-layout">
+            <div class="container-fluid"></div>
+          </div>
         </div>
-        <div class="modal hide fade" role="dialog" id="downloadModal">
-          <div class="modal-header">
-            <a class="close" data-dismiss="modal">×</a>
+        <!--/row-->
+      </div>
+      <div class="modal hide fade" role="dialog" id="downloadModal">
+        <div class="modal-header">
+          <a class="close" data-dismiss="modal">×</a>
 
-            <h3>Save</h3>
-          </div>
-          <div class="modal-body">
-            <p>Choose how to save your layout</p>
+          <h3>Save</h3>
+        </div>
+        <div class="modal-body">
+          <p>Choose how to save your layout</p>
 
-            <div class="btn-group">
-              <button type="button" id="fluidPage" class="active btn btn-info">
-                <i class="icon-fullscreen icon-white"></i> Fluid
-                Page
-              </button>
-              <button type="button" class="btn btn-info" id="fixedPage">
-                <i class="icon-screenshot icon-white"></i> Fixed
-                page
-              </button>
-            </div>
-            <br>
-            <br>
+          <div class="btn-group">
+            <button type="button" id="fluidPage" class="active btn btn-info">
+              <i class="icon-fullscreen icon-white"></i> Fluid
+              Page
+            </button>
+            <button type="button" class="btn btn-info" id="fixedPage">
+              <i class="icon-screenshot icon-white"></i> Fixed
+              page
+            </button>
+          </div>
+          <br>
+          <br>
 
-            <p>
-              <textarea></textarea>
-            </p>
-          </div>
-          <div class="modal-footer">
-            <a class="btn" data-dismiss="modal" onclick="javascript:saveHtml();">Save</a>
-          </div>
+          <p>
+            <textarea></textarea>
+          </p>
+        </div>
+        <div class="modal-footer">
+          <a class="btn" data-dismiss="modal" onclick="javascript:saveHtml();">Save</a>
         </div>
       </div>
-      <script>
-        function resizeCanvas(size) {
-          var containerID = document.getElementsByClassName("changeDimension");
-          var containerDownload = document.getElementById("download-layout").getElementsByClassName("container-fluid")[0];
-          var row = document.getElementsByClassName("demo ui-sortable");
-          var container1 = document.getElementsByClassName("container1");
-          if (size == "md") {
-            $(containerID).width('id', "MD");
-            $(row).attr('id', "MD");
-            $(container1).attr('id', "MD");
-            $(containerDownload).attr('id', "MD");
-          }
-          if (size == "lg") {
-            $(containerID).attr('id', "LG");
-            $(row).attr('id', "LG");
-            $(container1).attr('id', "LG");
-            $(containerDownload).attr('id', "LG");
-          }
-          if (size == "sm") {
-            $(containerID).attr('id', "SM");
-            $(row).attr('id', "SM");
-            $(container1).attr('id', "SM");
-            $(containerDownload).attr('id', "SM");
-          }
-          if (size == "xs") {
-            $(containerID).attr('id', "XS");
-            $(row).attr('id', "XS");
-            $(container1).attr('id', "XS");
-            $(containerDownload).attr('id', "XS");
-          }
+    </div>
+    <script>
+      function resizeCanvas(size) {
+        var containerID = document.getElementsByClassName("changeDimension");
+        var containerDownload = document.getElementById("download-layout").getElementsByClassName("container-fluid")[0];
+        var row = document.getElementsByClassName("demo ui-sortable");
+        var container1 = document.getElementsByClassName("container1");
+        if (size == "md") {
+          $(containerID).width('id', "MD");
+          $(row).attr('id', "MD");
+          $(container1).attr('id', "MD");
+          $(containerDownload).attr('id', "MD");
         }
-      </script>
+        if (size == "lg") {
+          $(containerID).attr('id', "LG");
+          $(row).attr('id', "LG");
+          $(container1).attr('id', "LG");
+          $(containerDownload).attr('id', "LG");
+        }
+        if (size == "sm") {
+          $(containerID).attr('id', "SM");
+          $(row).attr('id', "SM");
+          $(container1).attr('id', "SM");
+          $(containerDownload).attr('id', "SM");
+        }
+        if (size == "xs") {
+          $(containerID).attr('id', "XS");
+          $(row).attr('id', "XS");
+          $(container1).attr('id', "XS");
+          $(containerDownload).attr('id', "XS");
+        }
+      }
+    </script>
     <!--</body>-->
     <!--/.fluid-container-->
     <div class="modal hide fade" role="dialog" id="editorModal">

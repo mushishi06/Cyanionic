@@ -24,7 +24,7 @@ Cyan.prototype = {
         var proto = (this.tls == true) ? "https" : "http";
         return proto + "://" + this.host + ":" + this.port + "/" + page;
     },
-    
+
   listApps: function(callback) {
         this._listAppsCallback = callback;
         var url = this.getUrl("api/list_apps");
@@ -40,7 +40,8 @@ Cyan.prototype = {
             dataType: "json",
             contentType: "application/json",
             type: "POST",
-             crossDomain: true,
+            crossDomain: true,
+          cache: false,
             success: function(data, textStatus, jqXHR) {
                 console.log(textStatus);
                 console.log(jqXHR);
@@ -56,7 +57,7 @@ Cyan.prototype = {
             }
         });
     },
-    
+
     createAccount: function(callback) {
         this._createAccountCallback = callback;
         var url = this.getUrl("api/create_account");
@@ -70,7 +71,8 @@ Cyan.prototype = {
             dataType: "json",
             contentType: "application/json",
             type: "POST",
-            crossDomain: true
+            crossDomain: true,
+          cache: false,
         }).done(function(data, textStatus, jqXHR) {
             that._createAccountCallback(data);
         }).fail(function(data, textStatus, jqXHR) {
@@ -90,6 +92,7 @@ Cyan.prototype = {
             dataType: "json",
             contentType: "application/json",
             type: "POST",
+          cache: false,
             success: function(data) {
                 that._welcomeCallback(data);
             }
@@ -116,6 +119,7 @@ Cyan.prototype = {
             contentType: "application/json",
             type: "POST",
             crossDomain: true,
+          cache: false,
             success: function(data, textStatus, jqXHR) {
                 console.log(textStatus);
                 console.log(jqXHR);
@@ -198,9 +202,9 @@ Cyan.prototype = {
                 console.log("COMPLETE");
                 document.getElementById('wait_editor').style.display = 'none';
             }
-        }); 
+        });
     },
-    
+
     appSendingFinished: function(data) {
         console.log(data);
     },
@@ -327,7 +331,7 @@ Cyan.prototype = {
     {
         return (this.USER.username);
     },
-    
+
     getUserEmail: function()
     {
         return (this.USER.email);
@@ -336,7 +340,7 @@ Cyan.prototype = {
     {
         return (this.USER.password);
     },
-    
+
     updateProfile: function()
     {
         /*var list = document.getElementsByName("displayedEmail");
