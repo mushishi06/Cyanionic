@@ -1,4 +1,5 @@
 var webpage = "";
+var pageName = "";
 function supportstorage() {
 	if (typeof window.localStorage == 'object')
 		return true;
@@ -470,6 +471,12 @@ cyan.test = function($cordovaFile, storageDir) {
 		$(this).addClass("active");
 		return false
 	});
+	$('#addpage').click(function() {
+		addPage();
+	});
+	$('#delpage').click(function() {
+		delPage();
+	});
 	$("#fluidPage").click(function(e) {
 		e.preventDefault();
 		changeStructure("container", "container-fluid");
@@ -566,5 +573,29 @@ cyan.test = function($cordovaFile, storageDir) {
     saveHtml($cordovaFile, storageDir, "index");
   });
 
+}
+
+function getPageName() {
+	if (pageName != "")
+		return pageName;
+	while (true) {
+		pageName = prompt("Enter a name for the page", "");
+		if (pageName != null) {
+			if (pageName.slice(-5) != ".html") {
+				pageName += ".html";
+			}
+			return pageName;
+		}
+	}
+}
+
+function addPage() {
+	pageName = getPageName();
+	saveHtml(pageName);
+	pageName = "";
+	clearDemo();
+}
+
+function delPage() {
 }
 
