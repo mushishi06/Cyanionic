@@ -1,4 +1,5 @@
 var webpage = "";
+var pageName = "";
 function supportstorage() {
 	if (typeof window.localStorage == 'object')
 		return true;
@@ -472,6 +473,12 @@ cyan.test = function() {
 		$(this).addClass("active");
 		return false
 	});
+	$('#addpage').click(function() {
+		addPage();
+	});
+	$('#delpage').click(function() {
+		delPage();
+	});
 	$("#fluidPage").click(function(e) {
 		e.preventDefault();
 		changeStructure("container", "container-fluid");
@@ -553,5 +560,29 @@ function saveHtml() {
 		var blob = new Blob([webpage], {type: "text/html;charset=utf-8"});
 		saveAs(blob, "webpage.html");
 	}
+}
+
+function getPageName() {
+	if (pageName != "")
+		return pageName;
+	while (true) {
+		pageName = prompt("Enter a name for the page", "");
+		if (pageName != null) {
+			if (pageName.slice(-5) != ".html") {
+				pageName += ".html";
+			}
+			return pageName;
+		}
+	}
+}
+
+function addPage() {
+	pageName = getPageName();
+	saveHtml(pageName);
+	pageName = "";
+	clearDemo();
+}
+
+function delPage() {
 }
 
