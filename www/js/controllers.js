@@ -64,7 +64,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('EditorCtrl', function($scope, $ionicModal, $timeout, $state) {
+.controller('EditorCtrl', function($scope, $ionicModal, $cordovaFile, $timeout, $state) {
     $scope.$on('$ionicView.afterEnter', function () {
       console.log("EditorCtrl::afterEnter");
       var links = document.getElementsByClassName("ionic-css");
@@ -79,8 +79,9 @@ angular.module('starter.controllers', [])
       if (links.length == 0) {
         head.append(angular.element('<link href="css/editor-css/docs.min.css" class="docs-css" rel="stylesheet" />'));
       }
-
-      cyan.test();
+      console.log(cordova.file);
+      console.log(cordova.file.externalDataDirectory);
+      cyan.test($cordovaFile, cordova.file.externalDataDirectory);
     });
 
     //ngCordova.plugins.file.writeFile(path, fileName, text, replaceBool);

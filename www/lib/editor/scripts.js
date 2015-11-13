@@ -333,9 +333,7 @@ function initContainer(){
 	configurationElm();
 }
 
-
-
-cyan.test = function() {
+cyan.test = function($cordovaFile, storageDir) {
 	CKEDITOR.disableAutoInline = true;
 	restoreData();
 	var contenthandle = CKEDITOR.replace(
@@ -505,53 +503,68 @@ cyan.test = function() {
 	setInterval(function() {
 		handleSaveLayout()
 	}, timerSave)
-}
 
-function saveHtml() {
-	webpage
-		= '<html>\n'
-		  + '<head>\n'
-		  + '<script type="text/javascript" src="http://www.francescomalagrino.com/BootstrapPageGenerator/3/js/jquery-2.0.0.min.js"></script>\n'
-		  + '<script type="text/javascript" src="http://www.francescomalagrino.com/BootstrapPageGenerator/3/js/jquery-ui"></script>\n'
-		  + '<link href="http://www.francescomalagrino.com/BootstrapPageGenerator/3/css/bootstrap-combined.min.css" rel="stylesheet" media="screen">\n'
-		  + '<script type="text/javascript" src="http://www.francescomalagrino.com/BootstrapPageGenerator/3/js/bootstrap.min.js"></script>\n'
-		  + '</head>\n'
-		  + '<body>\n'
-		  + webpage
-		  + '\n</body>\n'
-		  + '</html>';
+  function saveHtml($cordovaFile, storageDir, pageName) {
+    console.log(storageDir);
+    console.log($cordovaFile);
 
-	/* FM aka Vegetam Added the function that save the file in the directory Downloads. Work only to Chrome Firefox And IE*/
-	if (
-		navigator.appName == "Microsoft Internet Explorer"
-	    && window.ActiveXObject
-	) {
-		var locationFile = location.href.toString();
-		var dlg = false;
-		with (document) {
-			ir = createElement('iframe');
-			ir.id = 'ifr';
-			ir.location = 'about.blank';
-			ir.style.display = 'none';
-			body.appendChild(ir);
-			with(getElementById('ifr').contentWindow.document) {
-				open("text/html", "replace");
-				charset = "utf-8";
-				write(webpage);
-				close();
-				document.charset = "utf-8";
-				dlg = execCommand(
-					'SaveAs',
-					false,
-					locationFile
-					+ "webpage.html"
-				);
-			}
-			return dlg;
-		}
-	} else {
-		var blob = new Blob([webpage], {type: "text/html;charset=utf-8"});
-		saveAs(blob, "webpage.html");
-	}
+    $cordovaFile.createDir(storageDir, "apptest", false);
+
+    var appDir = storageDir + "/" + "apptest";
+
+    console.log(appDir);
+
+    $cordovaFile.writeFile(appDir, pageName + ".html", "<html>foo</html>", true);
+    //webpage
+    //  = '<html>\n'
+    //    + '<head>\n'
+    //    + '<script type="text/javascript" src="http://www.francescomalagrino.com/BootstrapPageGenerator/3/js/jquery-2.0.0.min.js"></script>\n'
+    //    + '<script type="text/javascript" src="http://www.francescomalagrino.com/BootstrapPageGenerator/3/js/jquery-ui"></script>\n'
+    //    + '<link href="http://www.francescomalagrino.com/BootstrapPageGenerator/3/css/bootstrap-combined.min.css" rel="stylesheet" media="screen">\n'
+    //    + '<script type="text/javascript" src="http://www.francescomalagrino.com/BootstrapPageGenerator/3/js/bootstrap.min.js"></script>\n'
+    //    + '</head>\n'
+    //    + '<body>\n'
+    //    + webpage
+    //    + '\n</body>\n'
+    //    + '</html>';
+    //
+    ///* FM aka Vegetam Added the function that save the file in the directory Downloads. Work only to Chrome Firefox And IE*/
+    //if (
+    //  navigator.appName == "Microsoft Internet Explorer"
+    //    && window.ActiveXObject
+    //) {
+    //  var locationFile = location.href.toString();
+    //  var dlg = false;
+    //  with (document) {
+    //    ir = createElement('iframe');
+    //    ir.id = 'ifr';
+    //    ir.location = 'about.blank';
+    //    ir.style.display = 'none';
+    //    body.appendChild(ir);
+    //    with(getElementById('ifr').contentWindow.document) {
+    //      open("text/html", "replace");
+    //      charset = "utf-8";
+    //      write(webpage);
+    //      close();
+    //      document.charset = "utf-8";
+    //      dlg = execCommand(
+    //        'SaveAs',
+    //        false,
+    //        locationFile
+    //        + "webpage.html"
+    //      );
+    //    }
+    //    return dlg;
+    //  }
+    //} else {
+    //  var blob = new Blob([webpage], {type: "text/html;charset=utf-8"});
+    //  saveAs(blob, "webpage.html");
+    //}
+  }
+
+  $("#save-button").on("click", function(event) {
+    saveHtml($cordovaFile, storageDir, "index");
+  });
+
 }
 

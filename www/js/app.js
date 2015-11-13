@@ -15,6 +15,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
       cordova.plugins.Keyboard.disableScroll(true);
 
     }
+
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
