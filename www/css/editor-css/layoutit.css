@@ -93,7 +93,10 @@ body {
 .sidebar-nav .boxes { display:none;}
 
 .demo .preview { display: none; }
-.demo .box .view { display: block; padding-top:30px;}
+.demo .box .view {
+  display: block;
+  /*padding-top:30px;*/
+}
 
 
 .ui-draggable-dragging .view { display:block;}
@@ -167,7 +170,7 @@ body {
 	font-size: 12px;
 	font-weight: bold;
 	left: -1px;
-	padding: 3px 7px;
+	/*padding: 3px 7px;*/
 	position: absolute;
 	top: -1px;
 }
@@ -176,7 +179,7 @@ body {
 	border: 1px solid #DDDDDD;
 	border-radius: 4px 4px 4px 4px;
 	margin: 15px 0;
-	padding: 39px 19px 24px;
+	padding: 0px 19px 0px;
 	position: relative;
 }
 

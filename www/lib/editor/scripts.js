@@ -358,19 +358,20 @@ cyan.initEditor = function ($window, cordova, JSZip, $cordovaFile, FileTransfer,
     });
   }
 
-  //var editorElts = document.getElementsByClassName("editor-element");
-  //
-  //for (var i = 0 ; i < editorElts.length ; ++i) {
-  //  var elt = angular.element(editorElts[i]);
-  //  $ionicGesture.on(
-  //    "hold",
-  //    function(event) {
-  //     openEditor(event);
-  //    }
-  //  );
-  //}
+  var editorElts = document.getElementsByClassName("editor-element");
 
-  interact('.editor-element').on('hold', openEditor);
+  for (var i = 0 ; i < editorElts.length ; ++i) {
+    var elt = angular.element(editorElts[i]);
+    $ionicGesture.on(
+      "doubletap",
+      function(event) {
+       openEditor(event);
+      },
+      elt
+    );
+  }
+
+  //interact('.editor-element').on('hold', openEditor);
 
   $("body").css("min-height", $(window).height() - 50);
   $(".demo").css("min-height", $(window).height() - 130);
@@ -430,7 +431,20 @@ cyan.initEditor = function ($window, cordova, JSZip, $cordovaFile, FileTransfer,
         stopsave--;
       }
 
-      interact('.editor-element').on('hold', openEditor);
+      var editorElts = event.originalEvent.target.getElementsByClassName("editor-element");
+
+      for (var i = 0 ; i < editorElts.length ; ++i) {
+        var elt = angular.element(editorElts[i]);
+        $ionicGesture.on(
+          "doubletap",
+          function(event) {
+            openEditor(event);
+          },
+          elt
+        );
+      }
+
+      //interact('.editor-element').on('hold', openEditor);
       startdrag = 0;
     }
   });
@@ -579,8 +593,8 @@ cyan.initEditor = function ($window, cordova, JSZip, $cordovaFile, FileTransfer,
     var promises = [];
     var error = false;
 
-    function  zipDir(directoryEntry, path) {
-      return new Promise(function(resolve, reject) {
+    function zipDir(directoryEntry, path) {
+      return new Promise(function (resolve, reject) {
         var dirReader = directoryEntry.createReader();
 
         dirReader.readEntries(
@@ -614,9 +628,9 @@ cyan.initEditor = function ($window, cordova, JSZip, $cordovaFile, FileTransfer,
               }
             }
 
-            Promise.all(rPromises).then(function() {
+            Promise.all(rPromises).then(function () {
               resolve();
-            }, function() {
+            }, function () {
               reject();
             });
           },
@@ -634,21 +648,21 @@ cyan.initEditor = function ($window, cordova, JSZip, $cordovaFile, FileTransfer,
       function (directoryEntry) {
         var buildPromises = zipDir(directoryEntry, "");
 
-        buildPromises.then(function() {
+        buildPromises.then(function () {
           console.log("SUCCESS");
 
           for (i in promises) {
-            promises[i].then(function(result) {
+            promises[i].then(function (result) {
               console.log(result.filePath + result.fileName);
               zip.file(result.filePath + result.fileName, result.content);
-            }, function(error) {
+            }, function (error) {
               console.log(error);
             })
           }
 
-          Promise.all(promises).then(function() {
-            $cordovaFile.writeFile(storageDir, appName + ".zip", zip.generate({type:"blob"}), true)
-              .then(function(success) {
+          Promise.all(promises).then(function () {
+            $cordovaFile.writeFile(storageDir, appName + ".zip", zip.generate({type: "blob"}), true)
+              .then(function (success) {
                 console.log("Succeeded in writing zip");
 
                 var options = new FileUploadOptions();
@@ -663,30 +677,28 @@ cyan.initEditor = function ($window, cordova, JSZip, $cordovaFile, FileTransfer,
 
                 options.params = params;
 
-                console.log("Doing upload");
                 var ft = new FileTransfer();
-                console.log(ft);
                 var uploaded = ft.upload(
                   storageDir + "/" + appName + ".zip",
-                  encodeURI("http://cyandev.xyz:5555/api/send_app"),
-                  function() {
+                  encodeURI("https://cyandev.xyz:5555/api/send_app"),
+                  function () {
                     console.log("Upload succeeded");
                   },
-                  function() {
+                  function () {
                     console.log("Upload failed");
                   },
                   options,
                   true
                 );
                 console.log("uploaded : ", uploaded);
-              }, function(error) {
+              }, function (error) {
                 console.log(error);
               });
-          }, function() {
-          //  One of the file promises failed
+          }, function () {
+            //  One of the file promises failed
           });
           console.log(promises);
-        }, function() {
+        }, function () {
           console.log("FALURE");
         });
       },
@@ -701,8 +713,10 @@ cyan.initEditor = function ($window, cordova, JSZip, $cordovaFile, FileTransfer,
   });
 
   function getPageName() {
-    if (pageName != "")
+    if (pageName != "") {
       return pageName;
+    }
+
     while (true) {
       pageName = prompt("Enter a name for the page", "");
       if (pageName != null) {
