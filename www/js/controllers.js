@@ -64,11 +64,10 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('EditorCtrl', function($scope, $ionicModal, $cordovaFile, $timeout, $state) {
+.controller('EditorCtrl', function($scope, $ionicModal, $ionicGesture, $cordovaFile, $window) {
     $scope.$on('$ionicView.afterEnter', function () {
       console.log("EditorCtrl::afterEnter");
       var links = document.getElementsByClassName("ionic-css");
-      console.log(links);
       for (var i = 0 ; i < links.length ; ++i) {
         angular.element(links[i]).remove();
       }
@@ -79,9 +78,7 @@ angular.module('starter.controllers', [])
       if (links.length == 0) {
         head.append(angular.element('<link href="css/editor-css/docs.min.css" class="docs-css" rel="stylesheet" />'));
       }
-      console.log(cordova.file);
-      console.log(cordova.file.externalDataDirectory);
-      cyan.test($cordovaFile, cordova.file.externalDataDirectory);
+      cyan.initEditor($window, cordova, JSZip, $cordovaFile, window.FileTransfer, $ionicGesture, cordova.file.externalDataDirectory);
     });
 
     //ngCordova.plugins.file.writeFile(path, fileName, text, replaceBool);
