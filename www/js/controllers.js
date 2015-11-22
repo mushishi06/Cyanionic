@@ -4,7 +4,6 @@ angular.module('starter.controllers', [])
     $scope.$on('$ionicView.afterEnter', function () {
       console.log("CyanCtrl::afterEnter");
       var links = document.getElementsByClassName("docs-css");
-      console.log(links);
       for (var i = 0 ; i < links.length ; ++i) {
         angular.element(links[i]).remove();
       }
@@ -63,28 +62,361 @@ angular.module('starter.controllers', [])
 
 
 })
+.controller(
+  'EditorCtrl',
+  [
+    "$scope", "$window", "$ionicModal", "$ionicGesture", "$cordovaFile",
+    function($scope, $window, $ionicModal, $ionicGesture, $cordovaFile) {
+      $scope.appName = "testapp";
 
-.controller('EditorCtrl', function($scope, $ionicModal, $ionicGesture, $cordovaFile, $window) {
-    $scope.$on('$ionicView.afterEnter', function () {
-      console.log("EditorCtrl::afterEnter");
-      var links = document.getElementsByClassName("ionic-css");
-      for (var i = 0 ; i < links.length ; ++i) {
-        angular.element(links[i]).remove();
+      $scope.rootPath = cordova.file.externalDataDirectory;
+      $scope.appPath = $scope.rootPath + "/" + $scope.appName;
+
+      $scope.assets = {
+        "js": [
+          ["www/lib/jquery/", "jquery-2.0.0.min.js"],
+          ["www/lib/jquery/", "jquery-ui.js"],
+          ["www/lib/bootstrap/", "bootstrap.min.js"],
+        ],
+        "css": [
+          ["www/css/", "bootstrap-combined.min.css"]
+        ]
+      };
+
+      $scope.currentEditor = null;
+      $scope.CKInstance = null;
+
+      $scope.currentPage = 'index';
+
+      $scope.stopSave = 0;
+      $scope.startDrag = 0;
+
+      $scope.openEditor = function(event) {
+        $scope.currentEditor = $(event.currentTarget);
+        var eText = $scope.currentEditor.html();
+        $scope.CKInstance.setData(eText);
+        $("#editorModal").modal({backdrop: false}).on("shown", function () {
+          //$('.modal-backdrop').remove();
+        });
       }
 
-      var head = angular.element(document.getElementsByTagName("head")[0]);
-
-      links = document.getElementsByClassName("docs-css");
-      if (links.length == 0) {
-        head.append(angular.element('<link href="css/editor-css/docs.min.css" class="docs-css" rel="stylesheet" />'));
+      $scope.cleanHTML = function(e) {
+        $(e).parent().append($(e).children().html())
+        $(e).remove();
       }
-      cyan.initEditor($window, cordova, JSZip, $cordovaFile, window.FileTransfer, $ionicGesture, cordova.file.externalDataDirectory);
-    });
 
-    //ngCordova.plugins.file.writeFile(path, fileName, text, replaceBool);
-    //ngCordova.plugins.file.readAsText(path, fileName);
-    //ngCordova.plugins.file.createDir(path, dirName, replaceBool)
-})
+      $scope.changeStructure = function(e, t) {
+        $("#download-layout ." + e).removeClass(e).addClass(t)
+      }
+
+      $scope.getLayoutBodyContent = function() {
+        var e = "";
+        $("#download-layout").children().html($(".demo").html());
+        var t = $("#download-layout").children();
+        t.find(".preview, .configuration, .drag, .remove").remove();
+        t.find(".lyrow").addClass("removeClean");
+        t.find(".box-element").addClass("removeClean");
+        t.find(".lyrow .lyrow .lyrow .lyrow .lyrow .removeClean").each(function () {
+          $scope.cleanHTML(this)
+        });
+        t.find(".lyrow .lyrow .lyrow .lyrow .removeClean").each(function () {
+          $scope.cleanHTML(this)
+        });
+        t.find(".lyrow .lyrow .lyrow .removeClean").each(function () {
+          $scope.cleanHTML(this)
+        });
+        t.find(".lyrow .lyrow .removeClean").each(function () {
+          $scope.cleanHTML(this)
+        });
+        t.find(".lyrow .removeClean").each(function () {
+          $scope.cleanHTML(this)
+        });
+        t.find(".removeClean").each(function () {
+          $scope.cleanHTML(this)
+        });
+        t.find(".removeClean").remove();
+        $("#download-layout .column").removeClass("ui-sortable");
+        $("#download-layout .row-fluid").removeClass("clearfix").children().removeClass("column");
+        if ($("#download-layout .container").length > 0) {
+          $scope.changeStructure("row-fluid", "row")
+        }
+        var formatSrc = $.htmlClean($("#download-layout").html(), {
+          format: true,
+          allowedAttributes: [
+            ["id"],
+            ["class"],
+            ["data-toggle"],
+            ["data-target"],
+            ["data-parent"],
+            ["role"],
+            ["data-dismiss"],
+            ["aria-labelledby"],
+            ["aria-hidden"],
+            ["data-slide-to"],
+            ["data-slide"]
+          ]
+        });
+        $("#download-layout").html(formatSrc);
+        $("#downloadModal textarea").empty();
+        $("#downloadModal textarea").val(formatSrc);
+        return formatSrc;
+      }
+
+      $scope.getLayoutHTML = function() {
+        var html =
+          "<html>\n\
+            <head>\n\
+              ";
+
+        for (i in $scope.assets["js"]) {
+          html += '<script type="text/javascript" src="' + $scope.assets["js"][i][0] + '/' + $scope.assets["js"][i][1] + '"></script>\n';
+        }
+        for (i in $scope.assets["css"]) {
+          html += '<link media="screen" rel="stylesheet" href="' + $scope.assets["css"][i][0] + '/' + $scope.assets["css"][i][1] + '">\n';
+        }
+        html +=
+          "</head>\n\
+            <body>\n\
+            " + $scope.getLayoutBodyContent() + "\n\
+            </body>\n\
+          </html>";
+        return html;
+      }
+
+      $scope.saveCurrentPage = function() {
+        return new Promise(function(resolve, reject) {
+          var mkDirPromise = $cordovaFile.createDir($scope.rootPath, $scope.appName, true);
+
+          mkDirPromise.then(
+            function () {
+              var appDirPath = cordova.file.externalDataDirectory + "/" + $scope.appName;
+              $cordovaFile.writeFile(appDirPath, $scope.currentPage + ".html", $scope.getLayoutHTML(), true).then(
+                function () {
+                  console.log("[SUCCESS] Wrote file: " + $scope.currentPage + ".html");
+                  resolve();
+                },
+                function () {
+                  console.log("[FAIL] Could not create file: " + $scope.currentPage + ".html");
+                  reject();
+                }
+              );
+            },
+            function () {
+              console.log("[FAIL] Failed to create app directory");
+              reject();
+            }
+          )
+        });
+      }
+
+      $scope.setCurrentPageName = function(pageName) {
+        $scope.currentPage = pageName;
+      }
+
+      $scope.getNewPageName = function() {
+        var pageName = "";
+
+        while (true) {
+          pageName = prompt("Enter a name for the page", "");
+          if (pageName && pageName.length > 2) {
+            break;
+          }
+        }
+        return pageName;
+      }
+
+      $scope.emptyCurrentPage = function() {
+        $(".demo").empty();
+      }
+
+      $scope.$on('$ionicView.afterEnter', function () {
+        console.log("EditorCtrl::afterEnter");
+        var links = document.getElementsByClassName("ionic-css");
+        for (var i = 0 ; i < links.length ; ++i) {
+          angular.element(links[i]).remove();
+        }
+
+        var head = angular.element(document.getElementsByTagName("head")[0]);
+
+        links = document.getElementsByClassName("docs-css");
+        if (links.length == 0) {
+          head.append(angular.element('<link href="css/editor-css/docs.min.css" class="docs-css" rel="stylesheet" />'));
+        }
+
+        $window.CKEDITOR.disableAutoInline = true;
+        $scope.CKInstance = $window.CKEDITOR.replace(
+          'contenteditor', {
+            language: 'en',
+            contentsCss: ['css/bootstrap-combined.min.css'],
+            allowedContent: true
+          }
+        );
+
+        cyan.initEditor($window, cordova, JSZip, $cordovaFile, window.FileTransfer, $ionicGesture, cordova.file.externalDataDirectory);
+      });
+  }]
+)
+  .directive(
+    'editorBox',
+    [
+      "$ionicGesture",
+      function($ionicGesture) {
+        return {
+          link: function(scope, element, attrs) {
+            $(element).draggable({
+              connectToSortable: ".column",
+              helper: "clone",
+              start: function (e, t) {
+                if (!scope.startDrag) {
+                  ++scope.stopSave;
+                }
+                scope.startDrag = 1;
+              },
+              drag: function (e, t) {
+                t.helper.width(400)
+              },
+              stop: function (event, ui) {
+                //handleJsIds();
+                if (scope.stopSave > 0) {
+                  --scope.stopSave;
+                }
+
+                var editorElts = document.getElementsByClassName("editor-element");
+
+                for (var i = 0 ; i < editorElts.length ; ++i) {
+                  var elt = angular.element(editorElts[i]);
+                  $ionicGesture.on(
+                    "doubletap",
+                    function(event) {
+                      scope.openEditor(event);
+                    },
+                    elt
+                  );
+                }
+                scope.startDrag = 0;
+              }
+            });
+          }
+        };
+      }
+    ]
+  )
+  .directive(
+    'editorRow',
+    [
+      function() {
+        return {
+          link: function(scope, element, attrs) {
+            $(element).draggable({
+              connectToSortable: ".demo",
+              helper: "clone",
+              cancel: "input",
+              start: function (e, t) {
+                if (!scope.startDrag) {
+                  ++scope.stopSave;
+                }
+                scope.startDrag = 1;
+              },
+              drag: function (e, t) {
+                //t.helper.width(400)
+              },
+              stop: function (e, t) {
+                $(".demo .column").sortable({
+                  opacity: .35,
+                  connectWith: ".column",
+                  start: function (e, t) {
+                    if (!scope.startDrag) {
+                      ++scope.stopSave;
+                    }
+                    scope.startDrag = 1;
+                  },
+                  stop: function (e, t) {
+                    if (scope.stopSave > 0) {
+                      --scope.stopSave;
+                    }
+                    scope.startDrag = 0;
+                  }
+                });
+                if (scope.stopSave > 0) {
+                  scope.stopSave;
+                }
+                scope.startDrag = 0;
+              }
+            });
+          }
+        }
+      }
+    ]
+  )
+  .directive(
+    'editorModalContentSave',
+    [
+      "$ionicGesture",
+      function($ionicGesture) {
+        return {
+          link: function(scope, element, attrs) {
+            $ionicGesture.on(
+              "click",
+              function(event) {
+                scope.currentEditor.html(scope.CKInstance.getData());
+              },
+              element
+            );
+          }
+        };
+      }
+    ]
+  )
+  .directive(
+    'editorSavePage',
+    [
+      "$ionicGesture",
+      function($ionicGesture) {
+        return {
+          link: function(scope, element, attrs) {
+            $ionicGesture.on(
+              "click",
+              function(event) {
+                console.log("Directive::editorSavePage");
+                scope.saveCurrentPage();
+              },
+              element
+            );
+          }
+        };
+      }
+    ]
+  )
+  .directive(
+    'editorAddPage',
+    [
+      "$ionicGesture",
+      function($ionicGesture) {
+        return {
+          link: function(scope, element, attrs) {
+            $ionicGesture.on(
+              "click",
+              function(event) {
+                console.log("Directive::editorAddPage");
+                var pageName = scope.getNewPageName();
+
+                scope.saveCurrentPage().then(
+                  function() {
+                    scope.setCurrentPageName(pageName);
+                    scope.emptyCurrentPage();
+                  },
+                  function() {
+                    console.log("[FAIL] Could not save current page");
+                  }
+                );
+              },
+              element
+            );
+          }
+        };
+      }
+    ]
+  )
 .controller('VoidCtrl', function($scope, $ionicModal, $timeout, $state) {
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.

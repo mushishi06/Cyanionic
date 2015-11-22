@@ -19,7 +19,7 @@
                   </button>
                 </div>
    				  <div class="btn-group">
-					<button type="button" class="btn btn-success" id="addpage">
+					<button type="button" class="btn btn-success" id="addpage" editor-add-page>
             <i class="icon ion-plus"></i>
             Add
 					</button>
@@ -29,7 +29,7 @@
 					</button>
 				  </div>
    		        <div class="btn-group">
-                  <button type="button" class="btn btn-info" role="button" id="save-button">
+                  <button type="button" class="btn btn-info" role="button" id="save-button" editor-save-page>
                     <i class="icon ion-archive"></i>
                     Save
                   </button>
@@ -61,7 +61,7 @@
                 </li>
                 <li style="display: none;" class="rows" id="estRows">
                   <!-- 12 -->
-                  <div class="lyrow ui-draggable">
+                  <div class="lyrow ui-draggable" editor-row>
                     <a href="#close" class="remove label label-danger">
                       <i class="icon ion-close"></i>
                     </a>
@@ -80,7 +80,7 @@
                   </div>
 
                   <!-- 6 6 -->
-                  <div class="lyrow ui-draggable">
+                  <div class="lyrow ui-draggable" editor-row>
                     <a href="#close" class="remove label label-danger">
                       <i class="icon ion-close"></i>
                     </a>
@@ -100,7 +100,7 @@
                   </div>
 
                   <!-- 8 4 -->
-                  <div class="lyrow ui-draggable">
+                  <div class="lyrow ui-draggable" editor-row>
                     <a href="#close" class="remove label label-danger">
                       <i class="icon ion-close"></i>
                     </a>
@@ -120,7 +120,7 @@
                   </div>
 
                   <!-- 4 4 4 -->
-                  <div class="lyrow ui-draggable">
+                  <div class="lyrow ui-draggable" editor-row>
                     <a href="#close" class="remove label label-danger">
                       <i class="icon ion-close"></i>
                     </a>
@@ -141,7 +141,7 @@
                   </div>
 
                   <!-- 2 6 4 -->
-                  <div class="lyrow ui-draggable">
+                  <div class="lyrow ui-draggable" editor-row>
                     <a href="#close" class="remove label label-danger">
                       <i class="icon ion-close"></i>
                     </a>
@@ -162,7 +162,7 @@
                   </div>
 
                   <!-- 6 4 4 -->
-                  <div class="lyrow ui-draggable">
+                  <div class="lyrow ui-draggable" editor-row>
                     <a href="#close" class="remove label label-danger">
                       <i class="icon ion-close"></i>
                     </a>
@@ -183,7 +183,7 @@
                   </div>
 
                   <!-- 9 3 -->
-                  <div class="lyrow ui-draggable">
+                  <div class="lyrow ui-draggable" editor-row>
                     <a href="#close" class="remove label label-danger">
                       <i class="icon ion-close"></i>
                     </a>
@@ -203,7 +203,7 @@
                   </div>
 
                   <!-- 3 3 3 3 -->
-                  <div class="lyrow ui-draggable">
+                  <div class="lyrow ui-draggable" editor-row>
                     <a href="#close" class="remove label label-danger">
                       <i class="icon ion-close"></i>
                     </a>
@@ -225,7 +225,7 @@
                   </div>
 
                   <!-- Input columns -->
-                  <div class="lyrow ui-draggable">
+                  <div class="lyrow ui-draggable" editor-row>
                     <a href="#close" class="remove label label-danger">
                       <i class="icon ion-close"></i>
                     </a>
@@ -257,7 +257,7 @@
                 <li style="display: list-item;" class="boxes"
                     id="elmBase">
                   <!-- Title -->
-                  <div class="box box-element ui-draggable">
+                  <div class="box box-element ui-draggable" editor-box>
                     <a href="#close" class="remove label label-danger">
                       <i class="icon ion-close"></i>
                     </a>
@@ -312,7 +312,6 @@
                             </ul>
                         </span>
                     </span>
-                    <i class="icon-plus icon-white"></i>
 
                     <div class="preview">Titre</div>
                     <div class="view">
@@ -324,7 +323,7 @@
                   </div>
 
                   <!-- Paragraph -->
-                  <div class="box box-element ui-draggable">
+                  <div class="box box-element ui-draggable" editor-box>
                     <a href="#close" class="remove label label-danger">
                       <i class="icon ion-close"></i>
                     </a>
@@ -389,7 +388,6 @@
                           Lead
                         </a>
                     </span>
-                    <i class="icon-plus icon-white"></i>
 
                     <div class="preview">Paragraphe</div>
                     <div class="view" class="editor-element">
@@ -409,7 +407,7 @@
                   </div>
 
                   <!-- Text -->
-                  <div class="box box-element ui-draggable">
+                  <div class="box box-element ui-draggable" editor-box>
                     <a href="#close" class="remove label label-danger">
                       <i class="icon ion-close"></i>
                     </a>
@@ -420,7 +418,6 @@
                               data-toggle="modal">Editor
                       </button>
 										</span>
-                    <i class="icon-plus icon-white"></i>
 
                     <div class="preview">Texte</div>
                     <div class="view">
@@ -446,7 +443,7 @@
                   </div>
 
                   <!-- Address -->
-                  <div class="box box-element ui-draggable">
+                  <div class="box box-element ui-draggable" editor-box>
                     <a href="#close" class="remove label label-danger">
                       <i class="icon ion-close"></i>
                     </a>
@@ -457,7 +454,6 @@
                                 data-toggle="modal">Editor
                         </button>
                     </span>
-                    <i class="icon-plus icon-white"></i>
 
                     <div class="preview">Addresse</div>
                     <div class="view">
@@ -477,7 +473,7 @@
                   </div>
 
                   <!-- Blockquote -->
-                  <div class="box box-element ui-draggable">
+                  <div class="box box-element ui-draggable" editor-box>
                     <a href="#close" class="remove label label-danger">
                       <i class="icon ion-close"></i>
                     </a>
@@ -486,7 +482,6 @@
                           Pull Right
                         </a>
                     </span>
-                    <i class="icon-plus icon-white"></i>
 
                     <div class="preview">Citation</div>
                     <div class="view clearfix">
@@ -508,7 +503,7 @@
                   </div>
 
                   <!-- Unordered list -->
-                  <div class="box box-element ui-draggable">
+                  <div class="box box-element ui-draggable" editor-box>
                     <a href="#close" class="remove label label-danger">
                       <i class="icon ion-close"></i>
                     </a>
@@ -525,7 +520,6 @@
                            rel="inline">Inline
                         </a>
                     </span>
-                    <i class="icon-plus icon-white"></i>
 
                     <div class="preview">
                       Liste
@@ -557,7 +551,7 @@
                   </div>
 
                   <!-- Ordered list -->
-                  <div class="box box-element ui-draggable">
+                  <div class="box box-element ui-draggable" editor-box>
                     <a href="#close" class="remove label label-danger">
                       <i class="icon ion-close"></i>
                     </a>
@@ -576,7 +570,6 @@
                           Inline
                         </a>
                     </span>
-                    <i class="icon-plus icon-white"></i>
 
                     <div class="preview">Liste indexee</div>
                     <div class="view editor-element">
@@ -608,7 +601,7 @@
                   </div>
 
                   <!-- Table -->
-                  <div class="box box-element ui-draggable">
+                  <div class="box box-element ui-draggable" editor-box>
                     <a href="#close" class="remove label label-danger">
                       <i class="icon ion-close"></i>
                     </a>
@@ -648,7 +641,6 @@
                           Condensed
                         </a>
                     </span>
-                    <i class="icon-plus icon-white"></i>
 
                     <div class="preview">Tableau</div>
                     <div class="view editor-element">
@@ -700,7 +692,7 @@
                   </div>
 
                   <!-- Form -->
-                  <div class="box box-element ui-draggable">
+                  <div class="box box-element ui-draggable" editor-box>
                     <a href="#close" class="remove label label-danger">
                       <i class="icon ion-close"></i>
                     </a>
@@ -715,7 +707,6 @@
                            rel="form-inline">Inline
                         </a>
                     </span>
-                    <i class="icon-plus icon-white"></i>
 
                     <div class="preview">Formulaire</div>
                     <div class="view editor-element">
@@ -746,7 +737,7 @@
                   </div>
 
                   <!-- Button -->
-                  <div class="box box-element ui-draggable">
+                  <div class="box box-element ui-draggable" editor-box>
                     <a href="#close" class="remove label label-danger">
                       <i class="icon ion-close"></i>
                     </a>
@@ -822,7 +813,6 @@
                         Disabled
                       </a>
                     </span>
-                    <i class="icon-plus icon-white"></i>
 
                     <div class="preview">Boutons</div>
                     <div class="view editor-element">
@@ -833,7 +823,7 @@
                   </div>
 
                   <!-- Image -->
-                  <div class="box box-element ui-draggable">
+                  <div class="box box-element ui-draggable" editor-box>
                     <a href="#close" class="remove label label-danger">
                       <i class="icon ion-close"></i>
                     </a>
@@ -851,7 +841,6 @@
                         </ul>
 											</span>
 										</span>
-                    <i class="icon-plus icon-white"></i>
 
                     <div class="preview">Image</div>
                     <div class="view editor-element">
@@ -867,7 +856,7 @@
                 </li>
                 <li style="display: list-item;" class="boxes" id="elmComponents">
                   <!-- Button group -->
-                  <div class="box box-element ui-draggable">
+                  <div class="box box-element ui-draggable" editor-box>
                     <a href="#close" class="remove label label-danger">
                       <i class="icon ion-close"></i>
                     </a>
@@ -885,7 +874,6 @@
                         </ul>
 											</span>
 										</span>
-                    <i class="icon-plus icon-white"></i>
 
                     <div class="preview">Button Group</div>
                     <div class="view">
@@ -907,7 +895,7 @@
                   </div>
 
                   <!-- Button dropdown -->
-                  <div class="box box-element ui-draggable">
+                  <div class="box box-element ui-draggable" editor-box>
                     <a href="#close" class="remove label label-danger">
                       <i class="icon ion-close"></i>
                     </a>
@@ -917,7 +905,6 @@
                       </button>
 											<a class="btn btn-mini" href="#" rel="dropup">Dropup</a>
 										</span>
-                    <i class="icon-plus icon-white"></i>
 
                     <div class="preview">
                       Button Dropdowns
@@ -969,7 +956,7 @@
                   </div>
 
                   <!-- Navs -->
-                  <div class="box box-element ui-draggable">
+                  <div class="box box-element ui-draggable" editor-box>
                     <a href="#close" class="remove label label-danger">
                       <i class="icon ion-close"></i>
                     </a>
@@ -991,7 +978,6 @@
 											</span>
 											<a class="btn btn-mini" href="#" rel="nav-stacked">Stacked</a>
 										</span>
-                    <i class="icon-plus icon-white"></i>
 
                     <div class="preview">Navs</div>
                     <div class="view element-editor">
@@ -1035,7 +1021,7 @@
                   </div>
 
                   <!-- Navigation list -->
-                  <div class="box box-element ui-draggable">
+                  <div class="box box-element ui-draggable" editor-box>
                     <a href="#close" class="remove label label-danger">
                       <i class="icon ion-close"></i>
                     </a>
@@ -1050,7 +1036,6 @@
                         Well
                       </a>
 										</span>
-                    <i class="icon-plus icon-white"></i>
 
                     <div class="preview">Navigation List
                     </div>
@@ -1077,7 +1062,7 @@
                   </div>
 
                   <!-- Breadcrumb -->
-                  <div class="box box-element ui-draggable">
+                  <div class="box box-element ui-draggable" editor-box>
                     <a href="#close" class="remove label label-danger">
                       <i class="icon ion-close"></i>
                     </a>
@@ -1089,7 +1074,6 @@
                               data-toggle="modal">Editor
                       </button>
                     </span>
-                    <i class="icon-plus icon-white"></i>
 
                     <div class="preview">Breadcrumb</div>
                     <div class="view">
@@ -1109,7 +1093,7 @@
                   </div>
 
                   <!-- Page header -->
-                  <div class="box box-element ui-draggable">
+                  <div class="box box-element ui-draggable" editor-box>
                     <a href="#close" class="remove label label-danger">
                       <i class="icon ion-close"></i>
                     </a>
@@ -1119,7 +1103,6 @@
                               data-toggle="modal">Editor
                       </button>
                     </span>
-                    <i class="icon-plus icon-white"></i>
 
                     <div class="preview">Page Header</div>
                     <div class="view">
@@ -1133,7 +1116,7 @@
                   </div>
 
                   <!-- Thumbnails -->
-                  <div class="box box-element ui-draggable">
+                  <div class="box box-element ui-draggable" editor-box>
                     <a href="#close" class="remove label label-danger">
                       <i class="icon ion-close"></i>
                     </a>
@@ -1144,7 +1127,6 @@
                         Editor
                       </button>
                     </span>
-                    <i class="icon-plus icon-white"></i>
 
                     <div class="preview">Thumbnails</div>
                     <div class="view">
@@ -1226,7 +1208,7 @@
                   </div>
 
                   <!-- Progress bar -->
-                  <div class="box box-element ui-draggable">
+                  <div class="box box-element ui-draggable" editor-box>
                     <a href="#close" class="remove label label-danger">
                       <i class="icon ion-close"></i>
                     </a>
@@ -1257,7 +1239,6 @@
 											<a class="btn btn-mini" href="#" rel="progress-striped">Striped</a>
 											<a class="btn btn-mini" href="#" rel="active">Active</a>
 										</span>
-                    <i class="icon-plus icon-white"></i>
 
                     <div class="preview">Progress Bar</div>
                     <div class="view">
@@ -1269,7 +1250,7 @@
                   </div>
 
                   <!-- Media -->
-                  <div class="box box-element ui-draggable">
+                  <div class="box box-element ui-draggable" editor-box>
                     <a href="#close" class="remove label label-danger">
                       <i class="icon ion-close"></i>
                     </a>
@@ -1282,7 +1263,6 @@
                       </button>
 											<a class="btn btn-mini" href="#" rel="well">Well</a>
 										</span>
-                    <i class="icon-plus icon-white"></i>
 
                     <div class="preview">Media Object</div>
                     <div class="view">
@@ -1307,7 +1287,7 @@
                   </div>
 
                   <!-- List group -->
-                  <div class="box box-element ui-draggable">
+                  <div class="box box-element ui-draggable" editor-box>
                     <a href="#close" class="remove label label-danger">
                       <i class="icon ion-close"></i>
                     </a>
@@ -1319,7 +1299,6 @@
                               data-toggle="modal">Editor
                       </button>
                     </span>
-                    <i class="icon-plus icon-white"></i>
 
                     <div class="preview">List group</div>
                     <div class="view">
@@ -1351,7 +1330,7 @@
                   </div>
 
                   <!-- Panels -->
-                  <div class="box box-element ui-draggable">
+                  <div class="box box-element ui-draggable" editor-box>
                     <a href="#close" class="remove label label-danger">
                       <i class="icon ion-close"></i>
                     </a>
@@ -1380,7 +1359,6 @@
                         </ul>
                                             </span>
 										</span>
-                    <i class="icon-plus icon-white"></i>
 
                     <div class="preview">Panels</div>
                     <div class="view">
@@ -1408,11 +1386,10 @@
                 </li>
                 <li style="display: list-item;" class="boxes mute" id="elmJS">
                   <!-- Modal -->
-                  <div class="box box-element ui-draggable">
+                  <div class="box box-element ui-draggable" editor-box>
                     <a href="#close" class="remove label label-danger">
                       <i class="icon ion-close"></i>
                     </a>
-                    <i class="icon-plus icon-white"></i>
 
                     <div class="preview">Modal</div>
                     <div class="view">
@@ -1466,7 +1443,7 @@
                   </div>
 
                   <!-- Navbar -->
-                  <div class="box box-element ui-draggable">
+                  <div class="box box-element ui-draggable" editor-box>
                     <a href="#close" class="remove label label-danger">
                       <i class="icon ion-close"></i>
                     </a>
@@ -1499,7 +1476,6 @@
                         </ul>
 											</span>
 										</span>
-                    <i class="icon-plus icon-white"></i>
 
                     <div class="preview">Navbar</div>
                     <div class="view">
@@ -1603,7 +1579,7 @@
                   </div>
 
                   <!-- Tabs -->
-                  <div class="box box-element ui-draggable">
+                  <div class="box box-element ui-draggable" editor-box>
                     <a href="#close" class="remove label label-danger">
                       <i class="icon ion-close"></i>
                     </a>
@@ -1628,7 +1604,6 @@
                         </ul>
 												</span>
 										</span>
-                    <i class="icon-plus icon-white"></i>
 
                     <div class="preview">Tabs</div>
                     <div class="view">
@@ -1675,7 +1650,7 @@
                   </div>
 
                   <!-- Alert -->
-                  <div class="box box-element ui-draggable">
+                  <div class="box box-element ui-draggable" editor-box>
                     <a href="#close" class="remove label label-danger">
                       <i class="icon ion-close"></i>
                     </a>
@@ -1693,7 +1668,6 @@
                         </ul>
 											</span>
 										</span>
-                    <i class="icon-plus icon-white"></i>
 
                     <div class="preview">Alerts</div>
                     <div class="view">
@@ -1707,7 +1681,7 @@
                   </div>
 
                   <!-- Collapse -->
-                  <div class="box box-element ui-draggable">
+                  <div class="box box-element ui-draggable" editor-box>
                     <a href="#close" class="remove label label-danger">
                       <i class="icon ion-close"></i>
                     </a>
@@ -1720,7 +1694,6 @@
                         Editor
                       </button>
                     </span>
-                    <i class="icon-plus icon-white"></i>
 
                     <div class="preview">Collapse</div>
                     <div class="view">
@@ -1773,7 +1746,7 @@
                   </div>
 
                   <!-- Carousel -->
-                  <div class="box box-element ui-draggable">
+                  <div class="box box-element ui-draggable" editor-box>
                     <a href="#close" class="remove label label-danger">
                       <i class="icon ion-close"></i>
                     </a>
@@ -1786,7 +1759,6 @@
                         Editor
                       </button>
                     </span>
-                    <i class="icon-plus icon-white"></i>
 
                     <div class="preview">Carousel</div>
                     <div class="view">
@@ -1963,7 +1935,7 @@
         </p>
       </div>
       <div class="modal-footer">
-        <a id="savecontent" class="btn btn-primary" data-dismiss="modal">Save</a>
+        <a id="savecontent" class="btn btn-primary" data-dismiss="modal" editor-modal-content-save>Save</a>
         <a class="btn" data-dismiss="modal">Cancel</a>
       </div>
     </div>

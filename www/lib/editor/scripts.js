@@ -38,33 +38,6 @@ function saveLayout() {
   layouthistory = data;
 }
 
-function downloadLayout() {
-
-  $.ajax(
-    {
-      type: "POST",
-      url: "/build/downloadLayout",
-      data: {layout: $('#download-layout').html()},
-      success: function (data) {
-        window.location.href = '/build/download';
-      }
-    });
-}
-
-function downloadHtmlLayout() {
-  $.ajax(
-    {
-      type: "POST",
-      url: "/build/downloadLayout",
-      data: {
-        layout: $('#download-layout').html()
-      },
-      success: function (data) {
-        window.location.href = '/build/downloadHtml';
-      }
-    });
-}
-
 function undoLayout() {
   var data = layouthistory;
   //console.log(data);
@@ -234,64 +207,6 @@ function changeStructure(e, t) {
   $("#download-layout ." + e).removeClass(e).addClass(t)
 }
 
-function cleanHtml(e) {
-  console.log(e);
-  //$(e).parent().append($(e).children().html())
-}
-
-function downloadLayoutSrc() {
-  var e = "";
-  $("#download-layout").children().html($(".demo").html());
-  var t = $("#download-layout").children();
-  t.find(".preview, .configuration, .drag, .remove").remove();
-  t.find(".lyrow").addClass("removeClean");
-  t.find(".box-element").addClass("removeClean");
-  t.find(".lyrow .lyrow .lyrow .lyrow .lyrow .removeClean").each(function () {
-    cleanHtml(this)
-  });
-  t.find(".lyrow .lyrow .lyrow .lyrow .removeClean").each(function () {
-    cleanHtml(this)
-  });
-  t.find(".lyrow .lyrow .lyrow .removeClean").each(function () {
-    cleanHtml(this)
-  });
-  t.find(".lyrow .lyrow .removeClean").each(function () {
-    cleanHtml(this)
-  });
-  t.find(".lyrow .removeClean").each(function () {
-    cleanHtml(this)
-  });
-  t.find(".removeClean").each(function () {
-    cleanHtml(this)
-  });
-  t.find(".removeClean").removeClass("removeClean");
-  $("#download-layout .column").removeClass("ui-sortable");
-  $("#download-layout .row-fluid").removeClass("clearfix").children().removeClass("column");
-  if ($("#download-layout .container").length > 0) {
-    changeStructure("row-fluid", "row")
-  }
-  formatSrc = $.htmlClean($("#download-layout").html(), {
-    format: true,
-    allowedAttributes: [
-      ["id"],
-      ["class"],
-      ["data-toggle"],
-      ["data-target"],
-      ["data-parent"],
-      ["role"],
-      ["data-dismiss"],
-      ["aria-labelledby"],
-      ["aria-hidden"],
-      ["data-slide-to"],
-      ["data-slide"]
-    ]
-  });
-  $("#download-layout").html(formatSrc);
-  $("#downloadModal textarea").empty();
-  $("#downloadModal textarea").val(formatSrc)
-  webpage = formatSrc;
-}
-
 var currentDocument = null;
 var timerSave = 1000;
 var stopsave = 0;
@@ -338,150 +253,10 @@ function initContainer() {
 }
 
 cyan.initEditor = function ($window, cordova, JSZip, $cordovaFile, FileTransfer, $ionicGesture, storageDir) {
-  CKEDITOR.disableAutoInline = true;
-  restoreData();
-  var contenthandle = CKEDITOR.replace(
-    'contenteditor', {
-      language: 'en',
-      contentsCss: ['css/bootstrap-combined.min.css'],
-      allowedContent: true
-    }
-  );
-
-  function openEditor(event) {
-    console.log(event);
-    currenteditor = $(event.currentTarget);
-    var eText = currenteditor.html();
-    contenthandle.setData(eText);
-    $("#editorModal").modal({backdrop: false}).on("shown", function () {
-      //$('.modal-backdrop').remove();
-    });
-  }
-
-  var editorElts = document.getElementsByClassName("editor-element");
-
-  for (var i = 0 ; i < editorElts.length ; ++i) {
-    var elt = angular.element(editorElts[i]);
-    $ionicGesture.on(
-      "doubletap",
-      function(event) {
-       openEditor(event);
-      },
-      elt
-    );
-  }
-
-  //interact('.editor-element').on('hold', openEditor);
-
   $("body").css("min-height", $(window).height() - 50);
   $(".demo").css("min-height", $(window).height() - 130);
-  $(".sidebar-nav .lyrow").draggable({
-    connectToSortable: ".demo",
-    helper: "clone",
-    cancel: "input",
-    start: function (e, t) {
-      if (!startdrag) {
-        stopsave++;
-      }
-      startdrag = 1;
-    },
-    drag: function (e, t) {
-      //t.helper.width(400)
-    },
-    stop: function (e, t) {
-      console.log(e, t);
-      $(".demo .column").sortable({
-        opacity: .35,
-        connectWith: ".column",
-        start: function (e, t) {
-          if (!startdrag) {
-            stopsave++;
-          }
-          startdrag = 1;
-        },
-        stop: function (e, t) {
-          if (stopsave > 0) {
-            stopsave--;
-          }
-          startdrag = 0;
-        }
-      });
-      if (stopsave > 0) {
-        stopsave--;
-      }
-      startdrag = 0;
-    }
-  });
 
-  $(".sidebar-nav .box").draggable({
-    connectToSortable: ".column",
-    helper: "clone",
-    start: function (e, t) {
-      if (!startdrag) {
-        stopsave++;
-      }
-      startdrag = 1;
-    },
-    drag: function (e, t) {
-      t.helper.width(400)
-    },
-    stop: function (event, ui) {
-      handleJsIds();
-      if (stopsave > 0) {
-        stopsave--;
-      }
-
-      var editorElts = event.originalEvent.target.getElementsByClassName("editor-element");
-
-      for (var i = 0 ; i < editorElts.length ; ++i) {
-        var elt = angular.element(editorElts[i]);
-        $ionicGesture.on(
-          "doubletap",
-          function(event) {
-            openEditor(event);
-          },
-          elt
-        );
-      }
-
-      //interact('.editor-element').on('hold', openEditor);
-      startdrag = 0;
-    }
-  });
   initContainer();
-  $('body.edit .demo').on("click", "[data-target=#editorModal]", function (e) {
-    e.preventDefault();
-    currenteditor = $(this).parent().parent().find('.view');
-    var eText = currenteditor.html();
-    contenthandle.setData(eText);
-  });
-  $("#savecontent").click(function (e) {
-    e.preventDefault();
-    currenteditor.html(contenthandle.getData());
-  });
-  $("[data-target=#downloadModal]").click(function (e) {
-    e.preventDefault();
-    downloadLayoutSrc();
-  });
-  $("[data-target=#shareModal]").click(function (e) {
-    e.preventDefault();
-    handleSaveLayout();
-  });
-  $("#download").click(function () {
-    downloadLayout();
-    return false
-  });
-  $("#downloadhtml").click(function () {
-    downloadHtmlLayout();
-    return false
-  });
-  $("#edit").click(function () {
-    $("body").removeClass("devpreview sourcepreview");
-    $("body").addClass("edit");
-    removeMenuClasses();
-    $(this).addClass("active");
-    return false
-  });
   $("#clear").click(function (e) {
     e.preventDefault();
     clearDemo()
@@ -500,12 +275,12 @@ cyan.initEditor = function ($window, cordova, JSZip, $cordovaFile, FileTransfer,
     $(this).addClass("active");
     return false
   });
-  $('#addpage').click(function () {
-    addPage();
-  });
-  $('#delpage').click(function () {
-    delPage();
-  });
+  //$('#addpage').click(function () {
+  //  addPage();
+  //});
+  //$('#delpage').click(function () {
+  //  delPage();
+  //});
   $("#fluidPage").click(function (e) {
     e.preventDefault();
     changeStructure("container", "container-fluid");
@@ -539,203 +314,172 @@ cyan.initEditor = function ($window, cordova, JSZip, $cordovaFile, FileTransfer,
   setInterval(function () {
     handleSaveLayout()
   }, timerSave)
+}
 
-  function getHTML() {
-    downloadLayoutSrc();
-    webpage =
-      '<html>\n\
-              <head>\n\
-                      <script type="text/javascript" src="js/jquery-2.0.0.min.js"></script>\n\
-                      <script type="text/javascript" src="js/jquery-ui.js"></script>\n\
-                      <script type="text/javascript" src="js/bootstrap.min.js"></script>\n\
-                      <link href="css/bootstrap-combined.min.css" rel="stylesheet" media="screen">\n\
-              </head>\n\
-              <body>\n' + webpage + '\n</body>\n\
+function getHTML() {
+  downloadLayoutSrc();
+  webpage =
+    '<html>\n\
+            <head>\n\
+                    <script type="text/javascript" src="js/jquery-2.0.0.min.js"></script>\n\
+                    <script type="text/javascript" src="js/jquery-ui.js"></script>\n\
+                    <script type="text/javascript" src="js/bootstrap.min.js"></script>\n\
+                    <link href="css/bootstrap-combined.min.css" rel="stylesheet" media="screen">\n\
+            </head>\n\
+            <body>\n' + webpage + '\n</body>\n\
         </html>'
 
-    return webpage;
+  return webpage;
+}
+
+function saveHtml($cordovaFile, storageDir, pageName) {
+  var assets = {
+    "js": [
+      [cordova.file.applicationDirectory + "/www/lib/jquery/", "jquery-2.0.0.min.js"],
+      [cordova.file.applicationDirectory + "/www/lib/jquery/", "jquery-ui.js"],
+      [cordova.file.applicationDirectory + "/www/lib/bootstrap/", "bootstrap.min.js"],
+    ],
+    "css": [
+      [cordova.file.applicationDirectory + "/www/css/", "bootstrap-combined.min.css"]
+    ]
   }
 
-  function saveHtml($cordovaFile, storageDir, pageName) {
-    var assets = {
-      "js": [
-        [cordova.file.applicationDirectory + "/www/lib/jquery/", "jquery-2.0.0.min.js"],
-        [cordova.file.applicationDirectory + "/www/lib/jquery/", "jquery-ui.js"],
-        [cordova.file.applicationDirectory + "/www/lib/bootstrap/", "bootstrap.min.js"],
-      ],
-      "css": [
-        [cordova.file.applicationDirectory + "/www/css/", "bootstrap-combined.min.css"]
-      ]
+  var appName = "apptest";
+
+  $cordovaFile.createDir(storageDir, appName, false);
+
+  var appDirPath = storageDir + "/" + appName;
+
+  var jsDirName = "js";
+  var jsDirPath = appDirPath + "/" + jsDirName;
+
+  var cssDirName = "css";
+  var cssDirPath = appDirPath + "/" + cssDirName;
+
+  $cordovaFile.writeFile(appDirPath, pageName + ".html", getHTML(), true);
+
+  for (assetDir in assets) {
+    $cordovaFile.createDir(appDirPath, assetDir, true);
+    for (asset in assets[assetDir]) {
+      $cordovaFile.copyFile(assets[assetDir][asset][0], assets[assetDir][asset][1], assetDir, assets[assetDir][asset][1]);
     }
+  }
 
-    var appName = "apptest";
+  var zip = new JSZip();
+  var promises = [];
+  var error = false;
 
-    $cordovaFile.createDir(storageDir, appName, false);
+  function zipDir(directoryEntry, path) {
+    return new Promise(function (resolve, reject) {
+      var dirReader = directoryEntry.createReader();
 
-    var appDirPath = storageDir + "/" + appName;
+      dirReader.readEntries(
+        function (entries) {
+          var rPromises = [];
 
-    var jsDirName = "js";
-    var jsDirPath = appDirPath + "/" + jsDirName;
+          var newPath = path;
 
-    var cssDirName = "css";
-    var cssDirPath = appDirPath + "/" + cssDirName;
-
-    $cordovaFile.writeFile(appDirPath, pageName + ".html", getHTML(), true);
-
-    for (assetDir in assets) {
-      $cordovaFile.createDir(appDirPath, assetDir, true);
-      for (asset in assets[assetDir]) {
-        $cordovaFile.copyFile(assets[assetDir][asset][0], assets[assetDir][asset][1], assetDir, assets[assetDir][asset][1]);
-      }
-    }
-
-    var zip = new JSZip();
-    var promises = [];
-    var error = false;
-
-    function zipDir(directoryEntry, path) {
-      return new Promise(function (resolve, reject) {
-        var dirReader = directoryEntry.createReader();
-
-        dirReader.readEntries(
-          function (entries) {
-            var rPromises = [];
-
-            var newPath = path;
-
-            if (newPath.length > 0) {
-              newPath += "/";
-            }
-            for (i in entries) {
-              if (entries[i].isDirectory == true) {
-                rPromises.push(
-                  zipDir(entries[i], newPath + entries[i].name)
-                );
-              } else if (entries[i].isFile == true) {
-                promises.push(
-                  new Promise(function (resolve, reject) {
-                    var curPath = newPath;
-                    var curName = entries[i].name;
-                    console.log(appDirPath + "/" + curPath);
-                    $cordovaFile.readAsText(appDirPath + "/" + curPath, curName)
-                      .then(function (result) {
-                        resolve({filePath: curPath, fileName: curName, content: result});
-                      }, function (error) {
-                        reject({filePath: curPath, fileName: curName, content: error});
-                      });
-                  })
-                );
-              }
-            }
-
-            Promise.all(rPromises).then(function () {
-              resolve();
-            }, function () {
-              reject();
-            });
-          },
-          function (err) {
-            console.log(err);
-            error = true;
-            reject();
+          if (newPath.length > 0) {
+            newPath += "/";
           }
-        );
-      });
-    }
+          for (i in entries) {
+            if (entries[i].isDirectory == true) {
+              rPromises.push(
+                zipDir(entries[i], newPath + entries[i].name)
+              );
+            } else if (entries[i].isFile == true) {
+              promises.push(
+                new Promise(function (resolve, reject) {
+                  var curPath = newPath;
+                  var curName = entries[i].name;
+                  console.log(appDirPath + "/" + curPath);
+                  $cordovaFile.readAsText(appDirPath + "/" + curPath, curName)
+                    .then(function (result) {
+                      resolve({filePath: curPath, fileName: curName, content: result});
+                    }, function (error) {
+                      reject({filePath: curPath, fileName: curName, content: error});
+                    });
+                })
+              );
+            }
+          }
 
-    var res = $window.resolveLocalFileSystemURL(
-      appDirPath,
-      function (directoryEntry) {
-        var buildPromises = zipDir(directoryEntry, "");
+          Promise.all(rPromises).then(function () {
+            resolve();
+          }, function () {
+            reject();
+          });
+        },
+        function (err) {
+          console.log(err);
+          error = true;
+          reject();
+        }
+      );
+    });
+  }
 
-        buildPromises.then(function () {
-          console.log("SUCCESS");
+  var res = $window.resolveLocalFileSystemURL(
+    appDirPath,
+    function (directoryEntry) {
+      var buildPromises = zipDir(directoryEntry, "");
 
-          for (i in promises) {
-            promises[i].then(function (result) {
-              console.log(result.filePath + result.fileName);
-              zip.file(result.filePath + result.fileName, result.content);
+      buildPromises.then(function () {
+        console.log("SUCCESS");
+
+        for (i in promises) {
+          promises[i].then(function (result) {
+            console.log(result.filePath + result.fileName);
+            zip.file(result.filePath + result.fileName, result.content);
+          }, function (error) {
+            console.log(error);
+          })
+        }
+
+        Promise.all(promises).then(function () {
+          $cordovaFile.writeFile(storageDir, appName + ".zip", zip.generate({type: "blob"}), true)
+            .then(function (success) {
+              console.log("Succeeded in writing zip");
+
+              var options = new FileUploadOptions();
+              options.fileKey = "app";
+              options.fileName = appName + ".zip";
+              options.mimeType = "application/zip";
+
+              var params = {};
+              params.username = "foo";
+              params.password = "foobar";
+              params.name = "randomapptest";
+
+              options.params = params;
+
+              var ft = new FileTransfer();
+              var uploaded = ft.upload(
+                storageDir + "/" + appName + ".zip",
+                encodeURI("https://cyandev.xyz:5555/api/send_app"),
+                function () {
+                  console.log("Upload succeeded");
+                },
+                function () {
+                  console.log("Upload failed");
+                },
+                options,
+                true
+              );
+              console.log("uploaded : ", uploaded);
             }, function (error) {
               console.log(error);
-            })
-          }
-
-          Promise.all(promises).then(function () {
-            $cordovaFile.writeFile(storageDir, appName + ".zip", zip.generate({type: "blob"}), true)
-              .then(function (success) {
-                console.log("Succeeded in writing zip");
-
-                var options = new FileUploadOptions();
-                options.fileKey = "app";
-                options.fileName = appName + ".zip";
-                options.mimeType = "application/zip";
-
-                var params = {};
-                params.username = "foo";
-                params.password = "foobar";
-                params.name = "randomapptest";
-
-                options.params = params;
-
-                var ft = new FileTransfer();
-                var uploaded = ft.upload(
-                  storageDir + "/" + appName + ".zip",
-                  encodeURI("https://cyandev.xyz:5555/api/send_app"),
-                  function () {
-                    console.log("Upload succeeded");
-                  },
-                  function () {
-                    console.log("Upload failed");
-                  },
-                  options,
-                  true
-                );
-                console.log("uploaded : ", uploaded);
-              }, function (error) {
-                console.log(error);
-              });
-          }, function () {
-            //  One of the file promises failed
-          });
-          console.log(promises);
+            });
         }, function () {
-          console.log("FALURE");
+          //  One of the file promises failed
         });
-      },
-      function (err) {
-        console.log(err);
-      }
-    );
-  }
-
-  $("#save-button").on("click", function (event) {
-    saveHtml($cordovaFile, storageDir, "index");
-  });
-
-  function getPageName() {
-    if (pageName != "") {
-      return pageName;
+        console.log(promises);
+      }, function () {
+        console.log("FALURE");
+      });
+    },
+    function (err) {
+      console.log(err);
     }
-
-    while (true) {
-      pageName = prompt("Enter a name for the page", "");
-      if (pageName != null) {
-        if (pageName.slice(-5) != ".html") {
-          pageName += ".html";
-        }
-        return pageName;
-      }
-    }
-  }
-
-  function addPage() {
-    pageName = getPageName();
-    saveHtml($cordovaFile, storageDir, pageName);
-    pageName = "";
-    clearDemo();
-  }
-
-  function delPage() {
-  }
-
+  );
 }
