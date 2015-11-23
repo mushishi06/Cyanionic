@@ -74,12 +74,12 @@ angular.module('starter.controllers', [])
 
       $scope.assets = {
         "js": [
-          ["www/lib/jquery/", "jquery-2.0.0.min.js"],
-          ["www/lib/jquery/", "jquery-ui.js"],
-          ["www/lib/bootstrap/", "bootstrap.min.js"],
+          ["www/lib/", "jquery/", "jquery-2.0.0.min.js"],
+          ["www/lib/", "jquery/", "jquery-ui.js"],
+          ["www/lib/", "bootstrap/", "bootstrap.min.js"],
         ],
         "css": [
-          ["www/css/", "bootstrap-combined.min.css"]
+          ["www/css/", "", "bootstrap-combined.min.css"]
         ]
       };
 
@@ -169,10 +169,10 @@ angular.module('starter.controllers', [])
               ";
 
         for (i in $scope.assets["js"]) {
-          html += '<script type="text/javascript" src="' + $scope.assets["js"][i][0] + '/' + $scope.assets["js"][i][1] + '"></script>\n';
+          html += '<script type="text/javascript" src="js/' + $scope.assets["js"][i][1] + $scope.assets["js"][i][2] + '"></script>\n';
         }
         for (i in $scope.assets["css"]) {
-          html += '<link media="screen" rel="stylesheet" href="' + $scope.assets["css"][i][0] + '/' + $scope.assets["css"][i][1] + '">\n';
+          html += '<link media="screen" rel="stylesheet" href="css/' + $scope.assets["css"][i][1] + $scope.assets["css"][i][2] + '">\n';
         }
         html +=
           "</head>\n\
@@ -461,5 +461,4 @@ angular.module('starter.controllers', [])
       //    $scope.closeLogin();
       // }, 1000);
     };
-
   });
