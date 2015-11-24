@@ -34,14 +34,16 @@ Cyan.prototype = {
         $.ajax({
             url: url,
             data: JSON.stringify({
-                username: that.USER.username,
-                password: that.USER.password
+               // username: that.USER.username,
+               // password: that.USER.password
+                username: "foo",
+                password: "foobar"
             }),
             dataType: "json",
             contentType: "application/json",
             type: "POST",
             crossDomain: true,
-          cache: false,
+            cache: false,
             success: function(data, textStatus, jqXHR) {
                 console.log(textStatus);
                 console.log(jqXHR);
@@ -119,7 +121,7 @@ Cyan.prototype = {
             contentType: "application/json",
             type: "POST",
             crossDomain: true,
-          cache: false,
+            cache: false,
             success: function(data, textStatus, jqXHR) {
                 console.log(textStatus);
                 console.log(jqXHR);
@@ -294,8 +296,8 @@ Cyan.prototype = {
     //Call by button list Apps
     appsListing: function()
     {
-        document.getElementById('error_block').style.display = 'none';
-        this.listApps(cyan.appsListingFinish);
+        // document.getElementById('error_block').style.display = 'none';
+        this.listApps(appsListingFinish);
     },
 
     createNewApp: function(appName)

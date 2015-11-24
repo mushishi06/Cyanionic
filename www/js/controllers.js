@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('CyanCtrl', function($scope, $ionicModal, $timeout, $state) {
+.controller('CyanCtrl', function($scope, $ionicModal, $timeout, $state, $stateParams) {
     $scope.$on('$ionicView.afterEnter', function () {
       console.log("CyanCtrl::afterEnter");
       var links = document.getElementsByClassName("docs-css");
@@ -60,6 +60,31 @@ angular.module('starter.controllers', [])
     // }, 1000);
   };
 
+  $scope.appList = [
+    { name: 'bob', id: 0 },
+    { name: 'Reggae', id: 1 },
+    { name: 'titi',id: 2 },
+    { name: 'appcyan',id: 3 },
+    { name: 'kiki',id: 4 },
+    { name: 'jawad',id: 5 },
+    { name: 'plus de nom',id: 7 }
+  ];
+  
+  $scope.appsListing = function() {
+    console.log('Listing app', $scope.appList);
+    cyan.appsListing();
+  };
+
+  appsListingFinish = function(data) {
+    console.log("appsListingFinish", data);
+    // if (data == null || data.status == "KO") {
+    //   this.errorMessage = (data) ? (data.msg) : ("An unknown error occured.");
+    //   // do display error
+    // } else {
+      // update $appList
+      loadPageControler('cyan.list-apps-panel');
+    // }
+  };
 
 })
 .controller(

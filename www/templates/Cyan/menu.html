@@ -20,16 +20,16 @@
     </ion-header-bar> -->
       <ion-content>
         <ion-list>
-          <ion-item menu-close ng-click="resetProfile()" href="#/cyan/user-profile-panel">
+          <ion-item menu-close ng-click="resetProfile()" href="javascript:loadPageControler('cyan.user-profile-panel')">
             Mon profil
           </ion-item>
-          <ion-item menu-close href="#/cyan/main-logged-panel">
+          <ion-item menu-close href="javascript:loadPageControler('cyan.main-logged-panel')">
             Accueil
           </ion-item>
           <ion-item menu-close href="#/cyan/browse">
             Browse
           </ion-item>
-          <ion-item menu-close href="#/cyan/signein">
+          <ion-item menu-close href="javascript:loadPageControler('cyan.signein')">
             Se deconnecter
           </ion-item>
         </ion-list>

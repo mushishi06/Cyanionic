@@ -15,10 +15,8 @@
 		       </span>
 		    </div>
 		</div>
-		<section>
-		<div id="social-login" class="col-xs-12 col-sm-12 social-login"></div>
-	</section>
-	<section class="row">
+		
+		<div id="social-login" class="social-login"></div>
 
 		<div class="alert alert-danger" role="alert" id="error_block" style="text-align:center;display:none;">
 			<h2 style="height:0%">Erreur:</h2>
@@ -29,8 +27,8 @@
 			<ion-spinner icon="android" class="spinner-energized"></ion-spinner>
 			<br>Chargement en cours...
 		</div>
-	</section>
-	<section >
+	
+	
 		<div class="list list-inset">
 			<label class="item item-input">
 		  		<i class="icon ion-email placeholder-icon"></i>
@@ -47,15 +45,15 @@
 
 			<!-- onclick="cyan.userIdentification(document.getElementsByName('username')[0].value, document.getElementsByName('password')[0].value)">S'identifier</button> -->
 		</div>
-	</section>
+	
 	<ul class="list">
 	    <li >
-	        <a class="button button-block button-positive" href="#/cyan/credentials-retrieval-panel" data-transition="slide">
+	        <a class="button button-block button-positive" href="javascript:loadPageControler('cyan.credentials-retrieval-panel')" data-transition="slide">
 	            <p>J'ai oublie mes identifiants!</p>
 	        </a>
 	    </li>
 	    <li >
-	        <a class="button button-block button-positive" href="#/editor-panel" data-transition="slide">
+	        <a class="button button-block button-positive" href="javascript:loadPageControler('editor-panel')" data-transition="slide">
 	            <p>Voir l'editeur</p>
 	        </a>
 	    </li>
@@ -63,7 +61,7 @@
 	</ion-content>
 	<ion-footer-bar align-title="center" class="bar-dark">
  		<!-- <div id="bar bar-header bar-dark"> -->
-	        <a style="text-decoration:none" class="title" href="#/cyan/signup-panel"><p>Pas encore membre ? Enregistrez-vous ici !</p></a>
+	        <a style="text-decoration:none" class="title" href="javascript:loadPageControler('cyan.signup-panel')"><p>Pas encore membre ? Enregistrez-vous ici !</p></a>
 	    <!-- </div> -->
 	</ion-footer-bar>
 </ion-view>
