@@ -49,32 +49,6 @@ angular.module('starter.controllers')
           //    $scope.closeLogin();
           // }, 1000);
         };
-
-        $scope.appList = [
-          { name: 'bob', id: 0 },
-          { name: 'Reggae', id: 1 },
-          { name: 'titi',id: 2 },
-          { name: 'appcyan',id: 3 },
-          { name: 'kiki',id: 4 },
-          { name: 'jawad',id: 5 },
-          { name: 'plus de nom',id: 7 }
-        ];
-
-        $scope.appsListing = function() {
-          console.log('Listing app', $scope.appList);
-          cyan.appsListing();
-        };
-
-        appsListingFinish = function(data) {
-          console.log("appsListingFinish", data);
-          // if (data == null || data.status == "KO") {
-          //   this.errorMessage = (data) ? (data.msg) : ("An unknown error occured.");
-          //   // do display error
-          // } else {
-          // update $appList
-          loadPageControler('cyan.list-apps-panel');
-          // }
-        };
       }
     ]
   );
