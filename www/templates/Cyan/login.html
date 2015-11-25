@@ -15,7 +15,7 @@
 		       </span>
 		    </div>
 		</div>
-		
+
 		<div id="social-login" class="social-login"></div>
 
 		<div class="alert alert-danger" role="alert" id="error_block" style="text-align:center;display:none;">
@@ -27,33 +27,31 @@
 			<ion-spinner icon="android" class="spinner-energized"></ion-spinner>
 			<br>Chargement en cours...
 		</div>
-	
-	
+
+
 		<div class="list list-inset">
 			<label class="item item-input">
 		  		<i class="icon ion-email placeholder-icon"></i>
-		    	<input name="username" type="text" placeholder="Nom d'utilisateur" ng-model="loginData.username">
+		    	<input name="username" type="text" placeholder="Nom d'utilisateur" ng-model="user.username">
 			</label>
 			<label class="item item-input">
 		  		<i class="icon ion-locked placeholder-icon"></i>
-		    	<input name="password" type="password" placeholder="Mot de passe" ng-model="loginData.password">
+		    	<input name="password" type="password" placeholder="Mot de passe" ng-model="user.password">
 		 	</label>
-		 	<ion-toggle ng-model="loginData.saveIdLogin" toggle-class="toggle-calm">Se souvenir des indentifiants</ion-toggle>
+		 	<ion-toggle toggle-class="toggle-calm">Se souvenir des identifiants</ion-toggle>
 		</div>
 		<div class="padding">
-			<button type="button" class="button button-block button-positive" ng-click="userIdentification()">S'identifier</button>
-
-			<!-- onclick="cyan.userIdentification(document.getElementsByName('username')[0].value, document.getElementsByName('password')[0].value)">S'identifier</button> -->
+			<button type="button" class="button button-block button-positive" ng-click="login()">S'identifier</button>
 		</div>
-	
+
 	<ul class="list">
 	    <li >
-	        <a class="button button-block button-positive" href="javascript:loadPageControler('cyan.credentials-retrieval-panel')" data-transition="slide">
+	        <a class="button button-block button-positive" href ng-click="go('cyan.credentials-retrieval-panel')" data-transition="slide">
 	            <p>J'ai oublie mes identifiants!</p>
 	        </a>
 	    </li>
 	    <li >
-	        <a class="button button-block button-positive" href="javascript:loadPageControler('editor-panel')" data-transition="slide">
+	        <a class="button button-block button-positive" href ng-click="go('editor-panel')" data-transition="slide">
 	            <p>Voir l'editeur</p>
 	        </a>
 	    </li>
@@ -61,7 +59,7 @@
 	</ion-content>
 	<ion-footer-bar align-title="center" class="bar-dark">
  		<!-- <div id="bar bar-header bar-dark"> -->
-	        <a style="text-decoration:none" class="title" href="javascript:loadPageControler('cyan.signup-panel')"><p>Pas encore membre ? Enregistrez-vous ici !</p></a>
+	        <a style="text-decoration:none" class="title" href ng-click="go('cyan.signup-panel')"><p>Pas encore membre ? Enregistrez-vous ici !</p></a>
 	    <!-- </div> -->
 	</ion-footer-bar>
 </ion-view>

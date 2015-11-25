@@ -22,7 +22,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
           views: {
             'menuContent': {
               templateUrl: 'templates/Cyan/login.html',
-              controller: 'CyanCtrl'
+              controller: 'LoginCtrl'
             }
           }
         }
@@ -34,7 +34,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
           views: {
             'menuContent': {
               templateUrl: 'templates/Cyan/main-logged.html',
-              controller: 'CyanCtrl'
+              controller: 'VoidCtrl'
             }
           }
         }
@@ -54,7 +54,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
           views: {
             'menuContent': {
               templateUrl: 'templates/Cyan/create-App.html',
-              controller: 'CyanCtrl'
+              controller: 'LoginCtrl'
             }
           }
         }
@@ -89,7 +89,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
           views: {
             'menuContent': {
               templateUrl: 'templates/cyan/credentials-retrieval.html',
-              controller: 'CyanCtrl'
+              controller: 'LoginCtrl'
             }
           }
         }
@@ -101,7 +101,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
           views: {
             'menuContent': {
               templateUrl: 'templates/cyan/SignUp.html',
-              controller: 'CyanCtrl'
+              controller: 'LoginCtrl'
             }
           }
         }
@@ -112,10 +112,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
   )
   .run(
     [
-      '$ionicPlatform',
-      function($ionicPlatform) {
+      '$ionicPlatform', '$rootScope',
+      function($ionicPlatform, $rootScope) {
         $ionicPlatform.ready(
           function() {
+            $rootScope.user = null;
+
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
             if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -129,46 +131,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
             }
           }
         );
-      }
-    ]
-  )
-  .factory(
-    "cyanAPI",
-    [
-      '$http',
-      function($http) {
-        return {
-          scheme: "http",
-          host: "cyandev.xyz",
-          port: 5555,
-          getUrl: function(path) {
-            return this.scheme + "://" + this.host + ":" + this.port + path;
-          },
-          listApps: function(username, password) {
-            var self = this;
-
-            return new Promise(
-              function(resolve, reject) {
-                console.log("[API] [POST] /api/list_apps");
-                $http({
-                  url: self.getUrl("/api/list_apps"),
-                  method: "POST",
-                  data: {
-                    username: username,
-                    password: password
-                  },
-                  headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                  }
-                }).then(
-                  resolve,
-                  reject
-                );
-              }
-            );
-          }
-        }
       }
     ]
   );

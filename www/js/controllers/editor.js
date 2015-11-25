@@ -386,6 +386,21 @@ angular.module('starter.controllers').controller(
           }
         );
       });
+
+      $scope.on("$ionicView.afterLeave", function() {
+        console.log("EditorCtrl::afterEnter");
+        var links = document.getElementsByClassName("docs-css");
+        for (var i = 0 ; i < links.length ; ++i) {
+          angular.element(links[i]).remove();
+        }
+
+        var head = angular.element(document.getElementsByTagName("head")[0]);
+
+        links = document.getElementsByClassName("ionic-css");
+        if (links.length == 0) {
+          head.append(angular.element('<link href="lib/ionic/css/ionic.css" class="ionic-css" rel="stylesheet" />'));
+        }
+      });
     }]
 )
   .directive(
