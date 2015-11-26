@@ -12,7 +12,7 @@ angular.module('starter')
         scheme: "http",
         host: "cyandev.xyz",
         port: 5555,
-        timeout: 2000,
+        timeout: 50000,
         getUrl: function(path) {
           return this.scheme + "://" + this.host + ":" + this.port + path;
         },
@@ -53,6 +53,32 @@ angular.module('starter')
                 data: {
                   username: username,
                   password: password
+                },
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Accept': 'application/json'
+                },
+                timeout: self.timeout
+              }).then(
+                resolve,
+                reject
+              );
+            }
+          );
+        },
+        getAppInfos: function(username, password, appname) {
+          var self = this;
+
+          return new Promise(
+            function(resolve, reject) {
+              console.log("[API] [POST] /api/get_app_infos");
+              $http({
+                url: self.getUrl("/api/get_app_infos"),
+                method: "POST",
+                data: {
+                  username: username,
+                  password: password,
+                  name: appname
                 },
                 headers: {
                   'Content-Type': 'application/json',

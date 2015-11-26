@@ -387,7 +387,7 @@ angular.module('starter.controllers').controller(
         );
       });
 
-      $scope.on("$ionicView.afterLeave", function() {
+      $scope.$on("$ionicView.afterLeave", function() {
         console.log("EditorCtrl::afterEnter");
         var links = document.getElementsByClassName("docs-css");
         for (var i = 0 ; i < links.length ; ++i) {

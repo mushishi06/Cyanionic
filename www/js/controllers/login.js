@@ -6,8 +6,8 @@ angular.module('starter.controllers')
   .controller(
     'LoginCtrl',
     [
-      '$rootScope', '$scope', '$ionicModal', '$timeout', '$state', 'cyanAPI',
-      function($rootScope, $scope, $ionicModal, $timeout, $state, cyanAPI) {
+      '$rootScope', '$scope', '$ionicModal', '$timeout', '$state', 'User',
+      function($rootScope, $scope, $ionicModal, $timeout, $state, User) {
         $scope.user = {};
 
         $scope.go = function(page) {
@@ -16,15 +16,19 @@ angular.module('starter.controllers')
 
         // Perform the login action when the user submits the login form
         $scope.login = function() {
-          cyanAPI.welcome($scope.user.username, $scope.user.password).then(
+          $rootScope.currentUser = new User($scope.user.username, $scope.user.password);
+
+          $rootScope.currentUser.login().then(
             function() {
-              $rootScope.user = $scope.user;
+              console.log("[SUCCESS] Logged in");
               $scope.go('cyan.main-logged-panel');
             },
-            function() {
-
+            function(errorText) {
+              console.log("[FAILURE] Not logged in");
+              console.log(errorText);
+              $rootScope.currentUser = null;
             }
-          )
+          );
         };
       }
     ]

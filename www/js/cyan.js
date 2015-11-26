@@ -435,7 +435,7 @@ function orientationchange(value)
     }
 }
 
-function loadPage(page, unknown1, unknown2, loadingAnimation)
-{
-    loadPageControler(page);
-}
+//function loadPage(page, unknown1, unknown2, loadingAnimation)
+//{
+//    //loadPageControler(page);
+//}

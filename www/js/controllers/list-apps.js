@@ -8,30 +8,32 @@ angular.module('starter.controllers')
     [
       '$scope', '$ionicModal', 'cyanAPI',
       function($scope, $ionicModal, cyanAPI) {
-        $scope.appList = [];
+        $scope.go = function(page) {
+          $state.go(page);
+        }
 
         $scope.$on('$ionicView.afterEnter', function () {
           console.log("ListAppsCtrl::afterEnter");
-          console.log(cyanAPI);
-          cyanAPI.listApps("foo", "foobar").then(
-            function(response) {
-              console.log("[SUCCESS]");
-              console.log(response);
-
-              for (var i in response.data.names) {
-                $scope.appList.push({name: response.data.names[i], id: i});
-              }
-
-              console.log($scope.appList);
-              $scope.$apply();
-
-            },
-            function(response) {
-              console.log("[FAILURE]");
-              console.log(response);
-            }
-          );
         });
+      }
+    ]
+  )
+  .directive(
+    'listAppsCompile',
+    [
+      '$ionicGesture',
+      function($ionicGesture) {
+        return {
+          link: function(scope, element, attrs) {
+            $ionicGesture.on(
+              'click',
+              function(event) {
+
+              },
+              element
+            );
+          }
+        };
       }
     ]
   );

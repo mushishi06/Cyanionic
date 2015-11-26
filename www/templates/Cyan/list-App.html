@@ -33,10 +33,12 @@
 
     <!--  <div class="row" style="height:20px"></div> -->
 
-    <ion-list>
-      <ion-item ng-repeat="app in appList">
-        <p>{{ app.name }}</p>
-        <span class="badge badge-dark">{{ app.id }}</span>
+    <ion-list class="list">
+      <ion-item ng-repeat="(name, app) in currentUser.apps" can-swipe="true">
+        {{ name }}
+        <ion-option-button class="button-balanced">
+          <i class="icon ion-hammer"></i>
+        </ion-option-button>
       </ion-item>
     </ion-list>
 
@@ -44,8 +46,11 @@
   </ion-content>
   <ion-footer-bar align-title="center" class="bar-dark">
     <!-- <div id="bar bar-header bar-dark"> -->
-    <a style="text-decoration:none" class="title" href="javascript:loadPageControler('cyan.main-logged-panel')"><p>
-      Retour</p></a>
+    <a style="text-decoration:none" class="title" href ng-click="go('cyan.main-logged-panel')">
+      <p>
+        Retour
+      </p>
+    </a>
     <!-- </div> -->
   </ion-footer-bar>
 </ion-view>
