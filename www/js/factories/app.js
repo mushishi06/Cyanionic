@@ -10,6 +10,7 @@ angular.module('starter')
       function($rootScope, cyanAPI, $cordovaFile) {
         function App(user, name) {
           this.name = name;
+          this.normalizedName = App.normalizeName(this.name);
           this.user = user;
           this.onlineAttrs = {};
           this.offlineAttrs = {};
@@ -21,10 +22,6 @@ angular.module('starter')
         };
         App.prototype.getPath = function() {
           return this.user.getAppsPath() + "/" + App.normalizeName(this.name);
-        };
-
-        App.prototype.getNormalizedName = function() {
-          return App.normalizeName(this.name);
         };
         App.prototype.fetchOnlineInfos = function() {
           var self = this;
@@ -61,13 +58,38 @@ angular.module('starter')
             );
           });
         };
+        App.prototype.saveAttrsLocally = function() {
+          var self = this;
+          return new Promise(function(resolve, reject) {
+            $cordovaFile.writeFile(
+              self.getPath(),
+              App.ATTRS_FILENAME,
+              JSON.stringify(self.offlineAttrs),
+              true
+            ).then(
+              resolve,
+              reject
+            );
+          });
+        };
         App.prototype.createLocally = function() {
           var self = this;
           return new Promise(function(resolve, reject) {
+            self.offlineAttrs.version = 1;
             self.makeDir().then(
               function () {
-                self.user.addLocalApp(self);
-                resolve(self);
+                self.saveAttrsLocally().then(
+                  function() {
+                    console.log("Saving attrs locally");
+                    self.user.addLocalApp(self);
+                    resolve(self);
+                  },
+                  function(error) {
+                    console.log("Could not save attrs file");
+                    console.log(error);
+                    reject();
+                  }
+                );
               },
               function () {
                 reject();
@@ -78,14 +100,19 @@ angular.module('starter')
         App.prototype.makeDir = function() {
           var self = this;
           return new Promise(function(resolve, reject) {
-            $cordovaFile.createDir(self.user.getAppsPath(), self.getNormalizedName(), false).then(
+            $cordovaFile.createDir(self.user.getAppsPath(), self.normalizedName, false).then(
               function () {
-                console.log("[SUCCESS] Built app's '" + self.getNormalizedName() + "' directory");
+                console.log("[SUCCESS] Built app's '" + self.normalizedName + "' directory");
                 resolve();
               },
-              function () {
-                console.log("[FAIL] Could not build app's '" + self.getNormalizedName() + "' directory");
-                reject();
+              function (error) {
+                console.log("[FAIL] Could not build app's '" + self.normalizedName + "' directory");
+                console.log(error);
+                if (error.code == 12) {
+                  resolve();
+                } else {
+                  reject();
+                }
               }
             );
           });

@@ -6,21 +6,19 @@
               menu-toggle="left">
       </button>
       <div class="hexagon">
-               <span>
-                   <img src="img/logo-60x54.png" />
-               </span>
+        <span>
+          <img src="img/logo-60x54.png" />
+        </span>
       </div>
       <div class="login">
-               <span>
-                     <p style="text-align:center;font-size:15px;">My&nbsp;Apps</span></p>
+        <span>
+          <p style="text-align:center;font-size:15px;">My&nbsp;Apps</p>
         </span>
       </div>
     </div>
 
-
     <div class="alert alert-danger" role="alert" id="error_block_logged" style="text-align:center;display:none;">
-      <h2 style="height:0%">Erreur:</h2>
-
+      <h3 style="height:0%">Erreur:</h3>
       <p id="error_message_logged" style="height:0%"></p>
     </div>
 
@@ -28,7 +26,7 @@
          id="wait_app"
          style="display:none;width:100px;height:69px;text-align:center;margin: 0 auto">
       <ion-spinner icon="android" class="spinner-energized"></ion-spinner>
-      <br>Listing ...
+      <br />Listing ...
     </div>
 
     <!--  <div class="row" style="height:20px"></div> -->
@@ -36,13 +34,10 @@
     <ion-list>
       <ion-item ng-repeat="(name, app) in currentUser.apps" can-swipe="true">
         {{ name }}
-        <ion-option-button class="button-balanced icon ion-hammer">
-        </ion-option-button>
-        <ion-option-button class="button-calm icon ion-edit">
-        </ion-option-button>
+        <ion-option-button class="button-balanced icon ion-hammer"></ion-option-button>
+        <ion-option-button class="button-calm icon ion-edit" ng-click="editApp(app)"></ion-option-button>
       </ion-item>
     </ion-list>
-
 
   </ion-content>
   <ion-footer-bar align-title="center" class="bar-dark">

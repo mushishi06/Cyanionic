@@ -160,8 +160,8 @@ angular.module('starter.controllers').controller(
 
       $scope.saveCurrentPage = function() {
         return new Promise(function(resolve, reject) {
-          var appDirPath = $rootScope.currentApp.getPath();
-          $cordovaFile.writeFile(appDirPath, $scope.currentPage + ".html", $scope.getLayoutHTML(), true).then(
+          console.log($rootScope.currentApp.getPath());
+          $cordovaFile.writeFile($rootScope.currentApp.getPath(), $scope.currentPage + ".html", $scope.getLayoutHTML(), true).then(
             function () {
               console.log("[SUCCESS] Wrote file: " + $scope.currentPage + ".html");
               resolve();

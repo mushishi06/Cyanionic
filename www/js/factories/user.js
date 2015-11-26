@@ -214,9 +214,37 @@ angular.module('starter')
           }
         }
       };
+      User.prototype.updateApps = function() {
+        var self = this;
+
+        return new Promise(function(resolve, reject) {
+          var fetchPromises = [];
+
+          for (var key in self.apps) {
+            if (typeof self.apps[key].onlineAttrs.version !== "undefined") {
+              var download = false;
+
+              if (typeof self.apps[keys].offlineAttrs.version !== "undefined") {
+                if (parseInt(self.apps[key].onlineAttrs.version) > parseInt(self.apps[keys].offlineAttrs.version)) {
+                  download = true;
+                }
+              } else {
+                download = true;
+              }
+
+              fetchPromises.push(self.apps[key].fetchOnlineSource());
+            }
+          }
+          Promise.all(fetchPromises).then(
+            resolve,
+            reject
+          );
+        });
+      };
       User.prototype.addLocalApp = function(app) {
         this.offlineApps[app.name] = app;
-      }
+        this.apps[app.name] = app;
+      };
 
       return User;
     }
