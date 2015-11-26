@@ -6,8 +6,8 @@ angular.module('starter.controllers')
   .controller(
     'ListAppsCtrl',
     [
-      '$scope', '$ionicModal', 'cyanAPI',
-      function($scope, $ionicModal, cyanAPI) {
+      '$scope',
+      function($scope) {
         $scope.go = function(page) {
           $state.go(page);
         }

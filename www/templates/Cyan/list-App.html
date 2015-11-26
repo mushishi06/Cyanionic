@@ -33,11 +33,12 @@
 
     <!--  <div class="row" style="height:20px"></div> -->
 
-    <ion-list class="list">
+    <ion-list>
       <ion-item ng-repeat="(name, app) in currentUser.apps" can-swipe="true">
         {{ name }}
-        <ion-option-button class="button-balanced">
-          <i class="icon ion-hammer"></i>
+        <ion-option-button class="button-balanced icon ion-hammer">
+        </ion-option-button>
+        <ion-option-button class="button-calm icon ion-edit">
         </ion-option-button>
       </ion-item>
     </ion-list>

@@ -146,8 +146,19 @@ angular.module('starter')
                             function() {
                               sresolve();
                             },
-                            function() {
-                              sreject();
+                            function(err) {
+                              console.log("Determining error type");
+                              console.log(err);
+                              if (err.error.code == 1) {
+                                console.log("File not found, trying to ignore app");
+                                console.log(err);
+                                //errApp.deleteLocally();
+                                delete apps[err.app.name];
+                                sresolve();
+                              } else {
+                                console.log("Rejecting app")
+                                sreject();
+                              }
                             }
                           );
                         })
@@ -202,6 +213,9 @@ angular.module('starter')
             this.apps[key] = this.offlineApps[key];
           }
         }
+      };
+      User.prototype.addLocalApp = function(app) {
+        this.offlineApps[app.name] = app;
       }
 
       return User;

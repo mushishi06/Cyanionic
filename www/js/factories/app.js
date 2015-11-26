@@ -56,11 +56,25 @@ angular.module('starter')
               function(err) {
                 console.log("Could not fetch offline infos");
                 console.log(err);
-                reject(err);
+                reject({error: err, app: self});
               }
             );
           });
         };
+        App.prototype.createLocally = function() {
+          var self = this;
+          return new Promise(function(resolve, reject) {
+            self.makeDir().then(
+              function () {
+                self.user.addLocalApp(self);
+                resolve(self);
+              },
+              function () {
+                reject();
+              }
+            )
+          });
+        },
         App.prototype.makeDir = function() {
           var self = this;
           return new Promise(function(resolve, reject) {

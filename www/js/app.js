@@ -54,7 +54,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
           views: {
             'menuContent': {
               templateUrl: 'templates/Cyan/create-App.html',
-              controller: 'LoginCtrl'
+              controller: 'CreateAppCtrl'
             }
           }
         }

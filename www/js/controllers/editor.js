@@ -4,13 +4,8 @@
 angular.module('starter.controllers').controller(
   'EditorCtrl',
   [
-    "$scope", "$compile", "$timeout", "$window", "$ionicModal", "$ionicGesture", "$cordovaFile",
-    function($scope, $compile, $timeout, $window, $ionicModal, $ionicGesture, $cordovaFile) {
-      $scope.appName = "testapp";
-
-      $scope.rootPath = cordova.file.externalDataDirectory;
-      $scope.appPath = $scope.rootPath + "/" + $scope.appName;
-
+    "$rootScope", "$scope", "$compile", "$timeout", "$window", "$ionicModal", "$ionicGesture", "$cordovaFile",
+    function($rootScope, $scope, $compile, $timeout, $window, $ionicModal, $ionicGesture, $cordovaFile) {
       $scope.assets = {
         "js": [
           ["www/lib/", "jquery/", "jquery-2.0.0.min.js"],
@@ -165,27 +160,17 @@ angular.module('starter.controllers').controller(
 
       $scope.saveCurrentPage = function() {
         return new Promise(function(resolve, reject) {
-          var mkDirPromise = $cordovaFile.createDir($scope.rootPath, $scope.appName, true);
-
-          mkDirPromise.then(
+          var appDirPath = $rootScope.currentApp.getPath();
+          $cordovaFile.writeFile(appDirPath, $scope.currentPage + ".html", $scope.getLayoutHTML(), true).then(
             function () {
-              var appDirPath = cordova.file.externalDataDirectory + "/" + $scope.appName;
-              $cordovaFile.writeFile(appDirPath, $scope.currentPage + ".html", $scope.getLayoutHTML(), true).then(
-                function () {
-                  console.log("[SUCCESS] Wrote file: " + $scope.currentPage + ".html");
-                  resolve();
-                },
-                function () {
-                  console.log("[FAIL] Could not create file: " + $scope.currentPage + ".html");
-                  reject();
-                }
-              );
+              console.log("[SUCCESS] Wrote file: " + $scope.currentPage + ".html");
+              resolve();
             },
             function () {
-              console.log("[FAIL] Failed to create app directory");
+              console.log("[FAIL] Could not create file: " + $scope.currentPage + ".html");
               reject();
             }
-          )
+          );
         });
       }
 
@@ -211,7 +196,7 @@ angular.module('starter.controllers').controller(
 
       $scope.loadPageContent = function(pageName) {
         return new Promise(function(resolve, reject) {
-          $cordovaFile.readAsText($scope.appPath, pageName + ".html").then(
+          $cordovaFile.readAsText($rootScope.currentApp.getPath(), pageName + ".html").then(
             function(content) {
               resolve(content);
             },
@@ -366,24 +351,24 @@ angular.module('starter.controllers').controller(
           head.append(angular.element('<link href="css/editor-css/docs.min.css" class="docs-css" rel="stylesheet" />'));
         }
 
+        function initPage() {
+          $scope.bindEditors();
+          $scope.bindSortables();
+
+          $window.CKEDITOR.disableAutoInline = true;
+          $scope.CKInstance = $window.CKEDITOR.replace(
+            'contenteditor', {
+              language: 'en',
+              contentsCss: ['css/bootstrap-combined.min.css'],
+              allowedContent: true
+            }
+          );
+          cyan.initEditor($window, cordova, JSZip, $cordovaFile, window.FileTransfer, $ionicGesture, cordova.file.externalDataDirectory);
+        }
+
         $scope.loadPage($scope.currentPage).then(
-          function() {
-            $scope.bindEditors();
-            $scope.bindSortables();
-
-            $window.CKEDITOR.disableAutoInline = true;
-            $scope.CKInstance = $window.CKEDITOR.replace(
-              'contenteditor', {
-                language: 'en',
-                contentsCss: ['css/bootstrap-combined.min.css'],
-                allowedContent: true
-              }
-            );
-            cyan.initEditor($window, cordova, JSZip, $cordovaFile, window.FileTransfer, $ionicGesture, cordova.file.externalDataDirectory);
-          },
-          function() {
-
-          }
+          initPage,
+          initPage
         );
       });
 

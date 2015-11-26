@@ -30,24 +30,24 @@
             <br>Envoi en cours...
         </div>
     </section>
-    <section >
-        <div class="list list-inset">
-            <label class="item item-input">
-                <i class="icon ion-email placeholder-icon"></i>
-                <input name="appName" type="text" placeholder="Nom de l'application" ng-model="loginData.appName">
-            </label>
-            <label class="item item-input">
-                <i class="icon ion-locked placeholder-icon"></i>
-                <input class="input-file" id="my-file" type="file">
-                    <label for="my-file" class="input-file-trigger" tabindex="0">Select a file...</label>
-            </label>
-            <p class="file-return"></p>
+    <section>
+      <form name="createAppForm" ng-submit="createApp()" novalidate>
+        <label class="item item-input">
+            <i class="icon ion-email placeholder-icon"></i>
+            <input name="appName" type="text" placeholder="Nom de l'application" ng-minlength="5"  ng-maxlength="40" ng-model="appData.name" required />
+        </label>
+        <div role="alert">
+          <span class="error" ng-show="createAppForm.appName.$invalid && !createAppForm.appName.$pristine">
+            <div class="alert alert-danger" role="alert">
+              <h2 style="height:0%">Erreur:</h2>
+              Nom de l'application incorrect
+            </div>
+          </span>
         </div>
         <div class="padding">
-            <button type="button" class="button button-block button-positive" ng-click="#">Creer mon Application</button>
-
-            <!-- <button type="button" class="btn btn-lg  btn-block" onclick="cyan.createNewApp(document.getElementsByName('appName')[0].value)">Create App</button> -->
+            <button type="submit" class="button button-block button-positive">Creer mon Application</button>
         </div>
+      </form>
     </section>
     </ion-content>
     <ion-footer-bar align-title="center" class="bar-dark">
