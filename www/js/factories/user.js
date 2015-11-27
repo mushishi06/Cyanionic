@@ -85,7 +85,17 @@ angular.module('starter')
                   new Promise(function(sresolve, sreject) {
                     app.fetchOnlineInfos().then(
                       function() {
-                        sresolve();
+                        console.log("Retrieved online infos, trying to get state");
+                        app.getOnlineState().then(
+                          function() {
+                            console.log("[SUCCESS] Retrieved state in listing");
+                            sresolve();
+                          },
+                          function() {
+                            console.log("[FAIL] Could not retrieve state in listing");
+                            sreject();
+                          }
+                        );
                       },
                       function(app, response) {
                         console.log(app);
@@ -221,19 +231,7 @@ angular.module('starter')
           var fetchPromises = [];
 
           for (var key in self.apps) {
-            if (typeof self.apps[key].onlineAttrs.version !== "undefined") {
-              var download = false;
-
-              if (typeof self.apps[keys].offlineAttrs.version !== "undefined") {
-                if (parseInt(self.apps[key].onlineAttrs.version) > parseInt(self.apps[keys].offlineAttrs.version)) {
-                  download = true;
-                }
-              } else {
-                download = true;
-              }
-
-              fetchPromises.push(self.apps[key].fetchOnlineSource());
-            }
+            fetchPromises.push(self.apps[key].updateFromOnline());
           }
           Promise.all(fetchPromises).then(
             resolve,

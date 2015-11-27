@@ -179,6 +179,32 @@ angular.module('starter')
             }
           );
         },
+        getAppState: function(username, password, appname) {
+          var self = this;
+
+          return new Promise(
+            function(resolve, reject) {
+              console.log("[API] [POST] /api/get_app_state");
+              $http({
+                url: self.getUrl("/api/get_app_state"),
+                method: "POST",
+                data: {
+                  username: username,
+                  password: password,
+                  name: appname
+                },
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Accept': 'application/json'
+                },
+                timeout: self.timeout
+              }).then(
+                resolve,
+                reject
+              );
+            }
+          );
+        },
         fetchApp: function(username, password, appname) {
           //var fileTransfer = new FileTransfer();
           //var uri = encodeURI("http://some.server.com/download.php");

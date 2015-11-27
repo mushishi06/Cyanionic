@@ -14,8 +14,16 @@ angular.module('starter')
           this.user = user;
           this.onlineAttrs = {};
           this.offlineAttrs = {};
+          this.stateName = 'Offline';
+          this.canCompile = true;
+          this.canPublish = false;
         }
         App.ATTRS_FILENAME = "attrs.json";
+        App.STATES_MAP = {
+          'offline': 'Offline',
+          'compiling': 'Compiling',
+          'retrieved': 'Compiled'
+        };
 
         App.normalizeName = function(name) {
           return name.replace(/[^a-z0-9]/gi, '-').toLowerCase();
@@ -38,6 +46,26 @@ angular.module('starter')
               },
               function(response) {
                 reject(self, response);
+              }
+            )
+          });
+        };
+        App.prototype.getOnlineState = function() {
+          var self = this;
+
+          return new Promise(function(resolve, reject) {
+            cyanAPI.getAppState(self.user.username, self.user.password, self.normalizedName).then(
+              function(response) {
+                console.log("[SUCCESS] Retrieved app state");
+                console.log(response);
+                if (response.data.state == 'retrieved') {
+                  self.canPublish = true;
+                }
+                self.stateName = App.STATES_MAP[response.data.state];
+                resolve();
+              },
+              function(error) {
+                reject(error);
               }
             )
           });
@@ -293,7 +321,43 @@ angular.module('starter')
           this.offlineAttrs = offlineApp.offlineAttrs;
         };
         App.prototype.fetchOnlineSource = function() {
+          var self = this;
 
+          return new Promise(function(resolve, reject) {
+            resolve();
+          });
+        };
+        App.prototype.updateFromOnline = function() {
+          var self = this;
+
+          return new Promise(function(resolve, reject) {
+            if (typeof self.onlineAttrs.version !== "undefined") {
+              var download = false;
+
+              if (typeof self.offlineAttrs.version !== "undefined") {
+                if (parseInt(self.onlineAttrs.version) > parseInt(self.offlineAttrs.version)) {
+                  download = true;
+                }
+              } else {
+                download = true;
+              }
+
+              if (download == true) {
+                self.fetchOnlineSource().then(
+                  function () {
+                    resolve();
+                  },
+                  function() {
+                    reject();
+                  }
+                );
+              } else {
+                resolve();
+              }
+            } else {
+              resolve();
+            }
+          });
         };
         App.prototype.buildLocal = function() {
           var self = this;

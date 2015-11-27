@@ -19,7 +19,18 @@ angular.module('starter.controllers')
         $scope.editApp = function(app) {
           $rootScope.currentApp = app;
           $scope.go('editor-panel');
-        }
+        };
+
+        $scope.getBadgeClass = function(app) {
+          var ret = 'badge-assertive';
+
+          if (app.stateName == 'Offline') {
+            ret = 'badge-dark';
+          } else if (app.stateName == 'Compiled') {
+            ret = 'badge-balanced';
+          }
+          return ret;
+        };
 
         $scope.compileApp = function(app) {
           app.buildLocal().then(
@@ -56,6 +67,21 @@ angular.module('starter.controllers')
               console.log(error);
             }
           );
+        };
+
+        $scope.publishApp = function(app) {
+          app.publish().then(
+            function() {
+              console.log("[SUCCESS] Published");
+            },
+            function() {
+              console.log("[FAILED] Not published");
+            }
+          )
+        }
+
+        $scope.refreshApps = function() {
+
         }
       }
     ]
