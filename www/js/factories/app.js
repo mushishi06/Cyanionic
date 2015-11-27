@@ -39,7 +39,7 @@ angular.module('starter')
                 var attrs = response.data.app.attrs;
 
                 for (var key in attrs) {
-                  self.onlineAttrs[key] = attrs[key].version;
+                  self.onlineAttrs[key] = attrs[key];
                 }
 
                 resolve();
@@ -334,27 +334,49 @@ angular.module('starter')
             if (typeof self.onlineAttrs.version !== "undefined") {
               var download = false;
 
-              if (typeof self.offlineAttrs.version !== "undefined") {
-                if (parseInt(self.onlineAttrs.version) > parseInt(self.offlineAttrs.version)) {
-                  download = true;
-                }
-              } else {
-                download = true;
-              }
+              self.fetchOnlineInfos().then(
+                function() {
+                  self.getOnlineState().then(
+                    function() {
+                      if (typeof self.offlineAttrs.version !== "undefined") {
+                        if (parseInt(self.onlineAttrs.version) > parseInt(self.offlineAttrs.version)) {
+                          download = true;
+                        }
+                      } else {
+                        download = true;
+                      }
 
-              if (download == true) {
-                self.fetchOnlineSource().then(
-                  function () {
-                    resolve();
-                  },
-                  function() {
-                    reject();
-                  }
-                );
-              } else {
-                resolve();
-              }
+                      if (download == true) {
+                        self.fetchOnlineSource().then(
+                          function () {
+                            console.log("App::updateFromOnline [SUCCESS] Loaded all online resources and sources");
+                            resolve();
+                          },
+                          function () {
+                            console.log("App::updateFromOnline [FAILED] Failed to load source");
+                            reject();
+                          }
+                        );
+                      } else {
+                        console.log("App::updateFromOnline [SUCCESS] Loaded all online resources");
+                        resolve();
+                      }
+                    },
+                    function() {
+                      console.log("App::updateFromOnline [FAILED] Failed to load state");
+                      reject();
+                    }
+                  );
+                },
+                function() {
+                  console.log("App::updateFromOnline [FAILED] Failed to load infos");
+                  reject();
+                }
+              );
             } else {
+              console.log("App::updateFromOnline [SUCCESS] No online version");
+              console.log(self);
+              console.log(typeof self.onlineAttrs.version);
               resolve();
             }
           });
