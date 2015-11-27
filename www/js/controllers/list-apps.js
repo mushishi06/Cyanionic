@@ -20,6 +20,43 @@ angular.module('starter.controllers')
           $rootScope.currentApp = app;
           $scope.go('editor-panel');
         }
+
+        $scope.compileApp = function(app) {
+          app.buildLocal().then(
+            function() {
+              app.generateZip().then(
+                function () {
+                  console.log("[SUCCESS] Zipped the app");
+                  console.log("Sending app");
+                  app.sendOnline().then(
+                    function () {
+                      console.log("Compiling app");
+                      app.compile().then(
+                        function () {
+                          console.log("[SUCCESS] App compiled");
+                        },
+                        function () {
+                          console.log("[FAIL] Failed to compile app");
+                        }
+                      );
+                    },
+                    function () {
+                      console.log("[FAIL] Failed to send app");
+                    }
+                  );
+                },
+                function (error) {
+                  console.log("[FAIL] Failed to zip app");
+                  console.log(error);
+                }
+              );
+            },
+            function(error) {
+              console.log("[FAIL] Could not build local");
+              console.log(error);
+            }
+          );
+        }
       }
     ]
   )

@@ -92,6 +92,66 @@ angular.module('starter')
             }
           );
         },
+        sendApp: function(username, password, appname, filePath) {
+          var self = this;
+          return new Promise(function(resolve, reject) {
+            var options = new FileUploadOptions();
+
+            options.fileKey = "app";
+            options.fileName = appname + ".zip";
+            options.mimeType = "application/zip";
+
+            var params = {};
+            params.username = username;
+            params.password = password;
+            params.name = appname;
+
+            options.params = params;
+
+            var ft = new FileTransfer();
+            var uploaded = ft.upload(
+              filePath,
+              encodeURI(self.scheme + "://" + self.host + ":" + self.port + "/api/send_app"),
+              function () {
+                console.log("Upload succeeded");
+                resolve();
+              },
+              function () {
+                console.log("Upload failed");
+                reject();
+              },
+              options,
+              true
+            );
+          });
+        },
+        compileApp: function(username, password, appname, platforms) {
+          var self = this;
+
+          return new Promise(
+            function(resolve, reject) {
+              console.log("[API] [POST] /api/compile_app");
+              $http({
+                url: self.getUrl("/api/compile_app"),
+                method: "POST",
+                data: {
+                  username: username,
+                  password: password,
+                  name: appname,
+                  platforms: platforms
+                },
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Accept': 'application/json'
+                },
+                timeout: self.timeout
+              }).then(
+                resolve,
+                reject
+              );
+            }
+          );
+        },
         fetchApp: function(username, password, appname) {
           //var fileTransfer = new FileTransfer();
           //var uri = encodeURI("http://some.server.com/download.php");

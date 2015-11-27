@@ -34,7 +34,7 @@
     <ion-list>
       <ion-item ng-repeat="(name, app) in currentUser.apps" can-swipe="true">
         {{ name }}
-        <ion-option-button class="button-balanced icon ion-hammer"></ion-option-button>
+        <ion-option-button class="button-balanced icon ion-hammer" ng-click="compileApp(app)"></ion-option-button>
         <ion-option-button class="button-calm icon ion-edit" ng-click="editApp(app)"></ion-option-button>
       </ion-item>
     </ion-list>
