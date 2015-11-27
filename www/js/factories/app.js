@@ -162,6 +162,20 @@ angular.module('starter')
             );
           });
         };
+        App.prototype.publish = function() {
+          var self = this;
+
+          return new Promise(function(resolve, reject) {
+            cyanAPI.publishApp(self.user.username, self.user.password, self.normalizedName, ['android']).then(
+              function() {
+                resolve();
+              },
+              function() {
+                reject();
+              }
+            );
+          });
+        };
         App.prototype.generateZip = function() {
           var self = this;
 

@@ -152,6 +152,33 @@ angular.module('starter')
             }
           );
         },
+        publishApp: function(username, password, appname, platforms) {
+          var self = this;
+
+          return new Promise(
+            function(resolve, reject) {
+              console.log("[API] [POST] /api/publish_app");
+              $http({
+                url: self.getUrl("/api/publish_app"),
+                method: "POST",
+                data: {
+                  username: username,
+                  password: password,
+                  name: appname,
+                  platforms: platforms
+                },
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Accept': 'application/json'
+                },
+                timeout: self.timeout
+              }).then(
+                resolve,
+                reject
+              );
+            }
+          );
+        },
         fetchApp: function(username, password, appname) {
           //var fileTransfer = new FileTransfer();
           //var uri = encodeURI("http://some.server.com/download.php");
