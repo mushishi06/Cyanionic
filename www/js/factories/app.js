@@ -129,7 +129,17 @@ angular.module('starter')
             ).then(
               function () {
                 console.log("[SUCCESS] Sent zip online");
-                resolve();
+                ++self.offlineAttrs.version;
+                ++self.onlineAttrs.version;
+                self.saveAttrsLocally().then(
+                  function() {
+                    resolve();
+                  },
+                  function() {
+                    console.log("[FAILED] Failed to store new version number, nonblocking resolving anyway");
+                    resolve();
+                  }
+                );
               },
               function () {
                 console.log("[FAIL] Could not send zip online");

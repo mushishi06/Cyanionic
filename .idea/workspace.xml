@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0215dcc3-e34b-4486-ad08-07830b7cece3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controllers/list-apps.js" afterPath="$PROJECT_DIR$/www/js/controllers/list-apps.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/factories/app.js" afterPath="$PROJECT_DIR$/www/js/factories/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/factories/cyanAPI.js" afterPath="$PROJECT_DIR$/www/js/factories/cyanAPI.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/lib/editor/scripts.js" afterPath="$PROJECT_DIR$/www/lib/editor/scripts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/Cyan/list-App.html" afterPath="$PROJECT_DIR$/www/templates/Cyan/list-App.html" />
     </list>
     <ignored path="Cyanionic.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -51,8 +46,8 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/factories/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5212435">
-              <caret line="317" column="0" selection-start-line="317" selection-start-column="0" selection-end-line="317" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.42072538">
+              <caret line="129" column="27" selection-start-line="129" selection-start-column="27" selection-end-line="129" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -62,7 +57,7 @@
         <entry file="file://$PROJECT_DIR$/www/js/controllers/list-apps.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="55" column="33" selection-start-line="55" selection-start-column="33" selection-end-line="55" selection-end-column="33" />
+              <caret line="36" column="26" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -1063,15 +1058,15 @@
     <entry file="file://$PROJECT_DIR$/www/js/controllers/list-apps.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="55" column="33" selection-start-line="55" selection-start-column="33" selection-end-line="55" selection-end-column="33" />
+          <caret line="36" column="26" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/factories/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5212435">
-          <caret line="317" column="0" selection-start-line="317" selection-start-column="0" selection-end-line="317" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.42072538">
+          <caret line="129" column="27" selection-start-line="129" selection-start-column="27" selection-end-line="129" selection-end-column="27" />
           <folding />
         </state>
       </provider>
