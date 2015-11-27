@@ -8,6 +8,7 @@ angular.module('starter.controllers')
     [
       '$rootScope', '$scope', '$ionicModal', '$timeout', '$state', 'User',
       function($rootScope, $scope, $ionicModal, $timeout, $state, User) {
+        $scope.tryingLogin = false;
         $scope.user = {};
 
         $scope.go = function(page) {
@@ -16,10 +17,12 @@ angular.module('starter.controllers')
 
         // Perform the login action when the user submits the login form
         $scope.login = function() {
+          $scope.tryingLogin = true;
           $rootScope.currentUser = new User($scope.user.username, $scope.user.password);
 
           $rootScope.currentUser.login().then(
             function() {
+              $scope.tryingLogin = false;
               console.log("[SUCCESS] Logged in");
               $scope.go('cyan.main-logged-panel');
             },
