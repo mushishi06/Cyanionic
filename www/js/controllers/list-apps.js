@@ -26,8 +26,14 @@ angular.module('starter.controllers')
 
           if (app.stateName == 'Offline') {
             ret = 'badge-dark';
+          } else if (app.stateName == 'Online') {
+            ret = 'badge-calm';
+          } else if (app.stateName == 'Compiling') {
+            ret = 'badge-energized';
           } else if (app.stateName == 'Compiled') {
             ret = 'badge-balanced';
+          } else if (app.stateName == 'Published') {
+            ret = 'badge-royal';
           }
           return ret;
         };

@@ -22,7 +22,10 @@ angular.module('starter')
         App.STATES_MAP = {
           'offline': 'Offline',
           'compiling': 'Compiling',
-          'retrieved': 'Compiled'
+          'compiled': 'Compiling',
+          'retrieved': 'Compiled',
+          'published': 'Published',
+          'null': 'Online'
         };
 
         App.normalizeName = function(name) {
@@ -61,7 +64,11 @@ angular.module('starter')
                 if (response.data.state == 'retrieved') {
                   self.canPublish = true;
                 }
-                self.stateName = App.STATES_MAP[response.data.state];
+                if (typeof response.data.state != "undefined") {
+                  self.stateName = App.STATES_MAP[response.data.state];
+                } else {
+                  self.stateName = App.STATES_MAP[response.data.status];
+                }
                 resolve();
               },
               function(error) {
