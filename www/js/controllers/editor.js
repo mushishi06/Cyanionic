@@ -33,15 +33,35 @@ angular.module('starter.controllers').controller(
 
       $scope.timerSaveLayout = 1000;
 
+      function toggleOverPanel() {
+        $('.cd-menu-icon').toggleClass('is-clicked');
+        $('.cd-header').toggleClass('menu-is-open');
+
+        //in firefox transitions break when parent overflow is changed, so we need to wait for the end of the trasition to give the body an overflow hidden
+        if( $('.cd-primary-nav').hasClass('is-visible') ) {
+          $('.cd-primary-nav').removeClass('is-visible').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend',function(){
+            $('body').removeClass('overflow-hidden');
+          });
+        } else {
+          $('.cd-primary-nav').addClass('is-visible').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend',function(){
+            $('body').addClass('overflow-hidden');
+          });
+        }
+      }
+
       $scope.openEditor = function(event) {
         console.log("Opening EDITOR");
         $scope.currentEditor = $(event.currentTarget);
         var eText = $scope.currentEditor.html();
         $scope.CKInstance.setData(eText);
-        $("#editorModal").modal({backdrop: false}).on("shown", function () {
-          //$('.modal-backdrop').remove();
-        });
+
+        toggleOverPanel();
       };
+
+      $scope.saveEditor = function() {
+        $scope.currentEditor.html($scope.CKInstance.getData());
+        toggleOverPanel();
+      }
 
       $scope.clearLayout = function() {
         $(".demo").empty();
@@ -570,12 +590,12 @@ angular.module('starter.controllers').controller(
           );
 
           $(window).resize(function () {
-            $("body").css("min-height", $(window).height() - 90);
-            $(".demo").css("min-height", $(window).height() - 160)
+            $("body").css("min-height", $(window).height());
+            $(".demo").css("min-height", $(window).height())
           });
 
-          $("body").css("min-height", $(window).height() - 50);
-          $(".demo").css("min-height", $(window).height() - 130);
+          $("body").css("min-height", $(window).height());
+          $(".demo").css("min-height", $(window).height());
 
           $scope.initContainer();
 

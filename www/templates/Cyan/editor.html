@@ -1,6 +1,21 @@
 <ion-view title="editor" view-title="editor">
   <ion-content>
 
+    <nav>
+      <ul class="cd-primary-nav">
+        <li class="cd-label">Content</li>
+
+        <li>
+          <textarea id="contenteditor"></textarea>
+        </li>
+        <li>
+          <button type="button" class="btn btn-info" ng-click="saveEditor()">
+            Sauvegarder
+          </button>
+        </li>
+      </ul>
+    </nav>
+
     <!--<body style="min-height: 660px; cursor: auto;" class="edit">-->
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
@@ -1934,11 +1949,10 @@
       </div>
       <div class="modal-body">
         <p>
-          <textarea id="contenteditor"></textarea>
         </p>
       </div>
       <div class="modal-footer">
-        <a id="savecontent" class="btn btn-primary" data-dismiss="modal" editor-modal-content-save>Save</a>
+        <!--<a id="savecontent" class="btn btn-primary" data-dismiss="modal" editor-modal-content-save>Save</a>-->
         <a class="btn" data-dismiss="modal">Cancel</a>
       </div>
     </div>
