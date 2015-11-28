@@ -112,20 +112,23 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
   )
   .run(
     [
-      '$ionicPlatform', '$rootScope',
-      function($ionicPlatform, $rootScope) {
+      '$ionicPlatform', '$rootScope', 'LocalStorage',
+      function($ionicPlatform, $rootScope, LocalStorage) {
         $ionicPlatform.ready(
           function() {
             $rootScope.currentUser = null;
+            $rootScope.localStorage = new LocalStorage();
 
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
-            if (window.cordova && window.cordova.plugins.Keyboard) {
-              cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-              cordova.plugins.Keyboard.disableScroll(true);
-            }
 
-            $rootScope.rootPath = window.cordova.file.externalDataDirectory;
+            if (window.cordova) {
+              if (window.cordova.plugins.Keyboard) {
+                cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+                cordova.plugins.Keyboard.disableScroll(true);
+              }
+              $rootScope.rootPath = window.cordova.file.externalDataDirectory;
+            }
 
             if (window.StatusBar) {
               // org.apache.cordova.statusbar required

@@ -22,8 +22,16 @@ angular.module('starter.controllers').controller(
 
       $scope.currentPage = 'index';
 
+      $scope.layoutHistory = {
+        count: 0,
+        list: []
+      };
+      $scope.lastLayout = null;
+
       $scope.stopSave = 0;
       $scope.startDrag = 0;
+
+      $scope.timerSaveLayout = 1000;
 
       $scope.openEditor = function(event) {
         console.log("Opening EDITOR");
@@ -33,7 +41,176 @@ angular.module('starter.controllers').controller(
         $("#editorModal").modal({backdrop: false}).on("shown", function () {
           //$('.modal-backdrop').remove();
         });
+      };
+
+      $scope.clearLayout = function() {
+        $(".demo").empty();
+        $scope.layoutHistory = {
+          count: 0,
+          list: []
+        };
+        $rootScope.localStorage.remove("layoutdata");
       }
+
+      function randomFromInterval(e, t) {
+        return Math.floor(Math.random() * (t - e + 1) + e);
+      }
+
+      function randomNumber() {
+        return randomFromInterval(1, 1e6);
+      }
+
+      function handleAccordionIds() {
+        var e = $(".demo #myAccordion");
+        var t = randomNumber();
+        var n = "accordion-" + t;
+        var r;
+        e.attr("id", n);
+        e.find(".accordion-group").each(function (e, t) {
+          r = "accordion-element-" + randomNumber();
+          $(t).find(".accordion-toggle").each(function (e, t) {
+            $(t).attr("data-parent", "#" + n);
+            $(t).attr("href", "#" + r)
+          });
+          $(t).find(".accordion-body").each(function (e, t) {
+            $(t).attr("id", r)
+          })
+        })
+      }
+
+      function handleCarouselIds() {
+        var e = $(".demo #myCarousel");
+        var t = randomNumber();
+        var n = "carousel-" + t;
+        e.attr("id", n);
+        e.find(".carousel-indicators li").each(function (e, t) {
+          $(t).attr("data-target", "#" + n)
+        });
+        e.find(".left").attr("href", "#" + n);
+        e.find(".right").attr("href", "#" + n)
+      }
+
+      function handleModalIds() {
+        var e = $(".demo #myModalLink");
+        var t = randomNumber();
+        var n = "modal-container-" + t;
+        var r = "modal-" + t;
+        e.attr("id", r);
+        e.attr("href", "#" + n);
+        e.next().attr("id", n)
+      }
+
+      function handleTabsIds() {
+        var e = $(".demo #myTabs");
+        var t = randomNumber();
+        var n = "tabs-" + t;
+        e.attr("id", n);
+        e.find(".tab-pane").each(function (e, t) {
+          var n = $(t).attr("id");
+          var r = "panel-" + randomNumber();
+          $(t).attr("id", r);
+          $(t).parent().parent().find("a[href=#" + n + "]").attr("href", "#" + r)
+        })
+      }
+
+      $scope.handleJsIds = function() {
+        handleModalIds();
+        handleAccordionIds();
+        handleCarouselIds();
+        handleTabsIds()
+      }
+
+      function saveLayout() {
+        if ($scope.layoutHistory.list.length > $scope.layoutHistory.count) {
+          for (var i = $scope.layoutHistory.count; i < $scope.layoutHistory.list.length; i++)
+            $scope.layoutHistory.list[i] = null;
+        }
+        $scope.layoutHistory.list[$scope.layoutHistory.count] = $scope.lastLayout;
+        $scope.layoutHistory.count++;
+        $rootScope.localStorage.set("layoutdata", JSON.stringify($scope.layoutHistory));
+      }
+
+      $scope.handleSaveLayout = function() {
+        var e = $(".demo").html();
+        if (!$scope.stopSave && e != $scope.lastLayout) {
+          $scope.stopSave++;
+          $scope.lastLayout = e;
+          saveLayout();
+          $scope.stopSave--;
+        }
+      };
+
+      $scope.undoLayout = function() {
+        var ret = false;
+
+        if ($scope.layoutHistory) {
+          if ($scope.layoutHistory.count >= 2) {
+            window.demoHtml = $scope.layoutHistory.list[$scope.layoutHistory.count - 2];
+            $scope.layoutHistory.count--;
+            $('.demo').html($scope.lastLayout);
+            $rootScope.localStorage.set("layoutdata", JSON.stringify($scope.layoutHistory));
+            ret = true;;
+          }
+        }
+        return ret;
+      };
+
+      $scope.redoLayout = function() {
+        var ret = false;
+        if ($scope.layoutHistory) {
+          if ($scope.layoutHistory.list[$scope.layoutHistory.count]) {
+            window.demoHtml = $scope.layoutHistory.list[$scope.layoutHistory.count];
+            $scope.layoutHistory.count++;
+            $('.demo').html($scope.lastLayout);
+            $rootScope.localStorage.set("layoutdata", JSON.stringify($scope.layoutHistory));
+            ret = true;
+          }
+        }
+        return ret;
+      };
+
+      function configurationElm() {
+        $(".demo").delegate(".configuration > a", "click", function (e) {
+          e.preventDefault();
+          var t = $(this).parent().next().next().children();
+          $(this).toggleClass("active");
+          t.toggleClass($(this).attr("rel"))
+        });
+        $(".demo").delegate(".configuration .dropdown-menu a", "click", function (e) {
+          e.preventDefault();
+          var t = $(this).parent().parent();
+          var n = t.parent().parent().next().next().children();
+          t.find("li").removeClass("active");
+          $(this).parent().addClass("active");
+          var r = "";
+          t.find("a").each(function () {
+            r += $(this).attr("rel") + " "
+          });
+          t.parent().removeClass("open");
+          n.removeClass(r);
+          n.addClass($(this).attr("rel"))
+        })
+      };
+
+      $scope.initContainer = function() {
+        $(".demo, .demo .column").sortable({
+          connectWith: ".column",
+          opacity: .35,
+          start: function (e, t) {
+            if (!$scope.startDrag) {
+              $scope.stopSave++;
+            }
+            $scope.startDrag = 1;
+          },
+          stop: function (e, t) {
+            if ($scope.stopSave > 0) {
+              $scope.stopSave--;
+            }
+            $scope.startDrag = 0;
+          }
+        });
+        configurationElm();
+      };
 
       $scope.bindSortables = function() {
         $(".demo .column").sortable({
@@ -56,7 +233,7 @@ angular.module('starter.controllers').controller(
           $scope.stopSave;
         }
         $scope.startDrag = 0;
-      }
+      };
 
       $scope.bindEditors = function() {
         console.log("Binding EDITORS");
@@ -73,16 +250,16 @@ angular.module('starter.controllers').controller(
             elt
           );
         }
-      }
+      };
 
       $scope.cleanHTML = function(e) {
         $(e).parent().append($(e).children().html())
         $(e).remove();
-      }
+      };
 
       $scope.changeStructure = function(e, t) {
         $("#download-layout ." + e).removeClass(e).addClass(t)
-      }
+      };
 
       $scope.getLayoutBodyContent = function() {
         var e = "";
@@ -335,6 +512,34 @@ angular.module('starter.controllers').controller(
             }
           )
         });
+      };
+
+      function gridSystemGenerator() {
+        $(".lyrow .preview input").bind("keyup", function () {
+          var e = 0;
+          var t = "";
+          var n = $(this).val().split(" ", 12);
+          $.each(n, function (n, r) {
+            e = e + parseInt(r);
+            t += '<div class="span' + r + ' column"></div>'
+          });
+          if (e == 12) {
+            $(this).parent().next().children().html(t);
+            $(this).parent().prev().show()
+          } else {
+            $(this).parent().prev().hide()
+          }
+        });
+      }
+
+      function removeElm() {
+        $(".demo").delegate(".remove", "click", function (e) {
+          e.preventDefault();
+          $(this).parent().remove();
+          if (!$(".demo .lyrow").length > 0) {
+            $scope.clearLayout();
+          }
+        })
       }
 
       $scope.$on('$ionicView.afterEnter', function () {
@@ -363,7 +568,28 @@ angular.module('starter.controllers').controller(
               allowedContent: true
             }
           );
-          cyan.initEditor($window, cordova, JSZip, $cordovaFile, window.FileTransfer, $ionicGesture, cordova.file.externalDataDirectory);
+
+          $(window).resize(function () {
+            $("body").css("min-height", $(window).height() - 90);
+            $(".demo").css("min-height", $(window).height() - 160)
+          });
+
+          $("body").css("min-height", $(window).height() - 50);
+          $(".demo").css("min-height", $(window).height() - 130);
+
+          $scope.initContainer();
+
+          cyan.initEditor();
+
+          removeElm();
+          gridSystemGenerator();
+
+          $window.setInterval(
+            function () {
+              $scope.handleSaveLayout()
+            },
+            $scope.timerSaveLayout
+          );
         }
 
         $scope.loadPage($scope.currentPage).then(
@@ -373,7 +599,8 @@ angular.module('starter.controllers').controller(
       });
 
       $scope.$on("$ionicView.afterLeave", function() {
-        console.log("EditorCtrl::afterEnter");
+        console.log("EditorCtrl::afterLeave");
+        $scope.clearLayout();
         var links = document.getElementsByClassName("docs-css");
         for (var i = 0 ; i < links.length ; ++i) {
           angular.element(links[i]).remove();
@@ -408,7 +635,7 @@ angular.module('starter.controllers').controller(
                 t.helper.width(400)
               },
               stop: function (event, ui) {
-                //handleJsIds();
+                scope.handleJsIds();
                 if (scope.stopSave > 0) {
                   --scope.stopSave;
                 }
@@ -462,26 +689,6 @@ angular.module('starter.controllers').controller(
               "click",
               function(event) {
                 scope.currentEditor.html(scope.CKInstance.getData());
-              },
-              element
-            );
-          }
-        };
-      }
-    ]
-  )
-  .directive(
-    'editorSavePage',
-    [
-      "$ionicGesture",
-      function($ionicGesture) {
-        return {
-          link: function(scope, element, attrs) {
-            $ionicGesture.on(
-              "click",
-              function(event) {
-                console.log("Directive::editorSavePage");
-                scope.saveCurrentPage();
               },
               element
             );
