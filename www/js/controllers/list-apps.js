@@ -6,8 +6,21 @@ angular.module('starter.controllers')
   .controller(
     'ListAppsCtrl',
     [
-      '$rootScope', '$scope', '$state',
-      function($rootScope, $scope, $state) {
+      '$rootScope', '$scope', '$state', '$css',
+      function($rootScope, $scope, $state, $css) {
+        $scope.refreshApps = function() {
+          console.log("Refreshing apps");
+          $rootScope.currentUser.updateApps().then(
+            function() {
+              $scope.$broadcast('scroll.refreshComplete');
+            },
+            function() {
+              $scope.$broadcast('scroll.refreshComplete');
+            }
+          )
+          console.log("Apps refreshed");
+        };
+
         $scope.go = function(page) {
           $state.go(page);
         }
@@ -86,8 +99,16 @@ angular.module('starter.controllers')
           )
         }
 
-        $scope.refreshApps = function() {
-
+        $scope.removeApp = function(app) {
+          app.delete().then(
+            function() {
+              console.log("[SUCCESS] Removed");
+              $scope.$broadcast('scroll.infiniteScrollComplete')
+            },
+            function() {
+              console.log("[FAILED] Not removed");
+            }
+          )
         }
       }
     ]

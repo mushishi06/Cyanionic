@@ -1,6 +1,6 @@
 // Ionic Starter App
 
-angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
+angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'door3.css'])
   .config(
     function($stateProvider, $ionicConfigProvider, $urlRouterProvider) {
       $ionicConfigProvider.views.maxCache(0);
@@ -12,7 +12,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
           url: '/cyan',
           abstract: true,
           templateUrl: 'templates/Cyan/menu.html',
-          controller: 'VoidCtrl'
+          controller: 'VoidCtrl',
         }
       )
       .state(
@@ -22,9 +22,27 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
           views: {
             'menuContent': {
               templateUrl: 'templates/Cyan/login.html',
-              controller: 'LoginCtrl'
+              controller: 'LoginCtrl',
             }
-          }
+          },
+          css: [
+            {
+              href: "lib/ionic/css/ionic.css",
+              preload: true
+            },
+            {
+              href: "lib/Ionicons/css/ionicons.css",
+              preload: true
+            },
+            {
+              href: "css/style.css",
+              preload: true
+            },
+            {
+              href: "css/login.css",
+              preload: true
+            }
+          ]
         }
       )
       .state(
@@ -36,7 +54,25 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
               templateUrl: 'templates/Cyan/main-logged.html',
               controller: 'VoidCtrl'
             }
-          }
+          },
+          css: [
+            {
+              href: "lib/ionic/css/ionic.css",
+              preload: true
+            },
+            {
+              href: "lib/Ionicons/css/ionicons.css",
+              preload: true
+            },
+            {
+              href: "css/style.css",
+              preload: true
+            },
+            {
+              href: "css/login.css",
+              preload: true
+            }
+          ]
         }
       )
       .state(
@@ -44,7 +80,29 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
         {
           url: '/editor-panel',
           templateUrl: 'templates/Cyan/editor.html',
-          controller: 'EditorCtrl'
+          controller: 'EditorCtrl',
+          css: [
+            {
+              href: 'css/editor-css/docs.min.css',
+              preload: true
+            },
+            {
+              href: "lib/Ionicons/css/ionicons.css",
+              preload: true
+            },
+            {
+              href: 'css/editor-css/layoutit.css',
+              preload: true
+            },
+            {
+              href: 'css/bootstrap-combined.min.css',
+              preload: true
+            },
+            {
+              href: 'lib/editor/slidepanel.css',
+              preload: true
+            }
+          ]
         }
       )
       .state(
@@ -56,7 +114,25 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
               templateUrl: 'templates/Cyan/create-App.html',
               controller: 'CreateAppCtrl'
             }
-          }
+          },
+          css: [
+            {
+              href: "lib/ionic/css/ionic.css",
+              preload: true
+            },
+            {
+              href: "lib/Ionicons/css/ionicons.css",
+              preload: true
+            },
+            {
+              href: "css/style.css",
+              preload: true
+            },
+            {
+              href: "css/login.css",
+              preload: true
+            }
+          ]
         }
       )
       .state(
@@ -68,7 +144,25 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
               templateUrl: 'templates/Cyan/list-App.html',
               controller: 'ListAppsCtrl'
             }
-          }
+          },
+          css: [
+            {
+              href: "lib/ionic/css/ionic.css",
+              preload: true
+            },
+            {
+              href: "lib/Ionicons/css/ionicons.css",
+              preload: true
+            },
+            {
+              href: "css/style.css",
+              preload: true
+            },
+            {
+              href: "css/login.css",
+              preload: true
+            }
+          ]
         }
       )
       .state(

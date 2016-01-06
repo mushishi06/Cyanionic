@@ -6,8 +6,8 @@ angular.module('starter.controllers')
   .controller(
     'CreateAppCtrl',
     [
-      '$rootScope', '$scope', 'App', '$state',
-      function($rootScope, $scope, App, $state) {
+      '$rootScope', '$scope', 'App', '$state', '$css',
+      function($rootScope, $scope, App, $state, $css) {
         $scope.appData = {
           name: ""
         };

@@ -1,24 +1,20 @@
 <ion-view view-title="list-apps-panel-content">
-  <ion-content>
-    <div id="main-logo-block">
-      <button style="float:left;font-size:35px; padding-left:5px; color:grey;"
-              class="button button-icon button-clear ion-navicon"
-              menu-toggle="left">
-      </button>
-      <div class="hexagon">
-        <span>
-          <img src="img/logo-60x54.png" />
-        </span>
-      </div>
-      <div class="login">
-        <span>
-          <p style="text-align:center;font-size:15px;">My&nbsp;Apps</p>
-        </span>
-      </div>
+  <ion-header-bar class="cyan-header">
+    <div class="hexagon">
+      <span>
+        <img src="img/logo-60x54.png"/>
+      </span>
     </div>
+  </ion-header-bar>
+  <ion-header-bar class="cyan-subheader" align-title="center">
+    <h1 class="title">Mes applications</h1>
+  </ion-header-bar>
+  <ion-content class="has-cyan-header has-cyan-subheader">
+    <ion-refresher on-refresh="refreshApps()">
+    </ion-refresher>
 
-    <button class="button button-block button-balanced icon ion-refresh" ng-click="currentUser.updateApps()">
-    </button>
+    <!--<button class="button button-block button-balanced icon ion-refresh" ng-click="currentUser.updateApps()">-->
+    <!--</button>-->
 
     <ion-list>
       <ion-item ng-repeat="(name, app) in currentUser.apps" can-swipe="true">
@@ -33,6 +29,7 @@
         <ion-option-button ng-if="app.canCompile == true" class="button-balanced icon ion-hammer" ng-click="compileApp(app)"></ion-option-button>
 
         <ion-option-button ng-if="app.canPublish == true" class="button-royal icon ion-upload" ng-click="publishApp(app)"></ion-option-button>
+        <ion-option-button class="button-assertive icon ion-trash-b" ng-click="removeApp(app)"></ion-option-button>
       </ion-item>
     </ion-list>
 

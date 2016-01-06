@@ -6,9 +6,10 @@ angular.module('starter.controllers')
   .controller(
     'LoginCtrl',
     [
-      '$rootScope', '$scope', '$ionicModal', '$timeout', '$state', 'User',
-      function($rootScope, $scope, $ionicModal, $timeout, $state, User) {
+      '$rootScope', '$scope', '$ionicModal', '$timeout', '$state', '$css', 'User',
+      function($rootScope, $scope, $ionicModal, $timeout, $state, $css, User) {
         $scope.tryingLogin = false;
+
         $scope.user = {};
 
         $scope.go = function(page) {

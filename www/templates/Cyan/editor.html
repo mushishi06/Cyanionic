@@ -275,71 +275,7 @@
                 <li class="nav-header">PLUGINS DE BASE</li>
                 <li style="display: list-item;" class="boxes"
                     id="elmBase">
-                  <!-- Title -->
-                  <div class="box box-element ui-draggable" editor-box>
-                    <a href="#close" class="remove label label-danger">
-                      <i class="icon ion-close"></i>
-                    </a>
-                    <span class="configuration">
-                        <span class="btn-group">
-                            <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
-                              Align
-                              <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li class="active">
-                                <a href="#" rel="">Default</a>
-                              </li>
-                              <li class="">
-                                <a href="#"
-                                   rel="text-left">Left</a>
-                              </li>
-                              <li class="">
-                                <a href="#" rel="text-center">Center</a>
-                              </li>
-                              <li class="">
-                                <a href="#" rel="text-right">Right</a>
-                              </li>
-                            </ul>
-                        </span>
-                        <span class="btn-group">
-                            <a class="btn btn-mini dropdown-toggle"
-                               data-toggle="dropdown" href="#">Emphasis
-                              <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li class="active">
-                                <a href="#" rel="">Default</a>
-                              </li>
-                              <li class="">
-                                <a href="#"
-                                   rel="muted">Muted</a>
-                              </li>
-                              <li class="">
-                                <a href="#" rel="text-warning">Warning</a>
-                              </li>
-                              <li class="">
-                                <a href="#" rel="text-error">Error</a>
-                              </li>
-                              <li class="">
-                                <a href="#"
-                                   rel="text-info">Info</a>
-                              </li>
-                              <li class="">
-                                <a href="#" rel="text-success">Success</a>
-                              </li>
-                            </ul>
-                        </span>
-                    </span>
 
-                    <div class="preview">Titre</div>
-                    <div class="view">
-                      <h3 class="editor-element">
-                        h3. Lorem ipsum dolor sit
-                        amet.
-                      </h3>
-                    </div>
-                  </div>
 
                   <!-- Paragraph -->
                   <div class="box box-element ui-draggable" editor-box>
@@ -1903,43 +1839,8 @@
             <textarea></textarea>
           </p>
         </div>
-        <div class="modal-footer">
-          <a class="btn" data-dismiss="modal" onclick="javascript:saveHtml();">Save</a>
-        </div>
       </div>
     </div>
-    <script>
-      function resizeCanvas(size) {
-        var containerID = document.getElementsByClassName("changeDimension");
-        var containerDownload = document.getElementById("download-layout").getElementsByClassName("container-fluid")[0];
-        var row = document.getElementsByClassName("demo ui-sortable");
-        var container1 = document.getElementsByClassName("container1");
-        if (size == "md") {
-          $(containerID).width('id', "MD");
-          $(row).attr('id', "MD");
-          $(container1).attr('id', "MD");
-          $(containerDownload).attr('id', "MD");
-        }
-        if (size == "lg") {
-          $(containerID).attr('id', "LG");
-          $(row).attr('id', "LG");
-          $(container1).attr('id', "LG");
-          $(containerDownload).attr('id', "LG");
-        }
-        if (size == "sm") {
-          $(containerID).attr('id', "SM");
-          $(row).attr('id', "SM");
-          $(container1).attr('id', "SM");
-          $(containerDownload).attr('id', "SM");
-        }
-        if (size == "xs") {
-          $(containerID).attr('id', "XS");
-          $(row).attr('id', "XS");
-          $(container1).attr('id', "XS");
-          $(containerDownload).attr('id', "XS");
-        }
-      }
-    </script>
     <!--</body>-->
     <!--/.fluid-container-->
     <div class="modal hide fade" role="dialog" id="editorModal">

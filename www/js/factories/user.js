@@ -243,6 +243,11 @@ angular.module('starter')
         this.offlineApps[app.name] = app;
         this.apps[app.name] = app;
       };
+      User.prototype.removeAppFromLists = function(app) {
+        delete this.offlineApps[app.name];
+        delete this.onlineApps[app.name];
+        delete this.apps[app.name];
+      };
 
       return User;
     }

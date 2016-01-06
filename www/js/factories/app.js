@@ -34,6 +34,36 @@ angular.module('starter')
         App.prototype.getPath = function() {
           return this.user.getAppsPath() + "/" + App.normalizeName(this.name);
         };
+        App.prototype.delete = function() {
+          var self = this;
+
+          return new Promise(function(resolve, reject) {
+            if (this.stateName != "Offline") {
+              cyanAPI.deleteApp(self.user.username, self.user.password, self.name).then(
+                function() {
+                  $cordovaFile.removeFile(self.getPath(), App.ATTRS_FILENAME).then(
+                    function() {
+                      self.user.removeAppFromLists(self);
+                      resolve();
+                    },
+                    reject
+                  );
+                },
+                function() {
+                  reject();
+                }
+              )
+            } else {
+              $cordovaFile.removeFile(self.getPath(), App.ATTRS_FILENAME).then(
+                function() {
+                  self.user.removeAppFromLists(self);
+                  resolve();
+                },
+                reject
+              );
+            }
+          });
+        };
         App.prototype.fetchOnlineInfos = function() {
           var self = this;
           return new Promise(function(resolve, reject) {

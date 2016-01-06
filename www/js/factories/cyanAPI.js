@@ -205,6 +205,32 @@ angular.module('starter')
             }
           );
         },
+        deleteApp: function(username, password, appname) {
+          var self = this;
+
+          return new Promise(
+            function(resolve, reject) {
+              console.log("[API] [POST] /api/delete_app");
+              $http({
+                url: self.getUrl("/api/delete_app"),
+                method: "POST",
+                data: {
+                  username: username,
+                  password: password,
+                  name: appname
+                },
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Accept': 'application/json'
+                },
+                timeout: self.timeout
+              }).then(
+                resolve,
+                reject
+              );
+            }
+          );
+        },
         fetchApp: function(username, password, appname) {
           //var fileTransfer = new FileTransfer();
           //var uri = encodeURI("http://some.server.com/download.php");

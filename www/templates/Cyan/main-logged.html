@@ -1,46 +1,47 @@
 <ion-view view-title="main-logged-panel-content">
-    <ion-content>
-        <div id="main-logo-block">
-            <button style="float:left;font-size:35px; padding-left:5px; color:grey;" class="button button-icon button-clear ion-navicon" menu-toggle="left">
-            </button>
-            <div class="hexagon">
-               <span>
-                   <img src="img/logo-60x54.png"/>
-               </span>
-            </div>
-            <div class="login">
-               <span>
-                     <p style="text-align:center;font-size:15px;">Bienvenue&nbsp;<span name="displayedUsername"></span></p>
-               </span>
-            </div>
-        </div>
+  <ion-header-bar class="cyan-header">
+    <div class="hexagon">
+      <span>
+        <img src="img/logo-60x54.png"/>
+      </span>
+    </div>
+  </ion-header-bar>
+  <ion-header-bar class="cyan-subheader" align-title="center">
+    <h1 class="title">Menu</h1>
+  </ion-header-bar>
+  <ion-content class="has-cyan-header has-cyan-subheader">
+    <div id="social-login" class="social-login"></div>
 
-        <div id="social-login" class="social-login"></div>
+    <div class="alert alert-danger" role="alert" id="error_block_logged" style="text-align:center;display:none;">
+      <h2 style="height:0%">Erreur:</h2>
+      <p id="error_message_logged" style="height:0%"></p>
+    </div>
 
-        <div class="alert alert-danger" role="alert" id="error_block_logged" style="text-align:center;display:none;">
-            <h2 style="height:0%">Erreur:</h2>
-            <p id="error_message_logged" style="height:0%"></p>
-        </div>
+    <div class="img-responsive"
+         id="wait_app"
+         style="display:none;width:100px;height:69px;text-align:center;margin: 0 auto">
+      <ion-spinner icon="android" class="spinner-energized"></ion-spinner>
+      <br>Listing ...
+    </div>
 
-        <div class="img-responsive"  id="wait_app" style="display:none;width:100px;height:69px;text-align:center;margin: 0 auto">
-            <ion-spinner icon="android" class="spinner-energized"></ion-spinner>
-            <br>Listing ...
-        </div>
-
-        <ul class="list list-inset">
-            <li >
-                <a class="button button-block button-positive" href="#/cyan/create-app" data-transition="slide">
-                    <p>Creer une nouvelle application</p>
-                </a>
-            </li>
-            <li >
-                <a class="button button-block button-positive" href ng-click="go('cyan.list-apps-panel')" data-transition="slide">
-                    <p>Voir mes applications existantes</p>
-                </a>
-            </li>
-        </ul>
-    </ion-content>
-    <ion-footer-bar align-title="center" class="bar-dark">
-        <a style="text-decoration:none" class="title" href="javascript:loadPageControler('cyan.signein')"><p>Se déconnecter</p></a>
-    </ion-footer-bar>
+    <ul class="list list-inset">
+      <li>
+        <a class="button button-block button-positive" href="#/cyan/create-app" data-transition="slide">
+          <p>Creer une nouvelle application</p>
+        </a>
+      </li>
+      <li>
+        <a class="button button-block button-positive"
+           href
+           ng-click="go('cyan.list-apps-panel')"
+           data-transition="slide">
+          <p>Voir mes applications existantes</p>
+        </a>
+      </li>
+    </ul>
+  </ion-content>
+  <ion-footer-bar align-title="center" class="bar-dark">
+    <a style="text-decoration:none" class="title" href="javascript:loadPageControler('cyan.signein')"><p>Se
+      déconnecter</p></a>
+  </ion-footer-bar>
 </ion-view>

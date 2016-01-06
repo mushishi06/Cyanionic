@@ -4,8 +4,8 @@
 angular.module('starter.controllers').controller(
   'EditorCtrl',
   [
-    "$rootScope", "$scope", "$compile", "$timeout", "$window", "$ionicModal", "$ionicGesture", "$cordovaFile",
-    function($rootScope, $scope, $compile, $timeout, $window, $ionicModal, $ionicGesture, $cordovaFile) {
+    "$rootScope", "$scope", "$compile", "$timeout", "$window", "$ionicModal", "$ionicGesture", "$cordovaFile", "$css",
+    function($rootScope, $scope, $compile, $timeout, $window, $ionicModal, $ionicGesture, $cordovaFile, $css) {
       $scope.assets = {
         "js": [
           ["www/lib/", "jquery/", "jquery-2.0.0.min.js"],
@@ -281,7 +281,39 @@ angular.module('starter.controllers').controller(
         $("#download-layout ." + e).removeClass(e).addClass(t)
       };
 
-      $scope.getLayoutBodyContent = function() {
+      function resizeCanvas(html, size) {
+        var containerID = html.getElementsByClassName("changeDimension");
+        var containerDownload = html.getElementById("download-layout").getElementsByClassName("container-fluid")[0];
+        var row = html.getElementsByClassName("demo ui-sortable");
+        var container1 = html.getElementsByClassName("container1");
+        if (size == "md") {
+          $(containerID).width('id', "MD");
+          $(row).attr('id', "MD");
+          $(container1).attr('id', "MD");
+          $(containerDownload).attr('id', "MD");
+        }
+        if (size == "lg") {
+          $(containerID).attr('id', "LG");
+          $(row).attr('id', "LG");
+          $(container1).attr('id', "LG");
+          $(containerDownload).attr('id', "LG");
+        }
+        if (size == "sm") {
+          $(containerID).attr('id', "SM");
+          $(row).attr('id', "SM");
+          $(container1).attr('id', "SM");
+          $(containerDownload).attr('id', "SM");
+        }
+        if (size == "xs") {
+          $(containerID).attr('id', "XS");
+          $(row).attr('id', "XS");
+          $(container1).attr('id', "XS");
+          $(containerDownload).attr('id', "XS");
+        }
+      }
+
+      $scope.getLayoutBodyContent = function(size) {
+        resizeCanvas(size);
         var e = "";
         $("#download-layout").children().html($(".demo").html());
         var t = $("#download-layout").children();
@@ -349,7 +381,7 @@ angular.module('starter.controllers').controller(
         html +=
           "</head>\n\
             <body>\n\
-            " + $scope.getLayoutBodyContent() + "\n\
+            " + $scope.getLayoutBodyContent('xs') + "\n\
             </body>\n\
           </html>";
         return html;
@@ -564,17 +596,6 @@ angular.module('starter.controllers').controller(
 
       $scope.$on('$ionicView.afterEnter', function () {
         console.log("EditorCtrl::afterEnter");
-        var links = document.getElementsByClassName("ionic-css");
-        for (var i = 0 ; i < links.length ; ++i) {
-          angular.element(links[i]).remove();
-        }
-
-        var head = angular.element(document.getElementsByTagName("head")[0]);
-
-        links = document.getElementsByClassName("docs-css");
-        if (links.length == 0) {
-          head.append(angular.element('<link href="css/editor-css/docs.min.css" class="docs-css" rel="stylesheet" />'));
-        }
 
         function initPage() {
           $scope.bindEditors();
@@ -621,17 +642,6 @@ angular.module('starter.controllers').controller(
       $scope.$on("$ionicView.afterLeave", function() {
         console.log("EditorCtrl::afterLeave");
         $scope.clearLayout();
-        var links = document.getElementsByClassName("docs-css");
-        for (var i = 0 ; i < links.length ; ++i) {
-          angular.element(links[i]).remove();
-        }
-
-        var head = angular.element(document.getElementsByTagName("head")[0]);
-
-        links = document.getElementsByClassName("ionic-css");
-        if (links.length == 0) {
-          head.append(angular.element('<link href="lib/ionic/css/ionic.css" class="ionic-css" rel="stylesheet" />'));
-        }
       });
     }]
 )
