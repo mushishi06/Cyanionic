@@ -19,31 +19,31 @@
           <div class="nav-collapse collapse">
             <ul class="nav" id="menu-layoutit">
               <li>
-              <div class="btn-group" data-toggle="buttons-radio">
-                <button type="button" id="edit" class="btn btn-success active">
-                  <i class="icon ion-edit"></i>
-                  Edit
-                </button>
-                <button type="button" class="btn btn-info" id="sourcepreview">
-                  <i class="icon ion-search"></i>
-                  Previsualiser
-                </button>
-              </div>
-   				  <div class="btn-group">
-					<button type="button" class="btn btn-success" id="addpage" editor-add-page>
-            <i class="icon ion-plus"></i>
-            Add
-					</button>
-          <button type="button" class="btn btn-success" editor-load-page>
-            <i class="icon ion-folder"></i>
-            Load
-          </button>
-					<button type="button" class="btn btn-danger" id="delpage">
-            <i class="icon ion-trash-a"></i>
-						Delete
-					</button>
-				  </div>
-   		        <div class="btn-group">
+                <div class="btn-group" data-toggle="buttons-radio">
+                  <button type="button" id="edit" class="btn btn-success active">
+                    <i class="icon ion-edit"></i>
+                    Edit
+                  </button>
+                  <button type="button" class="btn btn-info" id="sourcepreview">
+                    <i class="icon ion-search"></i>
+                    Previsualiser
+                  </button>
+                </div>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-success" id="addpage" editor-add-page>
+                    <i class="icon ion-plus"></i>
+                    Add
+                  </button>
+                  <button type="button" class="btn btn-success" editor-load-page>
+                    <i class="icon ion-folder"></i>
+                    Load
+                  </button>
+                  <button type="button" class="btn btn-danger" id="delpage">
+                    <i class="icon ion-trash-a"></i>
+                    Delete
+                  </button>
+                </div>
+                <div class="btn-group">
                   <button type="button" class="btn btn-info" role="button" href ng-click="saveCurrentPage()">
                     <i class="icon ion-archive"></i>
                     Save
@@ -270,7 +270,10 @@
               <ul class="nav nav-list accordion-group">
                 <li class="nav-header">PLUGINS DE BASE</li>
                 <li style="display: list-item;" class="boxes" id="elmBase">
-                  <div ng-repeat="plugin in plugins.basics" ng-bind-html="plugin.BaseDOM | to_trusted" class="box box-element ui-draggable" editor-box>
+                  <div ng-repeat="plugin in plugins.basics"
+                       ng-bind-html="plugin.BaseDOM | to_trusted"
+                       class="box box-element ui-draggable"
+                       editor-box>
 
                   </div>
                 </li>
@@ -281,7 +284,10 @@
                   COMPOSANTS DE PAGE
                 </li>
                 <li style="display: list-item;" class="boxes" id="elmComponents">
-                  <div ng-repeat="plugin in plugins.page" ng-bind-html="plugin.BaseDOM | to_trusted" class="box box-element ui-draggable" editor-box>
+                  <div ng-repeat="plugin in plugins.page"
+                       ng-bind-html="plugin.BaseDOM | to_trusted"
+                       class="box box-element ui-draggable"
+                       editor-box>
 
                   </div>
                 </li>
@@ -292,7 +298,10 @@
                   PLUGINS INTERACTIFS
                 </li>
                 <li style="display: list-item;" class="boxes mute" id="elmJS">
-                  <div ng-repeat="plugin in plugins.interact" ng-bind-html="plugin.BaseDOM | to_trusted" class="box box-element ui-draggable" editor-box>
+                  <div ng-repeat="plugin in plugins.interact"
+                       ng-bind-html="plugin.BaseDOM | to_trusted"
+                       class="box box-element ui-draggable"
+                       editor-box>
 
                   </div>
                 </li>

@@ -161,7 +161,7 @@ angular.module('starter')
               }
             )
           });
-        },
+        };
         App.prototype.makeDir = function() {
           var self = this;
           return new Promise(function(resolve, reject) {
@@ -272,7 +272,7 @@ angular.module('starter')
                           new Promise(function (resolve, reject) {
                             var curPath = newPath;
                             var curName = entries[i].name;
-                            $cordovaFile.readAsText(self.getPath() + "/" + curPath, curName)
+                            $cordovaFile.readAsArrayBuffer(self.getPath() + "/" + curPath, curName)
                               .then(
                                 function (result) {
                                   resolve({filePath: curPath, fileName: curName, content: result});
@@ -418,6 +418,187 @@ angular.module('starter')
             }
           });
         };
+        App.prototype.getPages = function() {
+          var self = this;
+          var re = /(?:\.([^.]+))?$/;
+
+          return new Promise(function(resolve, reject) {
+            $window.resolveLocalFileSystemURL(
+              self.getPath(),
+              function (directoryEntry) {
+                var dirReader = directoryEntry.createReader();
+
+                dirReader.readEntries(
+                  function (entries) {
+                    var promises = [];
+
+                    for (var i in entries) {
+                      if (entries[i].isFile == true) {
+                        var curName = entries[i].name;
+                        if (re.exec(curName)[1] == "html") {
+                          promises.push(
+                            new Promise(function (resolve, reject) {
+                              $cordovaFile.readAsText(self.getPath(), curName).then(
+                                function (result) {
+                                  console.log("READ : " + result)
+                                  resolve({fileName: curName, content: result});
+                                },
+                                function (error) {
+                                  reject({fileName: curName, content: error});
+                                }
+                              );
+                            })
+                          );
+                        }
+                      }
+                    }
+
+                    var pages = [];
+
+                    for (var i in promises) {
+                      promises[i].then(
+                        function(elt) {
+                          pages.push(elt);
+                        },
+                        function(err) {
+                          console.log("[FAIL] Could not load:");
+                          console.log(err);
+                        }
+                      )
+                    }
+
+                    Promise.all(promises).then(
+                      function() {
+                        console.log("[SUCCESS] read files")
+                        resolve(pages)
+                      },
+                      function() {
+                        console.log("[FAILURE] pas read files")
+                      }
+                    )
+                  },
+                  function () {
+                    console.log("[FAIL] Failed to read entries");
+                    reject();
+                  }
+                );
+              },
+              function (err) {
+                console.log("[FAIL] Failed to get reader for root dir");
+                console.log(err);
+                reject();
+              }
+            );
+          });
+        };
+        App.prototype.getDOMParser = function(data) {
+          var xmlDoc = null;
+          var parser=new DOMParser();
+          xmlDoc = parser.parseFromString(data, "text/html");
+          return xmlDoc;
+        };
+        App.prototype.addImages = function(rootDir) {
+          var self = this;
+
+          return new Promise(function(resolve, reject) {
+            $cordovaFile.createDir(rootDir, "img", true).then(
+              function () {
+                console.log("Created img dir");
+                self.getPages().then(
+                  function (pages) {
+                    console.log("Got pages");
+                    console.log(pages);
+                    var imgId = 0;
+                    var re = /(?:\.([^.]+))?$/;
+
+                    var writePromises = [];
+
+                    for (var pageIndex in pages) {
+                      console.log("updating : " + pages[pageIndex].fileName);
+                      console.log(pages[pageIndex].content);
+                      var DOM = self.getDOMParser(pages[pageIndex].content);
+                      console.log(DOM);
+
+                      var imgs = DOM.getElementsByTagName("img");
+                      var pagePromises = [];
+
+                      console.log("Images");
+                      console.log(imgs);
+
+                      for (var i = 0; i < imgs.length; ++i) {
+                        var url = imgs[i].attributes.src.value;
+
+                        console.log("URL");
+                        console.log(url);
+
+                        if (!(url.indexOf('http://') === 0 || url.indexOf('https://') === 0)) {
+                          var ext = re.exec(url)[1];
+                          ++imgId;
+                          imgs[i].attributes.src.value = "img/" + imgId + "." + ext;
+                          pagePromises.push(
+                            new Promise(function (resolve, reject) {
+                              var fullPath = cordova.file.applicationDirectory + "/www/" + url;
+                              console.log("Copying '" + fullPath + "' to '" + self.getPath() + "/img/" + imgId + "." + ext + "'");²
+                              console.log(fullPath);
+                              $cordovaFile.copyFile(
+                                fullPath.replace(/\/[^\/]+\/?$/, ''),
+                                fullPath.replace(/^.*[\\\/]/, ''),
+                                self.getPath() + "/img",
+                                imgId + "." + ext
+                              ).then(
+                                resolve,
+                                reject
+                              );
+                            })
+                          );
+                        }
+                      }
+
+                      console.log("Promise push");
+
+                      writePromises.push(
+                        new Promise(function(resolve, reject) {
+                          console.log("Promise page : " + pages[pageIndex].fileName);
+                          Promise.all(pagePromises).then(
+                            function () {
+                              console.log(DOM);
+                              console.log(Object.keys(DOM));
+                              console.log(DOM.documentElement.outerHTML);
+                              $cordovaFile.writeFile(self.getPath(), pages[pageIndex].fileName, DOM.documentElement.outerHTML, true).then(
+                                resolve,
+                                reject
+                              )
+                            },
+                            function () {
+                              reject();
+                            }
+                          );
+                        })
+                      );
+                    }
+
+                    console.log("Promises");
+                    Promise.all(writePromises).then(
+                      function() {
+                        console.log("End promises");
+                        resolve();
+                      },
+                      reject
+                    )
+                  },
+                  function () {
+                    console.log("Failed to get pages");
+                    reject();
+                  }
+                )
+              },
+              function () {
+                console.log("Failed to create img dir");
+                reject();
+              }
+            );
+          });
+        };
         App.prototype.buildLocal = function() {
           var self = this;
 
@@ -470,8 +651,17 @@ angular.module('starter')
 
                 Promise.all(copyFilesPromises).then(
                   function () {
-                    console.log("[SUCCESS] Built app successfully");
-                    resolve();
+                    console.log("[SUCCESS] Prebuilt app");
+                    self.addImages(self.getPath()).then(
+                      function() {
+                        console.log("[SUCCESS] Built app successfully");
+                        resolve();
+                      },
+                      function() {
+                        console.log("[FAIL] Could not add images");
+                        reject();
+                      }
+                    )
                   },
                   function (error) {
                     console.log("[FAIL] Could not copy all files");

@@ -451,7 +451,7 @@ angular.module('starter.controllers').controller(
       }
 
       $scope.getLayoutBodyContent = function(size) {
-        resizeCanvas(size);
+        resizeCanvas(document, size);
         var e = "";
         $("#download-layout").children().html($(".demo").html());
         var t = $("#download-layout").children();
@@ -514,7 +514,7 @@ angular.module('starter.controllers').controller(
           html += '<script type="text/javascript" src="js/' + $scope.assets["js"][i][1] + $scope.assets["js"][i][2] + '"></script>\n';
         }
         for (i in $scope.assets["css"]) {
-          html += '<link media="screen" rel="stylesheet" href="css/' + $scope.assets["css"][i][1] + $scope.assets["css"][i][2] + '">\n';
+          html += '<link media="screen" rel="stylesheet" href="css/' + $scope.assets["css"][i][1] + $scope.assets["css"][i][2] + '" />\n';
         }
         html +=
           "</head>\n\
@@ -526,8 +526,11 @@ angular.module('starter.controllers').controller(
       }
 
       $scope.saveCurrentPage = function() {
+        console.log("SAVING CURRENT PAGE");
         return new Promise(function(resolve, reject) {
           console.log($rootScope.currentApp.getPath());
+          console.log($scope.currentPage + ".html");
+          console.log($scope.getLayoutHTML());
           $cordovaFile.writeFile($rootScope.currentApp.getPath(), $scope.currentPage + ".html", $scope.getLayoutHTML(), true).then(
             function () {
               console.log("[SUCCESS] Wrote file: " + $scope.currentPage + ".html");
