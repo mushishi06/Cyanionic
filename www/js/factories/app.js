@@ -538,7 +538,7 @@ angular.module('starter')
                           pagePromises.push(
                             new Promise(function (resolve, reject) {
                               var fullPath = cordova.file.applicationDirectory + "/www/" + url;
-                              console.log("Copying '" + fullPath + "' to '" + self.getPath() + "/img/" + imgId + "." + ext + "'");²
+                              console.log("Copying '" + fullPath + "' to '" + self.getPath() + "/img/" + imgId + "." + ext + "'");
                               console.log(fullPath);
                               $cordovaFile.copyFile(
                                 fullPath.replace(/\/[^\/]+\/?$/, ''),
