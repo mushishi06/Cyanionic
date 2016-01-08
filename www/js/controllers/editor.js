@@ -99,6 +99,8 @@ angular.module('starter.controllers').controller(
 
           $scope.$apply(function() {
             $scope.plugins.basics = EditorPlugin.basics;
+            $scope.plugins.page = EditorPlugin.page;
+            $scope.plugins.interact = EditorPlugin.interact;
           });
           console.log("PLUGINS FULLY LOADED");
           console.log($scope.plugins);
@@ -168,8 +170,7 @@ angular.module('starter.controllers').controller(
                       allowedContent: true
                     }
                   );
-                  var eText = $($scope.currentEditor).html();
-                  $scope.CKInstances[i].setData(eText);
+                  $scope.CKInstances[i].setData(elt.value);
                 }
               }
             }

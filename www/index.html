@@ -52,11 +52,28 @@
       var cyan = new Cyan();
       var EditorPlugin = {
         basics: [],
+        page: [],
+        interact: [],
         findPlugin: function(dom) {
           for (var i in this.basics) {
             console.log(this.basics[i]);
             if (this.basics[i].isThis(dom)) {
               return this.basics[i];
+            }
+          }
+
+          for (var i in this.page) {
+            console.log(this.page[i]);
+            if (this.page[i].isThis(dom)) {
+              return this.page[i];
+            }
+          }
+
+
+          for (var i in this.interact) {
+            console.log(this.interact[i]);
+            if (this.interact[i].isThis(dom)) {
+              return this.interact[i];
             }
           }
           return null;
