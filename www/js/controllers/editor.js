@@ -4,8 +4,8 @@
 angular.module('starter.controllers').controller(
   'EditorCtrl',
   [
-    "$rootScope", "$scope", "$compile", "$timeout", "$window", "$ionicModal", "$ionicGesture", "$cordovaFile", "$css",
-    function($rootScope, $scope, $compile, $timeout, $window, $ionicModal, $ionicGesture, $cordovaFile, $css) {
+    "$rootScope", "$scope", "$compile", "$timeout", "$window", "$ionicModal", "$ionicGesture", "$cordovaFile", "$css", "angularLoad",
+    function($rootScope, $scope, $compile, $timeout, $window, $ionicModal, $ionicGesture, $cordovaFile, $css, angularLoad) {
       $scope.assets = {
         "js": [
           ["www/lib/", "jquery/", "jquery-2.0.0.min.js"],
@@ -18,7 +18,7 @@ angular.module('starter.controllers').controller(
       };
 
       $scope.currentEditor = null;
-      $scope.CKInstance = null;
+      $scope.CKInstances = [];
 
       $scope.currentPage = 'index';
 
@@ -32,6 +32,81 @@ angular.module('starter.controllers').controller(
       $scope.startDrag = 0;
 
       $scope.timerSaveLayout = 1000;
+
+      function loadPlugins() {
+        var pluginsPath = cordova.file.applicationDirectory + "/www/lib/editor/plugins";
+
+        return new Promise(function(resolve, reject) {
+          $window.resolveLocalFileSystemURL(
+            pluginsPath,
+            function (directoryEntry) {
+              var dirReader = directoryEntry.createReader();
+
+              dirReader.readEntries(
+                function (entries) {
+                  var pluginPromises = [];
+
+                  for (var i in entries) {
+                    pluginPromises.push(
+                      new Promise(function (resolve, reject) {
+                        angularLoad.loadScript("lib/editor/plugins/" + entries[i].name).then(
+                          function () {
+                            console.log("[SUCCESS] Loaded plugin '" + entries[i].name + "'");
+                            resolve();
+                          },
+                          function () {
+                            console.log("[FAILURE] Failed to load plugin '" + entries[i].name + "'");
+                            reject();
+                          }
+                        );
+                      })
+                    );
+                  }
+
+                  Promise.all(pluginPromises).then(
+                    function () {
+                      console.log("[SUCCESS] Plugins loaded");
+                      resolve();
+                    },
+                    function () {
+                      // failed to open a plugin
+                      console.log("[FAILURE] Failed to open a plugin");
+                      reject();
+                    }
+                  )
+                },
+                function () {
+                  // Failed to open dir
+                  console.log("[FAILURE] Failed to get reader");
+                  reject();
+                }
+              )
+            },
+            function() {
+              console.log("[FAILURE] Failed to resolve FS");
+              reject();
+            }
+          );
+        });
+      }
+
+      $scope.plugins = {
+        basics: []
+      };
+
+      loadPlugins().then(
+        function() {
+
+          $scope.$apply(function() {
+            $scope.plugins.basics = EditorPlugin.basics;
+          });
+          console.log("PLUGINS FULLY LOADED");
+          console.log($scope.plugins);
+        },
+        function() {
+          console.log("PLUGINS NOT FULLY LOADED");
+        }
+      )
 
       function toggleOverPanel() {
         $('.cd-menu-icon').toggleClass('is-clicked');
@@ -50,16 +125,78 @@ angular.module('starter.controllers').controller(
       }
 
       $scope.openEditor = function(event) {
+        $scope.CKInstances = []
+        $(".cd-elt").remove();
         console.log("Opening EDITOR");
-        $scope.currentEditor = $(event.currentTarget);
-        var eText = $scope.currentEditor.html();
-        $scope.CKInstance.setData(eText);
 
-        toggleOverPanel();
-      };
+        console.log($scope.plugins);
+        $scope.currentEditor = event.currentTarget;
+
+        $scope.currentPlugin = EditorPlugin.findPlugin($scope.currentEditor);
+        console.log("PLUGIN USED: ");
+        console.log($scope.currentPlugin);
+
+        if ($scope.currentPlugin != null) {
+          var elts = $scope.currentPlugin.getElts($scope.currentEditor);
+
+          for (var i in elts) {
+            var elt = elts[i];
+            var domElt = null;
+
+            console.log(elt);
+
+            if (elt.tag == "input") {
+              domElt = $('<input type="text" />');
+              domElt.attr("name", elt.key);
+            } else if (elt.tag == "ckeditor") {
+              domElt = $('<textarea id="contenteditor-' + i + '"></textarea>');
+              domElt.attr("name", elt.key);
+            }
+            if (domElt != null) {
+              var div = $('<div class="cd-elt"></div>');
+              domElt.appendTo(div);
+              div.insertBefore($(".cd-footer"));
+
+              if (elt.tag == "input") {
+                domElt.val(elt.value);
+              } else if (elt.tag == "ckeditor") {
+                if (elt.tag == "ckeditor") {
+                  $scope.CKInstances[i] = $window.CKEDITOR.replace(
+                    'contenteditor-' + i, {
+                      language: 'en',
+                      contentsCss: ['css/bootstrap-combined.min.css'],
+                      allowedContent: true
+                    }
+                  );
+                  var eText = $($scope.currentEditor).html();
+                  $scope.CKInstances[i].setData(eText);
+                }
+              }
+            }
+          }
+
+          toggleOverPanel();
+        }
+      }
 
       $scope.saveEditor = function() {
-        $scope.currentEditor.html($scope.CKInstance.getData());
+        //$scope.currentEditor.html();
+        var divs = $(".cd-elt");
+        for (var i = 0 ; i < divs.length ; ++i) {
+          console.log($(divs[i]));
+          var elt = $(divs[i]).children().first();
+          console.log(elt);
+          var val = null;
+          var name = elt.attr("name");
+
+          if (elt.prop("tagName") == "INPUT") {
+            val = elt.val();
+          } else if (typeof $scope.CKInstances[i] != "undefined") {
+            val = $scope.CKInstances[i].getData();
+            name = $('#contenteditor-' + i).attr("name");
+          }
+          $scope.currentPlugin.setData($scope.currentEditor, name, val);
+        }
         toggleOverPanel();
       }
 
@@ -602,13 +739,6 @@ angular.module('starter.controllers').controller(
           $scope.bindSortables();
 
           $window.CKEDITOR.disableAutoInline = true;
-          $scope.CKInstance = $window.CKEDITOR.replace(
-            'contenteditor', {
-              language: 'en',
-              contentsCss: ['css/bootstrap-combined.min.css'],
-              allowedContent: true
-            }
-          );
 
           $(window).resize(function () {
             $("body").css("min-height", $(window).height());

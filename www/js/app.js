@@ -1,6 +1,9 @@
 // Ionic Starter App
 
-angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'door3.css'])
+angular.module(
+  'starter',
+  ['ionic', 'starter.controllers', 'ngCordova', 'door3.css', 'angularLoad']
+)
   .config(
     function($stateProvider, $ionicConfigProvider, $urlRouterProvider) {
       $ionicConfigProvider.views.maxCache(0);

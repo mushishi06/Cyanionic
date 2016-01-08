@@ -2,59 +2,61 @@
   <ion-header-bar class="cyan-header">
     <div class="hexagon">
       <span>
-        <img src="img/logo-60x54.png"/>
+        <img src="img/logo-60x54.png" />
       </span>
     </div>
   </ion-header-bar>
   <ion-header-bar class="cyan-subheader" align-title="center">
     <h1 class="title">Identification</h1>
   </ion-header-bar>
-	<ion-content class="has-cyan-header has-cyan-subheader">
+  <ion-content class="has-cyan-header has-cyan-subheader">
 
-		<div id="social-login" class="social-login"></div>
+    <div id="social-login" class="social-login"></div>
 
-		<div class="alert alert-danger" role="alert" id="error_block" style="text-align:center;display:none;">
-			<h2 style="height:0%">Erreur:</h2>
-			<p id="error_message" style="height:0%"></p>
-		</div>
+    <div class="alert alert-danger" role="alert" id="error_block" style="text-align:center;display:none;">
+      <h2 style="height:0%">Erreur:</h2>
+      <p id="error_message" style="height:0%"></p>
+    </div>
 
-		<div class="img-responsive"  id="wait" style="width:100px;height:69px;text-align:center;margin: 0 auto" ng-show="tryingLogin == true">
-			<ion-spinner icon="android" class="spinner-energized"></ion-spinner>
-			<br>Chargement en cours...
-		</div>
+    <div class="img-responsive"
+         id="wait"
+         style="width:100px;height:69px;text-align:center;margin: 0 auto"
+         ng-show="tryingLogin == true">
+      <ion-spinner icon="android" class="spinner-energized"></ion-spinner>
+      <br>Chargement en cours...
+    </div>
 
 
-		<div class="list list-inset">
-			<label class="item item-input">
-		  		<i class="icon ion-email placeholder-icon"></i>
-		    	<input name="username" type="text" placeholder="Nom d'utilisateur" ng-model="user.username">
-			</label>
-			<label class="item item-input">
-		  		<i class="icon ion-locked placeholder-icon"></i>
-		    	<input name="password" type="password" placeholder="Mot de passe" ng-model="user.password">
-		 	</label>
-		 	<ion-toggle toggle-class="toggle-calm">Se souvenir des identifiants</ion-toggle>
-		</div>
-		<div class="padding">
-			<button type="button" class="button button-block button-positive" ng-click="login()">S'identifier</button>
-		</div>
+    <div class="list list-inset">
+      <label class="item item-input">
+        <i class="icon ion-email placeholder-icon"></i>
+        <input name="username" type="text" placeholder="Nom d'utilisateur" ng-model="user.username">
+      </label>
+      <label class="item item-input">
+        <i class="icon ion-locked placeholder-icon"></i>
+        <input name="password" type="password" placeholder="Mot de passe" ng-model="user.password">
+      </label>
+      <ion-toggle toggle-class="toggle-calm">Se souvenir des identifiants</ion-toggle>
+    </div>
+    <div class="padding">
+      <button type="button" class="button button-block button-positive" ng-click="login()">S'identifier</button>
+    </div>
 
-	<ul class="list">
-	    <li >
-	        <a class="button button-block button-positive" href ng-click="go('cyan.credentials-retrieval-panel')" data-transition="slide">
-	            <p>J'ai oublie mes identifiants!</p>
-	        </a>
-	    </li>
-	    <!--<li >-->
-	        <!--<a class="button button-block button-positive" href ng-click="go('editor-panel')" data-transition="slide">-->
-	            <!--<p>Voir l'editeur</p>-->
-	        <!--</a>-->
-	    <!--</li>-->
-	</ul>
-	</ion-content>
-	<ion-footer-bar align-title="center" class="bar-dark">
- 		<!-- <div id="bar bar-header bar-dark"> -->
-	        <a style="text-decoration:none" class="title" href ng-click="go('cyan.signup-panel')"><p>Pas encore membre ? Enregistrez-vous ici !</p></a>
-	    <!-- </div> -->
-	</ion-footer-bar>
+    <ul class="list">
+      <li>
+        <a class="button button-block button-positive"
+           href
+           ng-click="go('cyan.credentials-retrieval-panel')"
+           data-transition="slide">
+          <p>J'ai oublie mes identifiants!</p>
+        </a>
+      </li>
+    </ul>
+  </ion-content>
+  <ion-footer-bar align-title="center" class="bar-dark">
+    <!-- <div id="bar bar-header bar-dark"> -->
+    <a style="text-decoration:none" class="title" href ng-click="go('cyan.signup-panel')"><p>Pas encore membre ?
+      Enregistrez-vous ici !</p></a>
+    <!-- </div> -->
+  </ion-footer-bar>
 </ion-view>

@@ -9,6 +9,7 @@
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
 
+    <script type="text/javascript" src="lib/jquery/jquery-2.0.0.js"></script>
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
@@ -18,6 +19,7 @@
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
+    <script src="js/filters.js"></script>
     <script src="js/factories/cyanAPI.js"></script>
     <script src="js/factories/app.js"></script>
     <script src="js/factories/user.js"></script>
@@ -29,8 +31,8 @@
     <script src="js/controllers/create-app.js"></script>
 
     <script type="text/javascript" src="lib/angular-css/angular-css.js"></script>
+    <script type="text/javascript" src="lib/angular-load/angular-load.js"></script>
     <script type="text/javascript" src="js/interact-1.2.4.min.js"></script>
-    <script type="text/javascript" src="lib/jquery/jquery-2.0.0.js"></script>
     <script type="text/javascript" src="lib/bootstrap/bootstrap.min.js"></script>
     <script type="text/javascript" src="lib/jquery/jquery-ui.js"></script>
     <script type="text/javascript" src="lib/jquery/jquery.ui.touch-punch.min.js"></script>
@@ -47,11 +49,22 @@
     <script type="text/javascript" src="js/cyan.js"></script>
     <script type="text/javascript" src="js/config.js"></script>
     <script type="text/javascript">
-        var cyan = new Cyan();
+      var cyan = new Cyan();
+      var EditorPlugin = {
+        basics: [],
+        findPlugin: function(dom) {
+          for (var i in this.basics) {
+            console.log(this.basics[i]);
+            if (this.basics[i].isThis(dom)) {
+              return this.basics[i];
+            }
+          }
+          return null;
+        }
+      };
     </script>
     <script type="text/javascript" src="lib/editor/scripts.js"></script>
   </head>
-
   <body>
     <ion-nav-view></ion-nav-view>
   </body>
