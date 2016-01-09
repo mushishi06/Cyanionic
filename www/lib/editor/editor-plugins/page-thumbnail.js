@@ -8,16 +8,22 @@
     isThis: function(dom) {
       console.log(dom);
       dom = $(dom);
-      return dom.prop("tagName") == "DIV" && false;
+      return dom.prop("tagName") == "DIV" && dom.hasClass("thumbnail");
     },
     getElts: function(dom) {
       return [
-        {tag: "input", key: "src", value: $(dom).find("img").attr("src")}
+        {tag: "input", key: "src", value: $(dom).find("img").attr("src")},
+        {tag: "ckeditor", key: "caption", value: $(dom).find(".caption").html()},
+        {tag: "input", key: "action", value: $(dom).find("a").attr("href")}
       ];
     },
     setData: function(dom, key, val) {
       if (key == "src") {
         $(dom).find("img").attr("src", val);
+      } else if (key == "caption") {
+        $(dom).find(".caption").html(val);
+      } else if (key == "action") {
+        $(dom).find("a").attr("href", val);
       }
     },
     BaseDOM:
@@ -34,7 +40,7 @@
         <div class="view">\
           <ul class="thumbnails">\
             <li class="span4">\
-              <div class="thumbnail">\
+              <div class="thumbnail editor-element">\
                 <img alt="300x200" src="img/people.jpg" />\
                 <div class="caption">\
                   <h3>Thumbnail label</h3>\
@@ -48,7 +54,6 @@
                     turkey spare ribs beef tail sirloin shank.\
                   </p>\
                   <p>\
-                    <a class="btn btn-primary" href="#">Action</a>\
                     <a class="btn" href="#">Action</a>\
                   </p>\
                 </div>\
@@ -70,7 +75,6 @@
                   </p>\
                   <p>\
                     <a class="btn btn-primary" href="#">Action</a>\
-                    <a class="btn" href="#">Action</a>\
                   </p>\
                 </div>\
               </div>\
@@ -91,7 +95,6 @@
                   </p>\
                   <p>\
                     <a class="btn btn-primary" href="#">Action</a>\
-                    <a class="btn" href="#">Action</a>\
                   </p>\
                 </div>\
               </div>\
@@ -100,6 +103,5 @@
         </div>\
       </div>'
   };
-
   EditorPlugin.page.push(new Thumbnail());
 })(EditorPlugin, jQuery)

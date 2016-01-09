@@ -8,16 +8,16 @@
     isThis: function(dom) {
       console.log(dom);
       dom = $(dom);
-      return dom.prop("tagName") == "DIV" && false;
+      return dom.prop("tagName") == "DIV" && dom.hasClass("page-header");
     },
     getElts: function(dom) {
       return [
-        {tag: "input", key: "src", value: $(dom).find("img").attr("src")}
+        {tag: "ckeditor", key: "header", value: $(dom).html()}
       ];
     },
     setData: function(dom, key, val) {
-      if (key == "src") {
-        $(dom).find("img").attr("src", val);
+      if (key == "header") {
+        $(dom).html(val);
       }
     },
     BaseDOM:
@@ -32,7 +32,7 @@
         </span>\
         <div class="preview">Page Header</div>\
         <div class="view">\
-          <div class="page-header">\
+          <div class="page-header editor-element">\
             <h1>Example Page Header\
               <small>Subtext for header</small>\
             </h1>\

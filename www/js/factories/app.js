@@ -547,29 +547,35 @@ angular.module('starter')
                                 imgId + "." + ext
                               ).then(
                                 resolve,
-                                reject
+                                function() {
+                                  console.log("Failed to copy '" + fullPath + "' to '" + self.getPath() + "/img/" + imgId + "." + ext + "'")
+                                  console.log(arguments);
+                                  reject.apply(this, arguments);
+                                }
                               );
                             })
                           );
                         }
                       }
 
-                      console.log("Promise push");
-
                       writePromises.push(
                         new Promise(function(resolve, reject) {
                           console.log("Promise page : " + pages[pageIndex].fileName);
                           Promise.all(pagePromises).then(
                             function () {
-                              console.log(DOM);
-                              console.log(Object.keys(DOM));
-                              console.log(DOM.documentElement.outerHTML);
                               $cordovaFile.writeFile(self.getPath(), pages[pageIndex].fileName, DOM.documentElement.outerHTML, true).then(
-                                resolve,
-                                reject
+                                function() {
+                                  console.log("Wrote file");
+                                  resolve.apply(this, arguments);
+                                },
+                                function() {
+                                  console.log("Failed to write file");
+                                  reject.apply(this, arguments);
+                                }
                               )
                             },
                             function () {
+                              console.log("Some pagePromise failed");
                               reject();
                             }
                           );
@@ -583,7 +589,10 @@ angular.module('starter')
                         console.log("End promises");
                         resolve();
                       },
-                      reject
+                      function() {
+                        console.log("Some writePromise failed");
+                        reject();
+                      }
                     )
                   },
                   function () {
@@ -608,6 +617,8 @@ angular.module('starter')
                 [cordova.file.applicationDirectory + "/www/lib/jquery/", "jquery-2.0.0.min.js"],
                 [cordova.file.applicationDirectory + "/www/lib/jquery/", "jquery-ui.js"],
                 [cordova.file.applicationDirectory + "/www/lib/bootstrap/", "bootstrap.min.js"],
+                [cordova.file.applicationDirectory + "www/lib/jquery/", "jquery.ui.touch-punch.min.js"],
+                [cordova.file.applicationDirectory + "www/lib/editor/", "docs.min.js"]
               ],
               "css": [
                 [cordova.file.applicationDirectory + "/www/css/", "bootstrap-combined.min.css"]

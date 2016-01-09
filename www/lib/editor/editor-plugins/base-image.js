@@ -8,7 +8,7 @@
     isThis: function(dom) {
       console.log(dom);
       dom = $(dom);
-      return dom.prop("tagName") == "DIV" && dom.children().first().prop("tagName") == "IMG";
+      return dom.prop("tagName") == "DIV" && dom.children().length == 1 && dom.children().first().prop("tagName") == "IMG";
     },
     getElts: function(dom) {
       return [

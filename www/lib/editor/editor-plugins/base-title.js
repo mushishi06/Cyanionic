@@ -23,8 +23,7 @@
       }
     },
     BaseDOM:
-    '<!-- Title -->\
-    <div class="box box-element ui-draggable" editor-box>\
+    '<div class="box box-element ui-draggable" editor-box>\
       <a href="#close" class="remove label label-danger">\
         <i class="icon ion-close"></i>\
       </a>\

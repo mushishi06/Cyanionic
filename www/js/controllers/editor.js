@@ -8,9 +8,11 @@ angular.module('starter.controllers').controller(
     function($rootScope, $scope, $compile, $timeout, $window, $ionicModal, $ionicGesture, $cordovaFile, $css, angularLoad) {
       $scope.assets = {
         "js": [
-          ["www/lib/", "jquery/", "jquery-2.0.0.min.js"],
-          ["www/lib/", "jquery/", "jquery-ui.js"],
-          ["www/lib/", "bootstrap/", "bootstrap.min.js"],
+          ["www/lib/jquery/", "", "jquery-2.0.0.min.js"],
+          ["www/lib/jquery/", "", "jquery-ui.js"],
+          ["www/lib/bootstrap/", "", "bootstrap.min.js"],
+          ["www/lib/jquery/", "", "jquery.ui.touch-punch.min.js"],
+          ["www/lib/editor/", "", "docs.min.js"]
         ],
         "css": [
           ["www/css/", "", "bootstrap-combined.min.css"]
@@ -34,7 +36,7 @@ angular.module('starter.controllers').controller(
       $scope.timerSaveLayout = 1000;
 
       function loadPlugins() {
-        var pluginsPath = cordova.file.applicationDirectory + "/www/lib/editor/plugins";
+        var pluginsPath = cordova.file.applicationDirectory + "/www/lib/editor/editor-plugins";
 
         return new Promise(function(resolve, reject) {
           $window.resolveLocalFileSystemURL(
@@ -49,7 +51,7 @@ angular.module('starter.controllers').controller(
                   for (var i in entries) {
                     pluginPromises.push(
                       new Promise(function (resolve, reject) {
-                        angularLoad.loadScript("lib/editor/plugins/" + entries[i].name).then(
+                        angularLoad.loadScript("lib/editor/editor-plugins/" + entries[i].name).then(
                           function () {
                             console.log("[SUCCESS] Loaded plugin '" + entries[i].name + "'");
                             resolve();
@@ -237,15 +239,19 @@ angular.module('starter.controllers').controller(
       }
 
       function handleCarouselIds() {
-        var e = $(".demo #myCarousel");
-        var t = randomNumber();
-        var n = "carousel-" + t;
-        e.attr("id", n);
-        e.find(".carousel-indicators li").each(function (e, t) {
-          $(t).attr("data-target", "#" + n)
-        });
-        e.find(".left").attr("href", "#" + n);
-        e.find(".right").attr("href", "#" + n)
+        var elts = $(".carousel");
+
+        for (var i = 0 ; i < elts.length ; ++i) {
+          var e = $(elts.get(i));
+          var t = randomNumber();
+          var n = "carousel-" + t;
+          e.attr("id", n);
+          e.find(".carousel-indicators li").each(function (e, t) {
+            $(t).attr("data-target", "#" + n)
+          });
+          e.find(".left").attr("href", "#" + n);
+          e.find(".right").attr("href", "#" + n)
+        }
       }
 
       function handleModalIds() {
@@ -517,11 +523,18 @@ angular.module('starter.controllers').controller(
           html += '<link media="screen" rel="stylesheet" href="css/' + $scope.assets["css"][i][1] + $scope.assets["css"][i][2] + '" />\n';
         }
         html +=
-          "</head>\n\
+          "\
+          </head>\n\
             <body>\n\
-            " + $scope.getLayoutBodyContent('xs') + "\n\
+            " + $scope.getLayoutBodyContent('sm') + "\n\
             </body>\n\
+            <script type=\"text/javascript\">\n\
+              $(document).ready(function() {\
+                $('.carousel').carousel();\n\
+              });\
+            </script>\n\
           </html>";
+        $scope.getLayoutBodyContent('lg');
         return html;
       }
 
@@ -674,8 +687,10 @@ angular.module('starter.controllers').controller(
         return new Promise(function(resolve, reject) {
           $scope.loadPageContent(pageName).then(
             function (content) {
+              $scope.currentPage = pageName;
               $scope.emptyCurrentPage();
               $scope.fillCurrentPage(content);
+              $('.carousel').carousel();
               resolve();
             },
             function () {
@@ -758,6 +773,7 @@ angular.module('starter.controllers').controller(
 
           removeElm();
           gridSystemGenerator();
+          $scope.handleJsIds();
 
           $window.setInterval(
             function () {
