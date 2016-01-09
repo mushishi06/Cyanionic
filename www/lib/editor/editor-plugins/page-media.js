@@ -8,16 +8,19 @@
     isThis: function(dom) {
       console.log(dom);
       dom = $(dom);
-      return dom.prop("tagName") == "DIV" && false;
+      return dom.prop("tagName") == "DIV" && dom.hasClass("media");
     },
     getElts: function(dom) {
       return [
-        {tag: "input", key: "src", value: $(dom).find("img").attr("src")}
+        {tag: "input", key: "src", value: $(dom).find("img").attr("src")},
+        {tag: "ckeditor", key: "text", value: $(dom).find(".media-body").html()}
       ];
     },
     setData: function(dom, key, val) {
       if (key == "src") {
         $(dom).find("img").attr("src", val);
+      } else if (key == "text") {
+        $(dom).find(".media-body").html(val);
       }
     },
     BaseDOM:
@@ -33,7 +36,7 @@
         </span>\
         <div class="preview">Media Object</div>\
         <div class="view">\
-          <div class="media">\
+          <div class="media editor-element">\
             <a href="#" class="pull-left">\
               <img src="img/a_002.jpg" class="media-object" />\
             </a>\

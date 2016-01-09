@@ -691,6 +691,7 @@ angular.module('starter.controllers').controller(
               $scope.emptyCurrentPage();
               $scope.fillCurrentPage(content);
               $('.carousel').carousel();
+              $scope.initContainer();
               resolve();
             },
             function () {

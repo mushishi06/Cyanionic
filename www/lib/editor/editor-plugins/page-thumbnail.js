@@ -60,7 +60,7 @@
               </div>\
             </li>\
             <li class="span4">\
-              <div class="thumbnail">\
+              <div class="thumbnail editor-element">\
                 <img alt="300x200" src="img/city.jpg">\
                 <div class="caption">\
                   <h3>Thumbnail label</h3>\
@@ -80,7 +80,7 @@
               </div>\
             </li>\
             <li class="span4">\
-              <div class="thumbnail">\
+              <div class="thumbnail editor-element">\
                 <img alt="300x200" src="img/sports.jpg">\
                 <div class="caption">\
                   <h3>Thumbnail label</h3>\
