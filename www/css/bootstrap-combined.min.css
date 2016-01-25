@@ -1306,6 +1306,9 @@ pre code {
     text-shadow: 0 -1px 0 rgba(0,  0,  0,  0.25);
     background-color: #999999;
 }
+.label:empty {
+  display: none;
+}
 
 .label {
     -webkit-border-radius: 3px;
@@ -1313,10 +1316,18 @@ pre code {
     border-radius: 3px;
 }
 
+.label[href]:hover, .label[href]:focus {
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .label-danger {
     background-color: #d9534f;
 }
-
+.label-danger[href]:hover, .label-danger[href]:focus {
+  background-color: #c9302c;
+}
 .badge {
     padding-left: 9px;
     padding-right: 9px;
@@ -3994,7 +4005,7 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
 }
 
 .navbar-fixed-top .navbar-inner, .navbar-fixed-bottom .navbar-inner {
-    padding: 5px; 
+    padding: 5px;
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     border-radius: 0;
@@ -6694,7 +6705,7 @@ button.close {
     padding-right: 10px;
 }
 }
-@media (min-width:980px) 
+@media (min-width:980px)
 {
     .nav-collapse.collapse {
     height: auto ;
@@ -8041,7 +8052,7 @@ button.close {
   list-style: none;
   overflow: hidden;
 }
-    
+
 .glyphicons li {
   float: left;
   width: 12.5%;

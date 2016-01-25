@@ -1,56 +1,88 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="starter">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' * ws://localhost:35729 data: gap: https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *;script-src 'self' localhost:35729 'unsafe-eval' 'unsafe-inline';">
     <title></title>
-
-    <!-- style editor -->
-    <link href="css/bootstrap-combined.min.css" rel="stylesheet">
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/editor-css/layoutit.css" rel="stylesheet">
-    <!-- <link href="css/editor-css/docs.min.css" rel="stylesheet"> -->
-
-    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/login.css" rel="stylesheet">
-    
-
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
 
+    <script type="text/javascript" src="lib/jquery/jquery-2.0.0.js"></script>
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
+    <script src="lib/ngCordova/dist/ng-cordova.js"></script>
     <script src="cordova.js"></script>
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/factories/cyanAPI.js"></script>
+    <script src="js/factories/app.js"></script>
+    <script src="js/factories/user.js"></script>
+    <script src="js/factories/local-storage.js"></script>
     <script src="js/controllers.js"></script>
-    <!-- <script type="text/javascript" src="lib/jquery/jquery-2.1.4.js"></script> -->
+    <script src="js/controllers/login.js"></script>
+    <script src="js/controllers/editor.js"></script>
+    <script src="js/controllers/list-apps.js"></script>
+    <script src="js/controllers/create-app.js"></script>
+
+    <script type="text/javascript" src="lib/angular-css/angular-css.js"></script>
+    <script type="text/javascript" src="lib/angular-load/angular-load.js"></script>
     <script type="text/javascript" src="js/interact-1.2.4.min.js"></script>
-    <script type="text/javascript" src="lib/jquery/jquery-2.0.0.min.js"></script>
     <script type="text/javascript" src="lib/bootstrap/bootstrap.min.js"></script>
     <script type="text/javascript" src="lib/jquery/jquery-ui.js"></script>
     <script type="text/javascript" src="lib/jquery/jquery.ui.touch-punch.min.js"></script>
     <script type="text/javascript" src="lib/jquery/jquery.htmlClean.js"></script>
+    <script type="text/javascript" src="lib/editor/slidepanel.js"></script>
     <script type="text/javascript" src="lib/editor/ckeditor.js"></script>
     <script type="text/javascript" src="lib/editor/config.js"></script>
-    <script type="text/javascript" src="lib/editor/scripts.js"></script>
     <script type="text/javascript" src="lib/editor/FileSaver.js"></script>
     <script type="text/javascript" src="lib/editor/blob.js"></script>
     <script type="text/javascript" src="lib/editor/docs.min.js"></script>
 
+    <script type="text/javascript" src="lib/jszip/dist/jszip.js"></script>
+
     <script type="text/javascript" src="js/cyan.js"></script>
     <script type="text/javascript" src="js/config.js"></script>
     <script type="text/javascript">
-        var cyan = new Cyan();
-    </script>
-  </head>
+      var cyan = new Cyan();
+      var EditorPlugin = {
+        basics: [],
+        page: [],
+        interact: [],
+        findPlugin: function(dom) {
+          for (var i in this.basics) {
+            console.log(this.basics[i]);
+            if (this.basics[i].isThis(dom)) {
+              return this.basics[i];
+            }
+          }
 
-  <body ng-app="starter">
-    <ion-nav-view ></ion-nav-view>
+          for (var i in this.page) {
+            console.log(this.page[i]);
+            if (this.page[i].isThis(dom)) {
+              return this.page[i];
+            }
+          }
+
+
+          for (var i in this.interact) {
+            console.log(this.interact[i]);
+            if (this.interact[i].isThis(dom)) {
+              return this.interact[i];
+            }
+          }
+          return null;
+        }
+      };
+    </script>
+    <script type="text/javascript" src="lib/editor/scripts.js"></script>
+  </head>
+  <body>
+    <ion-nav-view></ion-nav-view>
   </body>
 </html>

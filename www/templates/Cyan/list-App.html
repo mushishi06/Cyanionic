@@ -1,44 +1,46 @@
 <ion-view view-title="list-apps-panel-content">
-    <ion-content>
-        <div id="main-logo-block">
-         <button style="float:left;font-size:35px; padding-left:5px; color:grey;" class="button button-icon button-clear ion-navicon" menu-toggle="left">
-        </button>
-            <div class="hexagon">
-               <span>
-                   <img src="img/logo-60x54.png"/>
-               </span>
-            </div>
-            <div class="login">
-               <span>
-                     <p style="text-align:center;font-size:15px;">My&nbsp;Apps</span></p>
-               </span>
-            </div>
-        </div>
-    <section class="row">
+  <ion-header-bar class="cyan-header">
+    <div class="hexagon">
+      <span>
+        <img src="img/logo-60x54.png"/>
+      </span>
+    </div>
+  </ion-header-bar>
+  <ion-header-bar class="cyan-subheader" align-title="center">
+    <h1 class="title">Mes applications</h1>
+  </ion-header-bar>
+  <ion-content class="has-cyan-header has-cyan-subheader">
+    <ion-refresher on-refresh="refreshApps()">
+    </ion-refresher>
 
-        <div class="alert alert-danger" role="alert" id="error_block_logged" style="text-align:center;display:none;">
-            <h2 style="height:0%">Erreur:</h2>
-            <p id="error_message_logged" style="height:0%"></p>
-        </div>
+    <!--<button class="button button-block button-balanced icon ion-refresh" ng-click="currentUser.updateApps()">-->
+    <!--</button>-->
 
-        <div class="img-responsive"  id="wait_app" style="display:none;width:100px;height:69px;text-align:center;margin: 0 auto">
-            <ion-spinner icon="android" class="spinner-energized"></ion-spinner>
-            <br>Listing ...
-        </div>
-    </section>
-    <div class="row" style="height:20px"></div>
-    <section class="row">
-      <ul class="list list-App-test" id="list-apps-content">
+    <ion-list>
+      <ion-item ng-repeat="(name, app) in currentUser.apps" can-swipe="true">
+        {{ name }}
 
-<!-- <div style="display:flex;justify-content:center;align-items:center;">
- <div></div>
-</div> -->
-      </ul>
-    </section>
-    </ion-content>
-    <ion-footer-bar align-title="center" class="bar-dark">
-        <!-- <div id="bar bar-header bar-dark"> -->
-        <a style="text-decoration:none" class="title" href="#/cyan/main-logged"><p>Retour</p></a>
-        <!-- </div> -->
-    </ion-footer-bar>
+        <span
+          ng-class="'badge ' + getBadgeClass(app)"
+        >
+          {{ app.stateName }}
+        </span>
+        <ion-option-button class="button-calm icon ion-edit" ng-click="editApp(app)"></ion-option-button>
+        <ion-option-button ng-if="app.canCompile == true" class="button-balanced icon ion-hammer" ng-click="compileApp(app)"></ion-option-button>
+
+        <ion-option-button ng-if="app.canPublish == true" class="button-royal icon ion-upload" ng-click="publishApp(app)"></ion-option-button>
+        <ion-option-button class="button-assertive icon ion-trash-b" ng-click="removeApp(app)"></ion-option-button>
+      </ion-item>
+    </ion-list>
+
+  </ion-content>
+  <ion-footer-bar align-title="center" class="bar-dark">
+    <!-- <div id="bar bar-header bar-dark"> -->
+    <a style="text-decoration:none" class="title" href ng-click="go('cyan.main-logged-panel')">
+      <p>
+        Retour
+      </p>
+    </a>
+    <!-- </div> -->
+  </ion-footer-bar>
 </ion-view>

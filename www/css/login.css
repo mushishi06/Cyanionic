@@ -8,6 +8,30 @@
     margin-bottom:35px;*/
 }
 
+.cyan-header {
+  top: 0px;
+  height: 200px;
+  background-color:#0194ff;
+  background-image: none;
+  border: 0;
+}
+
+.cyan-subheader {
+  top: 200px;
+  height: 44px;
+  background-color:#0194ff;
+  background-image: none;
+  border: 0;
+}
+
+.has-cyan-header {
+  top: 200px;
+}
+
+.has-cyan-header.has-cyan-subheader {
+  top: 244px;
+}
+
 .input-group-addon {
   background-color: #fff !important;
   border-radius: 0px !important;
@@ -34,7 +58,7 @@
 .login {
   position: relative;
   color: white;
-  top: 42%;
+  top: 50%;
 }
 
 .hexagon {
@@ -42,8 +66,8 @@
   width: 85px;
   height: 49.07px;
   background-color: #fbfcff;
-    top: 38%;
-    left: 50%;
+  top: 38%;
+  left: 50%;
   margin-left: -42.5px;
   box-shadow: 0 0 30px rgba(208,213,253,0.8);
 }
@@ -76,8 +100,8 @@
   display: block;
   position: absolute;
   top:0px;
-  left: 0;
-  width:85px;
+  left: 12px;
+  width: 73px;
   height:49.0748px;
   z-index: 2;
   background: inherit;

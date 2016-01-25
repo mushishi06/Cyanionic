@@ -19,3 +19,9 @@ $ npm install -g ionic
 ```
 
 >Installation of [lab desktop](http://lab.ionic.io/) 
+
+cordova-plugin-file 3.0.0 "File"
+cordova-plugin-file-transfer 1.3.0 "File Transfer"
+cordova-plugin-whitelist 1.0.0 "Whitelist"
+cordova-plugin-zip 3.0.0 "cordova-plugin-zip"
+ionic-plugin-keyboard 1.0.7 "Keyboard"

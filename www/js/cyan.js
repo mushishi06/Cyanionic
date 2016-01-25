@@ -24,7 +24,7 @@ Cyan.prototype = {
         var proto = (this.tls == true) ? "https" : "http";
         return proto + "://" + this.host + ":" + this.port + "/" + page;
     },
-    
+
   listApps: function(callback) {
         this._listAppsCallback = callback;
         var url = this.getUrl("api/list_apps");
@@ -34,13 +34,16 @@ Cyan.prototype = {
         $.ajax({
             url: url,
             data: JSON.stringify({
-                username: that.USER.username,
-                password: that.USER.password
+               // username: that.USER.username,
+               // password: that.USER.password
+                username: "foo",
+                password: "foobar"
             }),
             dataType: "json",
             contentType: "application/json",
             type: "POST",
-             crossDomain: true,
+            crossDomain: true,
+            cache: false,
             success: function(data, textStatus, jqXHR) {
                 console.log(textStatus);
                 console.log(jqXHR);
@@ -56,7 +59,7 @@ Cyan.prototype = {
             }
         });
     },
-    
+
     createAccount: function(callback) {
         this._createAccountCallback = callback;
         var url = this.getUrl("api/create_account");
@@ -70,7 +73,8 @@ Cyan.prototype = {
             dataType: "json",
             contentType: "application/json",
             type: "POST",
-            crossDomain: true
+            crossDomain: true,
+          cache: false,
         }).done(function(data, textStatus, jqXHR) {
             that._createAccountCallback(data);
         }).fail(function(data, textStatus, jqXHR) {
@@ -90,6 +94,7 @@ Cyan.prototype = {
             dataType: "json",
             contentType: "application/json",
             type: "POST",
+          cache: false,
             success: function(data) {
                 that._welcomeCallback(data);
             }
@@ -116,6 +121,7 @@ Cyan.prototype = {
             contentType: "application/json",
             type: "POST",
             crossDomain: true,
+            cache: false,
             success: function(data, textStatus, jqXHR) {
                 console.log(textStatus);
                 console.log(jqXHR);
@@ -198,9 +204,9 @@ Cyan.prototype = {
                 console.log("COMPLETE");
                 document.getElementById('wait_editor').style.display = 'none';
             }
-        }); 
+        });
     },
-    
+
     appSendingFinished: function(data) {
         console.log(data);
     },
@@ -224,7 +230,6 @@ Cyan.prototype = {
     //Call by button login
     userIdentification: function(username, password)
     {
-        alert("bob");
         console.log(username);
         console.log(password);
         this.use(username, password);
@@ -245,6 +250,8 @@ Cyan.prototype = {
         else
         {
             v_div_parent = document.getElementById("list-apps-content");
+            console.log("v_div_parent = ");
+            console.log(v_div_parent);
             for(var key in data.names)
             {
                // $(key).exists(function() {
@@ -282,15 +289,15 @@ Cyan.prototype = {
             console.log(data.names);
             console.log(data.names[0]);
             console.log(data.status);
-            loadPage('#list-apps-panel', 'false', 'false', 'fade');
+            loadPage('#cyan/list-apps-panel', 'false', 'false', 'fade');
         }
     },
 
     //Call by button list Apps
     appsListing: function()
     {
-        document.getElementById('error_block').style.display = 'none';
-        this.listApps(cyan.appsListingFinish);
+        // document.getElementById('error_block').style.display = 'none';
+        this.listApps(appsListingFinish);
     },
 
     createNewApp: function(appName)
@@ -326,7 +333,7 @@ Cyan.prototype = {
     {
         return (this.USER.username);
     },
-    
+
     getUserEmail: function()
     {
         return (this.USER.email);
@@ -335,7 +342,7 @@ Cyan.prototype = {
     {
         return (this.USER.password);
     },
-    
+
     updateProfile: function()
     {
         /*var list = document.getElementsByName("displayedEmail");
@@ -428,7 +435,7 @@ function orientationchange(value)
     }
 }
 
-function loadPage(page, unknown1, unknown2, loadingAnimation)
-{
-    loadPageControler(page);
-}
+//function loadPage(page, unknown1, unknown2, loadingAnimation)
+//{
+//    //loadPageControler(page);
+//}
